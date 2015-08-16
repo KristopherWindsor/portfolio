@@ -80,7 +80,7 @@ class Home {
     echo '</table>';
 
     $id = 'canvaschart' . uniqid();
-    echo '<div class="ct-chart ct-double-octave" data-src="/data/annual/pie/' . $year . '/' . $id . '" id="' . $id . '"></div>';
+    echo '<div class="ct-chart ct-double-octave" data-src="/data/investments/year/' . $year . '/' . $id . '" id="' . $id . '"></div>';
     //echo '<canvas data-src="/reports/investments/' . $year . '"></canvas>';
   }
 }
