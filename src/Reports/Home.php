@@ -6,14 +6,39 @@ Use Portfolio\Db;
 
 class Home {
   public function __construct($mysqli){
-    echo '<html><body>';
+    $this->pageOpen();
+  //  echo '<html><body>';
 
     $this->yearReport($mysqli, 2014);
     $this->yearReport($mysqli, 2015);
     //var_dump($x);
 
 
+    $this->pageClose();
+  }
 
+  private function pageOpen(){
+    ?><!DOCTYPE html>
+<html>
+  <head>
+    <title>Portfolio</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="/script.js"></script>
+  </head>
+  <body>
+<?php
+  }
+
+  private function pageClose(){
+    ?>
+  </body>
+</html><?php
   }
 
   public function yearReport($mysqli, $year){
@@ -27,7 +52,8 @@ class Home {
       printf('<tr><td>%s</td><td>%s</td>', $key, $value);
     echo '</table>';
 
-    // echo '<canvas data-src="/reports/annual/' . $year . '"></canvas>';
+    $id = 'canvaschart' . uniqid();
+    echo '<div class="ct-chart ct-double-octave" data-src="/data/annual/pie/' . $year . '/' . $id . '" id="' . $id . '"></div>';
 
     $categories = Db\InvestmentsApi::getCategories($mysqli);
     $data = Db\InvestmentsApi::getInvestments($mysqli, $year, $year);
@@ -53,6 +79,8 @@ class Home {
     }
     echo '</table>';
 
-    // echo '<canvas data-src="/reports/investments/' . $year . '"></canvas>';
+    $id = 'canvaschart' . uniqid();
+    echo '<div class="ct-chart ct-double-octave" data-src="/data/annual/pie/' . $year . '/' . $id . '" id="' . $id . '"></div>';
+    //echo '<canvas data-src="/reports/investments/' . $year . '"></canvas>';
   }
 }
