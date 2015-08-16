@@ -1,0 +1,8 @@
+{
+  "autoload": {
+    "psr-4": { "Portfolio\\": "src/" }
+  },
+  "require": {
+    "php": ">=5.5.0"
+  }
+}
