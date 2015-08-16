@@ -29,6 +29,7 @@ class Home {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
     <script src="/script.js"></script>
   </head>
   <body>
@@ -53,7 +54,7 @@ class Home {
     echo '</table>';
 
     $id = 'canvaschart' . uniqid();
-    echo '<div class="ct-chart ct-double-octave" data-src="/data/annual/pie/' . $year . '/' . $id . '" id="' . $id . '"></div>';
+    echo '<div class="canvascontainer"><canvas width="400px" height="400px" data-src="/data/annual/pie/' . $year . '" id="' . $id . '"></div>';
 
     $categories = Db\InvestmentsApi::getCategories($mysqli);
     $data = Db\InvestmentsApi::getInvestments($mysqli, $year, $year);
@@ -79,8 +80,8 @@ class Home {
     }
     echo '</table>';
 
-    $id = 'canvaschart' . uniqid();
-    echo '<div class="ct-chart ct-double-octave" data-src="/data/investments/year/' . $year . '/' . $id . '" id="' . $id . '"></div>';
+   // $id = 'canvaschart' . uniqid();
+   // echo '<div class="ct-chart ct-double-octave" data-src="/data/investments/year/' . $year . '/' . $id . '" id="' . $id . '"></div>';
     //echo '<canvas data-src="/reports/investments/' . $year . '"></canvas>';
   }
 }

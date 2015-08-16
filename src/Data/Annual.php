@@ -6,19 +6,22 @@ Use Portfolio\Db;
 
 class Annual {
   public function __construct($mysqli, $report, $data = null){
-    header('Content-Type: application/javascript');
+    header('Content-Type: application/json');
     if ($report == 'pie')
-      $this->pie($mysqli, $data[1], (int) $data[0]);
+      $this->pie($mysqli, (int) $data[0]);
   }
 
-  private function pie($mysqli, $el, $year){
-    $data = Db\AnnualApi::getYear($mysqli, $year);////var_dump($_SERVER);
+  private function pie($mysqli, $year){
+    $data = Db\AnnualApi::getYear($mysqli, $year);
     $sum = array_sum($data);
     $cdata = [
-      'labels' => ['Federal Taxes', 'State Taxes', 'Donations', 'Investments', 'Remainder (expenses)'],
-      'series' => [$data['FEDERAL_TAXES'], $data['STATE_TAXES'], $data['DONATIONS'], $data['INVESTMENTS'], $data['GROSS_INCOME'] * 2 - $sum],
+      ["label" => 'Federal Taxes',        "color" => "#ABC", "value" => $data['FEDERAL_TAXES'], ],
+      ["label" => 'State Taxes',          "color" => "#BCA", "value" => $data['STATE_TAXES'], ],
+      ["label" => 'Donations',            "color" => "#CAB", "value" => $data['DONATIONS'], ],
+      ["label" => 'Investments',          "color" => "#BBB", "value" => $data['INVESTMENTS'], ],
+      ["label" => 'Remainder (expenses)', "color" => "#DDD", "value" => $data['GROSS_INCOME'] * 2 - $sum , ],
     ];
-    printf('new Chartist.Pie( %s, %s );', $el, json_encode($cdata));
+    echo json_encode(["Pie", $cdata, null]);
   }
 
 }

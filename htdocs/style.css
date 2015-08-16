@@ -1,1 +1,5 @@
 body {}
+.canvascontainer {position: relative; width: 800px; height: 400px; margin: 0 auto;}
+.pie-legend {margin: 0; padding: 1em; border: 1px solid black; display: inline-block; bottom: 1em; right: 1em; position: absolute;}
+.pie-legend span {width: 1em; height: 1em; display: inline-block; margin-right: .5em;}
+.pie-legend li {list-style-type: none;}
