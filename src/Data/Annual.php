@@ -18,8 +18,8 @@ class Annual {
       ["label" => 'Federal Taxes',        "color" => "#ABC", "value" => $data['FEDERAL_TAXES'], ],
       ["label" => 'State Taxes',          "color" => "#BCA", "value" => $data['STATE_TAXES'], ],
       ["label" => 'Donations',            "color" => "#CAB", "value" => $data['DONATIONS'], ],
-      ["label" => 'Investments',          "color" => "#BBB", "value" => $data['INVESTMENTS'], ],
-      ["label" => 'Remainder (expenses)', "color" => "#DDD", "value" => $data['GROSS_INCOME'] * 2 - $sum , ],
+      ["label" => 'Investments',          "color" => "#ACB", "value" => $data['INVESTMENTS'], ],
+      ["label" => 'Remainder (expenses)', "color" => "#BAC", "value" => $data['GROSS_INCOME'] * 2 - $sum , ],
     ];
     echo json_encode(["Pie", $cdata, null]);
   }
