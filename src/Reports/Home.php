@@ -54,7 +54,7 @@ class Home {
     echo '</table>';
 
     $id = 'canvaschart' . uniqid();
-    echo '<div class="canvascontainer"><canvas width="400px" height="400px" data-src="/data/annual/pie/' . $year . '" id="' . $id . '"></div>';
+    echo '<div class="canvascontainer pie"><canvas width="400px" height="400px" data-src="/data/annual/pie/' . $year . '" id="' . $id . '"></div>';
 
     $categories = Db\InvestmentsApi::getCategories($mysqli);
     $data = Db\InvestmentsApi::getInvestments($mysqli, $year, $year);
@@ -80,8 +80,9 @@ class Home {
     }
     echo '</table>';
 
-   // $id = 'canvaschart' . uniqid();
-   // echo '<div class="ct-chart ct-double-octave" data-src="/data/investments/year/' . $year . '/' . $id . '" id="' . $id . '"></div>';
+    $id = 'canvaschart' . uniqid();
+    echo '<div class="canvascontainer line"><canvas data-src="/data/investments/year/' . $year . '" id="' . $id . '"></div>';
+
     //echo '<canvas data-src="/reports/investments/' . $year . '"></canvas>';
   }
 }
