@@ -1,5 +1,12 @@
 body {}
-.canvascontainer {position: relative; width: 800px; height: 400px; margin: 0 auto;}
-.pie-legend {margin: 0; padding: 1em; border: 1px solid black; display: inline-block; bottom: 1em; right: 1em; position: absolute;}
+.canvascontainer.pie {position: relative; width: 33%; height: auto; margin: 0 auto;}
+.canvascontainer.pie canvas {width: 70% !important; height: auto !important;}
+.pie-legend {margin: 0; padding: 1em; border: 1px solid black; display: inline-block; bottom: 0; right: 0; position: absolute; background: rgba(255, 255, 255, .5);}
 .pie-legend span {width: 1em; height: 1em; display: inline-block; margin-right: .5em;}
 .pie-legend li {list-style-type: none;}
+
+.canvascontainer.line {position: relative;}
+.canvascontainer.line canvas {width: 100% !important; height: 100% !important;}
+.line-legend {margin: 0; padding: 1em; border: 1px solid black; display: inline-block; top: 5%; left: 5%; position: absolute; z-index: 2; background: rgba(255, 255, 255, .5);}
+.line-legend span {width: 1em; height: 1em; display: inline-block; margin-right: .5em;}
+.line-legend li {list-style-type: none;}

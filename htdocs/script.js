@@ -8,6 +8,9 @@ $(function (){
       if (type == "Pie"){
         var chart = new Chart(ctx).Pie(data, options);
         $(el).parent().prepend( chart.generateLegend() );
+      } else if (type == "Line"){
+        var chart = new Chart(ctx).Line(data, options);
+        $(el).parent().prepend( chart.generateLegend() );
       }
     });
   });
