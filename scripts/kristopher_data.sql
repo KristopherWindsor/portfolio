@@ -8,12 +8,21 @@ INSERT INTO `annual_breakdown` VALUES
   (2014, "STATE_TAXES",     4500),
   (2014, "DONATIONS",       12381),
   (2014, "INVESTMENTS",     12000),
+  (2014, "CASH_GROWTH",     15000),
 
   (2015, "GROSS_INCOME",    120000),
   (2015, "FEDERAL_TAXES",   14000),
   (2015, "STATE_TAXES",     5000),
   (2015, "DONATIONS",       12000),
-  (2015, "INVESTMENTS",     20000)
+  (2015, "INVESTMENTS",     35000),
+  (2015, "CASH_GROWTH",     0),
+
+  (2016, "GROSS_INCOME",    130000),
+  (2016, "FEDERAL_TAXES",   17000),
+  (2016, "STATE_TAXES",     6000),
+  (2016, "DONATIONS",       13000),
+  (2016, "INVESTMENTS",     55000),
+  (2016, "CASH_GROWTH",     0)
 ;
 
 INSERT INTO `investment_category` VALUES
