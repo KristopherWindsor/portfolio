@@ -21,7 +21,12 @@ class Annual {
       ["label" => 'Investments',          "color" => "#ACB", "value" => $data['INVESTMENTS'], ],
       ["label" => 'Remainder (expenses)', "color" => "#BAC", "value" => $data['GROSS_INCOME'] * 2 - $sum , ],
     ];
-    echo json_encode(["Pie", $cdata, null]);
+    $options = [
+      'tooltipTemplate' => "<%if (label){%><%=label%>: <%}%>$<%= value.toFixed(2).replace(/(\\d)(?=(\\d{3})+\\.)/g, '\$1,') %>",
+      'responsive' => true,
+    ];
+
+    echo json_encode(["Pie", $cdata, $options]);
   }
 
 }
