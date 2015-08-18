@@ -19,6 +19,7 @@ class Annual {
       ["label" => 'State Taxes',          "color" => "#BCA", "value" => $data['STATE_TAXES'], ],
       ["label" => 'Donations',            "color" => "#CAB", "value" => $data['DONATIONS'], ],
       ["label" => 'Investments',          "color" => "#ACB", "value" => $data['INVESTMENTS'], ],
+      ["label" => 'Cash surplus',         "color" => "#CBA", "value" => $data['CASH_GROWTH'], ],
       ["label" => 'Remainder (expenses)', "color" => "#BAC", "value" => $data['GROSS_INCOME'] * 2 - $sum , ],
     ];
     $options = [
