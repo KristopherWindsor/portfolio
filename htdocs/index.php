@@ -2,11 +2,6 @@
 
 namespace Portfolio;
 
-// debug for now
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
-error_reporting(-1);
-
 require_once( dirname(__DIR__) . '/bootstrap.php' );
 
 $uri = $_SERVER['REQUEST_URI'];
@@ -24,5 +19,7 @@ else if (count($request) >= 3 && $request[0] == 'data' && $request[1] == 'invest
   new Data\Investments($db, $request[2], array_slice($request, 3));
 else if (count($request) == 1 && $request[0] == 'phpinfo')
   phpinfo();
-else
-  echo 'hello';
+else {
+  header('HTTP/1.1 400 Bad Request', true, 400);
+  echo 'Bad request';
+}
