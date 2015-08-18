@@ -7,13 +7,7 @@ Use Portfolio\Db;
 class Home {
   public function __construct($mysqli){
     $this->pageOpen();
-  //  echo '<html><body>';
-
-    $this->yearReport($mysqli, 2014);
-    $this->yearReport($mysqli, 2015);
-    //var_dump($x);
-
-
+    $this->completeReport(2014, 2016);
     $this->pageClose();
   }
 
@@ -42,6 +36,34 @@ class Home {
 </html><?php
   }
 
+  public function completeReport($start_year, $end_year){
+    echo '<h1>Complete Report</h1>';
+
+    echo '<h2>Allocation of income per year</h2>';
+    echo '<div class="pie-grid">';
+    for ($i = $start_year; $i <= $end_year; $i++)
+      $this->renderAnnualPie($i);
+    echo '</div><br style="clear:both">';
+
+    echo '<h2>Investment growth</h2>';
+    $this->renderInvestmentsMultiyear($start_year, $end_year);
+    echo '<p>Note: displayed values are cumulative.</p>';
+  }
+
+  private function renderAnnualPie($year){
+    $current_year = date("Y");
+    $id = 'canvaschart' . uniqid();
+    echo '<div class="canvascontainer pie"><h3>' . $year;
+    if ($year >= $current_year)
+      echo ' (est)';
+    echo '</h3><canvas width="10px" height="10px" data-src="/data/annual/pie/' . $year . '" id="' . $id . '"></div>';
+  }
+
+  private function renderInvestmentsMultiyear($start_year, $end_year){
+    $id = 'canvaschart' . uniqid();
+    echo '<div class="canvascontainer line"><canvas data-src="/data/investments/multiyear/' . $start_year . '/' . $end_year . '" id="' . $id . '"></div>';
+  }
+
   public function yearReport($mysqli, $year){
     echo '<h1>' . $year . ' Annual Report</h1>';
 
@@ -53,8 +75,7 @@ class Home {
       printf('<tr><td>%s</td><td>%s</td>', $key, $value);
     echo '</table>';
 
-    $id = 'canvaschart' . uniqid();
-    echo '<div class="canvascontainer pie"><canvas width="400px" height="400px" data-src="/data/annual/pie/' . $year . '" id="' . $id . '"></div>';
+    $this->renderAnnualPie($year);
 
     $categories = Db\InvestmentsApi::getCategories($mysqli);
     $data = Db\InvestmentsApi::getInvestments($mysqli, $year, $year);
@@ -82,7 +103,5 @@ class Home {
 
     $id = 'canvaschart' . uniqid();
     echo '<div class="canvascontainer line"><canvas data-src="/data/investments/year/' . $year . '" id="' . $id . '"></div>';
-
-    //echo '<canvas data-src="/reports/investments/' . $year . '"></canvas>';
   }
 }
