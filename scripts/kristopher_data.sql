@@ -113,7 +113,7 @@ INSERT INTO `investments` VALUES
   (2015,  8, "BONDS_LIQD", 15567),
   (2015,  8, "LC_LIQD",    5225),
   (2015,  8, "CASH_RET",   11200),
-  (2015,  8, "MM_RET",     6666),
+  (2015,  8, "MM_RET",     11045),
   (2015,  8, "MISC_RET",   1888),
   (2015,  8, "SCAP_RET",   10939),
   (2015,  8, "GLOBAL_RET", 9180),
