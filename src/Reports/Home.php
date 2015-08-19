@@ -51,12 +51,9 @@ class Home {
   }
 
   private function renderAnnualPie($year){
-    $current_year = date("Y");
     $id = 'canvaschart' . uniqid();
-    echo '<div class="canvascontainer pie"><h3>' . $year;
-    if ($year >= $current_year)
-      echo ' (est)';
-    echo '</h3><canvas width="10px" height="10px" data-src="/data/annual/pie/' . $year . '" id="' . $id . '"></div>';
+    echo '<div class="canvascontainer pie"><h3></h3>';
+    echo '<canvas width="10px" height="10px" data-src="/data/annual/pie/' . $year . '" id="' . $id . '"></div>';
   }
 
   private function renderInvestmentsMultiyear($start_year, $end_year){

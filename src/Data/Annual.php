@@ -27,7 +27,12 @@ class Annual {
       'responsive' => true,
     ];
 
-    echo json_encode(["Pie", $cdata, $options]);
+    $current_year = date("Y");
+    $extra = [
+      'headerText' => $year . ' &mdash; $' . number_format($data['GROSS_INCOME'], 2) . ($year >= $current_year ? ' (est)' : ''),
+    ];
+
+    echo json_encode(["Pie", $cdata, $options, $extra]);
   }
 
 }
