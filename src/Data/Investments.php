@@ -19,7 +19,7 @@ class Investments {
       for ($g = 255 - 16 * 5; $g <= 255 - 16 * 2; $g += 16)
         for ($b = 255 - 16 * 5; $b <= 255 - 16 * 2; $b += 16)
           if ($r != $g && $r != $b && $g != $b)
-            $colors[] = sprintf('rgba(%s, %s, %s, %s', $r, $g, $b, '%s');
+            $colors[] = [$r, $g, $b];
     return $colors;
   }
 
@@ -31,10 +31,9 @@ class Investments {
     foreach ($categories as $i => $category)
       $cdata['datasets'][$i] = array(
         'label' => $category->name,
-        'fillColor' => sprintf($colors[$i], 1),
+        'fillColor' => sprintf('rgba(%s, %s, %s, %s)', $colors[$i][0], $colors[$i][1], $colors[$i][2], 1),
+        'pointColor' => sprintf('rgba(%s, %s, %s, %s)', $colors[$i][0], $colors[$i][1], $colors[$i][2], 1),
         'strokeColor' => 'black',
-        'pointColor' => sprintf($colors[$i], 1),
-        'pointStrokeColor' => 'black',
         'data' => [],
       );
     return $cdata;
@@ -45,6 +44,18 @@ class Investments {
       'legendTemplate' => "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
       'multiTooltipTemplate' => "<%= ' \$' + value.toFixed(2).replace(/(\\d)(?=(\\d{3})+\\.)/g, '\$1,') %>",
       'responsive' => true,
+      'pointDot' => false,
+    ];
+  }
+
+  private function getExtra($categories, $colors){
+    $category_map = array();
+    foreach ($categories as $i => $category){
+      $category_map[$category->name] = $i;
+    }
+
+    return [
+      'categoryMap' => $category_map,
     ];
   }
 
@@ -68,7 +79,7 @@ class Investments {
       }
     }
 
-    echo json_encode(["Line", $cdata, $this->getOptions()]);
+    echo json_encode(["Line", $cdata, $this->getOptions(), $this->getExtra($categories, $colors), ]);
   }
 
   private function multiYear($mysqli, $start_year, $end_year){
@@ -113,7 +124,7 @@ class Investments {
       }
     }
 
-    echo json_encode(["Line", $cdata, $this->getOptions()]);
+    echo json_encode(["Line", $cdata, $this->getOptions(), $this->getExtra($categories, $colors), ]);
   }
 
 }

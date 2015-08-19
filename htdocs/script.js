@@ -11,7 +11,20 @@ $(function (){
         $(el).parent().find('h3').html( extra.headerText );
       } else if (type == "Line"){
         var chart = new Chart(ctx).Line(data, options);
+        var colorHistory = {};
         $(el).parent().prepend( chart.generateLegend() );
+
+        $(el).parent().find('.line-legend li').hover( function () {
+          var text = $(this).text();
+          var index = extra.categoryMap[text];
+          colorHistory[index] = chart.datasets[index].fillColor;
+          chart.datasets[index].fillColor = '#cc4444';
+          chart.update();
+        }, function () {
+          var text = $(this).text();
+          var index = extra.categoryMap[text];
+          chart.datasets[index].fillColor = colorHistory[index];
+        });
       }
     });
   });
