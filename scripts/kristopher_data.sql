@@ -37,6 +37,15 @@ INSERT INTO `investment_category` VALUES
   ("LCAP_RET", "US Total Stock Market", 1, "RETIREMENT")
 ;
 
+INSERT INTO `investment_target` VALUES
+  ("CASH_LIQD",  20),
+  ("BONDS_LIQD", 20),
+  ("LC_LIQD",     5),
+  ("SCAP_RET",   10),
+  ("GLOBAL_RET", 20),
+  ("LCAP_RET",   25)
+ ;
+
 INSERT INTO `investments` VALUES
   (2014, 12, "CASH_LIQD",  0),
   (2014, 12, "BONDS_LIQD", 0),

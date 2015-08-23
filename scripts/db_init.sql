@@ -17,6 +17,11 @@ CREATE TABLE IF NOT EXISTS `investment_category` (
   `type` ENUM("RETIREMENT", "LIQUID"),
 primary KEY (`key`));
 
+CREATE TABLE IF NOT EXISTS `investment_target` (
+  `category_key` VARCHAR(16),
+  `percent` INT(12),
+primary KEY (`category_key`));
+
 CREATE TABLE IF NOT EXISTS `investments` (
   `year` INT(12),
   `month` INT(12),
