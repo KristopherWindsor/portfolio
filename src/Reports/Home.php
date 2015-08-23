@@ -39,6 +39,9 @@ class Home {
   public function completeReport($start_year, $end_year){
     echo '<h1>Complete Report</h1>';
 
+    // echo '<h2>Income and savings per year</h2>';
+    //
+
     echo '<h2>Allocation of income per year</h2>';
     echo '<div class="pie-grid">';
     for ($i = $start_year; $i <= $end_year; $i++)
@@ -48,6 +51,12 @@ class Home {
     echo '<h2>Investment growth</h2>';
     $this->renderInvestmentsMultiyear($start_year, $end_year);
     echo '<p>Note: displayed values are cumulative.</p>';
+
+    // echo '<h2>Investment descriptions</h2>';
+    //
+
+    // echo '<h2>Investment allocations</h2>';
+    //
   }
 
   private function renderAnnualPie($year){
