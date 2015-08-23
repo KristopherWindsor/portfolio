@@ -37,8 +37,8 @@ class GrowthSummary {
       'headers' => array('3-month Growth', '1-year growth', 'Total Investments'),
       'rows' => array(
         array(
-          '$' . number_format($newest_net - $back_three, 2),
-          '$' . number_format($newest_net - $last_year, 2),
+          $back_three ? '$' . number_format($newest_net - $back_three, 2) : '--',
+          $last_year  ? '$' . number_format($newest_net - $last_year, 2) : '--',
           '$' . number_format($newest_net, 2)),
       ),
     );
