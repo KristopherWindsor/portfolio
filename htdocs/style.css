@@ -4,15 +4,15 @@ h1 {border-bottom: 1px solid black; padding-bottom: .2em;}
 
 .pie-legend, .line-legend {font-size: 10pt;}
 
-.canvascontainer.pie {position: relative; width: 30%; height: auto; margin: 0 1.5%; min-width: 300px;}
-.canvascontainer h3 {position: absolute; }
-.canvascontainer.pie canvas {}
+.datasection.pie {position: relative; width: 30%; height: auto; margin: 0 1.5%; min-width: 300px;}
+.datasection h3 {position: absolute; }
+.datasection.pie canvas {}
 .pie-legend {margin: 0; padding: 1em; border: 1px solid black; display: inline-block; bottom: 0; right: 0; position: absolute; background: rgba(255, 255, 255, .5);}
 .pie-legend span {width: 1em; height: 1em; display: inline-block; margin-right: .5em;}
 .pie-legend li {list-style-type: none;}
 
-.canvascontainer.line {position: relative; min-width: 700px;}
-.canvascontainer.line canvas {width: 100% !important; height: 100% !important;}
+.datasection.line {position: relative; min-width: 700px;}
+.datasection.line canvas {width: 100% !important; height: 100% !important;}
 .line-legend {margin: 0; padding: 1em; border: 1px solid black; display: inline-block; top: 12px; left: 50px; position: absolute; z-index: 2; background: rgba(255, 255, 255, .5);}
 .line-legend span {width: 1em; height: 1em; display: inline-block; margin-right: .5em;}
 .line-legend li {list-style-type: none;}

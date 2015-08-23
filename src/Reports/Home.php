@@ -64,14 +64,11 @@ class Home {
   }
 
   private function renderAnnualPie($year){
-    $id = 'canvaschart' . uniqid();
-    echo '<div class="canvascontainer pie"><h3></h3>';
-    echo '<canvas width="10px" height="10px" data-src="/data/annual/pie/' . $year . '" id="' . $id . '"></div>';
+    echo '<div class="datasection pie" data-src="/data/annual/pie/' . $year . '"></div>';
   }
 
   private function renderInvestmentsMultiyear($start_year, $end_year){
-    $id = 'canvaschart' . uniqid();
-    echo '<div class="canvascontainer line"><canvas data-src="/data/investments/multiyear/' . $start_year . '/' . $end_year . '" id="' . $id . '"></div>';
+    echo '<div class="datasection line" data-src="/data/investments/multiyear/' . $start_year . '/' . $end_year . '"></div>';
   }
 
   public function yearReport($mysqli, $year){
