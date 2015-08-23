@@ -49,6 +49,10 @@ class Home {
     echo '</div><br style="clear:both">';
 
     echo '<h2>Investment growth</h2>';
+?><table class="growth-summary">
+<tr><th>3-month growth</th><th>1-year growth</th><th>Total</th></tr>
+<tr><td>$10,000</td><td>$20,000</td><td>$50,000</td></tr>
+</table><?php
     $this->renderInvestmentsMultiyear($start_year, $end_year);
     echo '<p>Note: displayed values are cumulative.</p>';
 
