@@ -20,7 +20,7 @@ h1 {border-bottom: 1px solid black; padding-bottom: .2em;}
 .pie-grid {}
 .pie-grid > div {float: left;}
 
-.growth-summary {width: 100%; border: 1px solid #BBD; border-collapse: collapse; margin-bottom: 2em;}
-.growth-summary th {background-color: #BBD;}
-.growth-summary td {background-color: #DDE;}
-.growth-summary th, td { border: 1px solid #BBD; padding: .4em 2em;}
+.datasection.table table {width: 100%; border: 1px solid #BBD; border-collapse: collapse; margin-bottom: 2em;}
+.datasection.table th {background-color: #BBD;}
+.datasection.table td {background-color: #DDE;}
+.datasection.table th, td { border: 1px solid #BBD; padding: .4em 2em;}
