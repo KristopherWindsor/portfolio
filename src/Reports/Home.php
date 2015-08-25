@@ -42,9 +42,10 @@ class Home {
     $start_year       = $settings[Db\SettingsApi::REPORT_START_YEAR_STRICT];
     $end_year         = $settings[Db\SettingsApi::REPORT_END_YEAR];
 
-    echo '<h1>Complete Report</h1>';
+    printf('<h1>%s</h1>', $settings[Db\SettingsApi::REPORT_TITLE]);
 
     echo '<h2>Income vs. savings per year</h2>';
+    $this->renderAnnualSummary($rough_start_year, $end_year);
     $this->renderIncomeVsSavings($rough_start_year, $end_year);
 
     echo '<h2>Allocation of income per year</h2>';
@@ -79,6 +80,10 @@ class Home {
 
   private function renderIncomeVsSavings($start_year, $end_year){
     echo '<div class="datasection bar" data-src="/data/annual/income-vs-savings/' . $start_year . '/' . $end_year . '"></div>';
+  }
+
+  private function renderAnnualSummary($start_year, $end_year){
+    echo '<div class="datasection table" data-src="/data/annual/summary/' . $start_year . '/' . $end_year . '"></div>';
   }
 
   public function yearReport($mysqli, $year){

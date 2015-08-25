@@ -11,6 +11,8 @@ class Annual {
       $this->pie($mysqli, (int) $data[0]);
     else if ($report == 'income-vs-savings')
       $this->incomeVsSavings($mysqli, (int) $data[0], (int) $data[1]);
+    else if ($report == 'summary')
+      $this->summary($mysqli, (int) $data[0], (int) $data[1]);
   }
 
   private function pie($mysqli, $year){
@@ -69,5 +71,41 @@ class Annual {
     );
 
     echo json_encode(["Bar", $cdata, $options, null]);
+  }
+
+  private function summary($mysqli, $start_year, $end_year){
+    $data = Db\AnnualApi::getMultiYear($mysqli, $start_year, $end_year);
+
+    $year_income = @$data[$end_year]['GROSS_INCOME'];
+    $last_year_income = @$data[$end_year - 1]['GROSS_INCOME'];
+
+    if ($end_year - $start_year >= 2){
+      @$three_year_income = $data[$end_year - 2]['GROSS_INCOME'] + $last_year_income + $year_income;
+      $col1 = '$' . number_format($three_year_income / 3, 2);
+    } else {
+      $col1 = '--';
+    }
+
+    $col2 = '$' . number_format($year_income, 2);
+    if ($year_income && $last_year_income)
+      $col2 .= sprintf(' (+%s%% yoy)', number_format(100 * ($year_income - $last_year_income) / $last_year_income, 0));
+
+    $investments = @$data[$end_year]['INVESTMENTS'];
+    $col3 = '$' . number_format($investments, 2);
+    if ($investments && $year_income)
+      $col3 .= sprintf(' (%s%% of income)', number_format(100 * $investments / $year_income, 0));
+
+    $tdata = array(
+      'headers' => array('Average income (3-year trend)', 'Income for ' . $end_year, 'Total investments for ' . $end_year),
+      'rows' => array(
+        array(
+          $col1,
+          $col2,
+          $col3,
+        ),
+      ),
+    );
+
+    echo json_encode(array("Table", $tdata));
   }
 }

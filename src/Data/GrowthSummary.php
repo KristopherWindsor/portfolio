@@ -34,7 +34,7 @@ class GrowthSummary {
     $last_year = @array_sum($data[$newest_year - 1][$newest_month]);
 
     $tdata = array(
-      'headers' => array('3-month Growth', '1-year growth', 'Total Investments'),
+      'headers' => array('3-month Growth', '1-year growth', 'Total investments'),
       'rows' => array(
         array(
           $back_three ? '$' . number_format($newest_net - $back_three, 2) : '--',
