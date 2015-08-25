@@ -52,7 +52,8 @@ class Home {
     echo '<div class="pie-grid">';
     for ($i = $start_year; $i <= $end_year; $i++)
       $this->renderAnnualPie($i);
-    echo '</div><br style="clear:both">';
+    echo '</div>';
+    echo '<div class="pie-grid-legend"></div>';
 
     echo '<h2>Investment growth</h2>';
     $this->renderGrowthSummary();

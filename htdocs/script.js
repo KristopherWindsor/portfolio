@@ -29,7 +29,12 @@ function renderDatasectionPie(datasection, data, options, extra){
   var ctx = $(canvas).get(0).getContext("2d");
   var chart = new Chart(ctx).Pie(data, options);
 
-  $(datasection).prepend( chart.generateLegend() );
+  var isGrid = $(datasection).parent().is(".pie-grid");
+
+  if (isGrid)
+    $(datasection).parent().next(".pie-grid-legend").html( chart.generateLegend() );
+  else
+    $(datasection).prepend( chart.generateLegend() );
 }
 
 function renderDatasectionLine(datasection, data, options, extra){
