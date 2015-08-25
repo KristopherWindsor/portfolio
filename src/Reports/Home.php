@@ -39,8 +39,8 @@ class Home {
   public function completeReport($start_year, $end_year){
     echo '<h1>Complete Report</h1>';
 
-    // echo '<h2>Income and savings per year</h2>';
-    //
+    echo '<h2>Income and savings per year</h2>';
+    $this->renderIncomeVsSavings($start_year - 3, $end_year);
 
     echo '<h2>Allocation of income per year</h2>';
     echo '<div class="pie-grid">';
@@ -70,6 +70,10 @@ class Home {
 
   private function renderGrowthSummary(){
     echo '<div class="datasection table" data-src="/data/growthsummary/threecell"></div>';
+  }
+
+  private function renderIncomeVsSavings($start_year, $end_year){
+    echo '<div class="datasection bar" data-src="/data/annual/income-vs-savings/' . $start_year . '/' . $end_year . '"></div>';
   }
 
   public function yearReport($mysqli, $year){

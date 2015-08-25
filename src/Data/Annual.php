@@ -9,6 +9,8 @@ class Annual {
     header('Content-Type: application/json');
     if ($report == 'pie')
       $this->pie($mysqli, (int) $data[0]);
+    else if ($report == 'income-vs-savings')
+      $this->incomeVsSavings($mysqli, (int) $data[0], (int) $data[1]);
   }
 
   private function pie($mysqli, $year){
@@ -35,4 +37,35 @@ class Annual {
     echo json_encode(["Pie", $cdata, $options, $extra]);
   }
 
+  private function incomeVsSavings($mysqli, $start_year, $end_year){
+    $data = Db\AnnualApi::getMultiYear($mysqli, $start_year, $end_year);
+
+    $cdata = array(
+      'labels' => array(),
+      'datasets' => array(
+        array(
+          'label' => 'Gross Income',
+          'fillColor' => '#BCA',
+          'data' => array(),
+        ),
+        array(
+          'label' => 'Investments',
+          'fillColor' => '#ABC',
+          'data' => array(),
+        ),
+      ),
+    );
+    for ($i = $start_year; $i <= $end_year; $i++){
+      $cdata['labels'][] = $i;
+      $cdata['datasets'][0]['data'][] = isset($data[$i]['GROSS_INCOME']) ? $data[$i]['GROSS_INCOME'] : 0;
+      $cdata['datasets'][1]['data'][] = isset($data[$i]['INVESTMENTS']) ? $data[$i]['INVESTMENTS'] : 0;
+    }
+
+    $options = array(
+      'multiTooltipTemplate' => "<%= ' \$' + value.toFixed(2).replace(/(\\d)(?=(\\d{3})+\\.)/g, '\$1,') %>",
+      'responsive' => true,
+    );
+
+    echo json_encode(["Bar", $cdata, $options, null]);
+  }
 }

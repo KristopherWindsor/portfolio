@@ -10,6 +10,8 @@ $(function (){
         renderDatasectionPie(datasection, data, options, extra);
       } else if (type == "Line"){
         renderDatasectionLine(datasection, data, options, extra);
+      } else if (type == "Bar"){
+        renderDatasectionBar(datasection, data, options, extra);
       } else if (type == "Table"){
         renderDatasectionTable(datasection, data);
       }
@@ -53,6 +55,19 @@ function renderDatasectionLine(datasection, data, options, extra){
     var index = extra.categoryMap[text];
     chart.datasets[index].fillColor = colorHistory[index];
   });
+}
+
+function renderDatasectionBar(datasection, data, options, extra){
+  var colorHistory = {};
+
+  var canvas = $("<canvas/>");
+
+  $(datasection).append(canvas);
+
+  var ctx = $(canvas).get(0).getContext("2d");
+  var chart = new Chart(ctx).Bar(data, options);
+
+  $(datasection).prepend( chart.generateLegend() );
 }
 
 function renderDatasectionTable(datasection, data){
