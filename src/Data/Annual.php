@@ -95,8 +95,10 @@ class Annual {
     if ($investments && $year_income)
       $col3 .= sprintf(' (%s%% of income)', number_format(100 * $investments / $year_income, 0));
 
+    $current_year = date("Y");
+    $est = ($end_year >= $current_year ? ' (est)' : '');
     $tdata = array(
-      'headers' => array('Average income (3-year trend)', 'Income for ' . $end_year, 'Total investments for ' . $end_year),
+      'headers' => array('Average income (3-year trend)', 'Income for ' . $end_year . $est, 'Total savings for ' . $end_year . $est),
       'rows' => array(
         array(
           $col1,
