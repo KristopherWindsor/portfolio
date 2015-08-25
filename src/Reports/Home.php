@@ -7,7 +7,7 @@ Use Portfolio\Db;
 class Home {
   public function __construct($mysqli){
     $this->pageOpen();
-    $this->completeReport(2014, 2016);
+    $this->completeReport($mysqli);
     $this->pageClose();
   }
 
@@ -36,11 +36,16 @@ class Home {
 </html><?php
   }
 
-  public function completeReport($start_year, $end_year){
+  public function completeReport($mysqli){
+    $settings = Db\SettingsApi::getAll($mysqli);
+    $rough_start_year = $settings[Db\SettingsApi::REPORT_START_YEAR_LOOSE];
+    $start_year       = $settings[Db\SettingsApi::REPORT_START_YEAR_STRICT];
+    $end_year         = $settings[Db\SettingsApi::REPORT_END_YEAR];
+
     echo '<h1>Complete Report</h1>';
 
-    echo '<h2>Income and savings per year</h2>';
-    $this->renderIncomeVsSavings($start_year - 3, $end_year);
+    echo '<h2>Income vs. savings per year</h2>';
+    $this->renderIncomeVsSavings($rough_start_year, $end_year);
 
     echo '<h2>Allocation of income per year</h2>';
     echo '<div class="pie-grid">';
