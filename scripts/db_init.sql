@@ -1,7 +1,6 @@
-CREATE TABLE IF NOT EXISTS `report` (
-  `key` VARCHAR(16),
-  `start_year` INT(12),
-  `end_year` INT(12),
+CREATE TABLE IF NOT EXISTS `settings` (
+  `key` VARCHAR(64),
+  `value` VARCHAR(256),
 primary KEY (`key`));
 
 CREATE TABLE IF NOT EXISTS `annual_breakdown` (
