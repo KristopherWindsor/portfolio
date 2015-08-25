@@ -1,7 +1,8 @@
 INSERT INTO `settings` VALUES
   ("REPORT_START_YEAR_LOOSE", "2011"),
   ("REPORT_START_YEAR_STRICT", "2014"),
-  ("REPORT_END_YEAR", "2016")
+  ("REPORT_END_YEAR", "2016"),
+  ("REPORT_TITLE", "Kristopher &amp; Rachel Windsor&apos;s Financial Report")
 ;
 
 INSERT INTO `annual_breakdown` VALUES
