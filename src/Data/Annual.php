@@ -49,16 +49,18 @@ class Annual {
           'data' => array(),
         ),
         array(
-          'label' => 'Investments',
+          'label' => 'Savings',
           'fillColor' => '#ABC',
           'data' => array(),
         ),
       ),
     );
+    $current_year = date("Y");
     for ($i = $start_year; $i <= $end_year; $i++){
-      $cdata['labels'][] = $i;
+      $cdata['labels'][] = $i . ($i >= $current_year ? ' (est)' : '');
       $cdata['datasets'][0]['data'][] = isset($data[$i]['GROSS_INCOME']) ? $data[$i]['GROSS_INCOME'] : 0;
-      $cdata['datasets'][1]['data'][] = isset($data[$i]['INVESTMENTS']) ? $data[$i]['INVESTMENTS'] : 0;
+      $cdata['datasets'][1]['data'][] = isset($data[$i]['INVESTMENTS']) || isset($data[$i]['CASH_GROWTH']) ?
+        @$data[$i]['INVESTMENTS'] + @$data[$i]['CASH_GROWTH']: 0;
     }
 
     $options = array(
