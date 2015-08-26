@@ -28,12 +28,31 @@ function renderDatasectionPie(datasection, data, options, extra){
 
   var ctx = $(canvas).get(0).getContext("2d");
   var chart = new Chart(ctx).Pie(data, options);
+  $(canvas).data('chart', chart);
+
+  var colorHistory = {};
+  var onHandler = function (){
+    var index = $(this).index();
+    colorHistory[index] = chart.segments[index].fillColor;
+    $(this).parent().parent().prev(".pie-grid").find("canvas").each(function () {
+      $(this).data("chart").segments[index].fillColor = '#cc4444';
+      $(this).data("chart").update();
+    });
+  };
+  var offHandler = function (){
+    var index = $(this).index();
+    $(this).parent().parent().prev(".pie-grid").find("canvas").each(function () {
+      $(this).data("chart").segments[index].fillColor = colorHistory[index];
+      $(this).data("chart").update();
+    });
+  };
 
   var isGrid = $(datasection).parent().is(".pie-grid");
 
-  if (isGrid)
+  if (isGrid){
     $(datasection).parent().next(".pie-grid-legend").html( chart.generateLegend() );
-  else
+    $(datasection).parent().next(".pie-grid-legend").find(".pie-legend li").hover(onHandler, offHandler);
+  } else
     $(datasection).prepend( chart.generateLegend() );
 }
 
