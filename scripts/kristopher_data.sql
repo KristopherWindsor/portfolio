@@ -38,15 +38,24 @@ INSERT INTO `annual_breakdown` VALUES
 ;
 
 INSERT INTO `investment_category` VALUES
-  ("CASH_LIQD", "Cash (housing fund)", 9, "LIQUID"),
-  ("BONDS_LIQD", "Bonds (housing fund)", 8, "LIQUID"),
-  ("LC_LIQD", "Lending Club", 7, "LIQUID"),
-  ("CASH_RET", "Cash (retirement)", 6, "RETIREMENT"),
-  ("MM_RET", "Cash (restricted)", 5, "RETIREMENT"),
-  ("MISC_RET", "Other Stocks", 4, "RETIREMENT"),
-  ("SCAP_RET", "US Small-cap", 3, "RETIREMENT"),
-  ("GLOBAL_RET", "International Stocks", 2, "RETIREMENT"),
-  ("LCAP_RET", "US Total Stock Market", 1, "RETIREMENT")
+  ("CASH_LIQD", "Cash (housing fund)", 9, "LIQUID",
+    "This money is set aside for a downpayment on a house. The target is $80,000"),
+  ("BONDS_LIQD", "Bonds (housing fund)", 8, "LIQUID",
+    "This money is set aside for a downpayment on a house. The target is $80,000"),
+  ("LC_LIQD", "Lending Club", 7, "LIQUID",
+    "Funds invested through Lending Club, a peer-to-peer lending service expected to earn 5-10% annual interest. Repayments are automatically lent out to new borrowers"),
+  ("CASH_RET", "Cash (retirement)", 6, "RETIREMENT",
+    "This cash is in retirement accounts, uninvested"),
+  ("MM_RET", "Cash (restricted)", 5, "RETIREMENT",
+    "Funds restricted to an employer's 401(k) plan, with limited investment options. Typically it is placed in a low-interest money market"),
+  ("MISC_RET", "Other Stocks", 4, "RETIREMENT",
+    "Funds in misc things such as commodities or individual (hand-picked) companies"),
+  ("SCAP_RET", "US Small-cap", 3, "RETIREMENT",
+    "Funds in small and medium-sized US-based companies"),
+  ("GLOBAL_RET", "International Stocks", 2, "RETIREMENT",
+    "Funds in internationally-based companies"),
+  ("LCAP_RET", "US Total Stock Market", 1, "RETIREMENT",
+    "Funds in US-based companies, with heavy weighting for the largest companies")
 ;
 
 INSERT INTO `investment_target` VALUES

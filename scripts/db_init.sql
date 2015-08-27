@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `investment_category` (
   `name` VARCHAR(64),
   `rank` INT(12),
   `type` ENUM("RETIREMENT", "LIQUID"),
+  `description` text,
 primary KEY (`key`));
 
 CREATE TABLE IF NOT EXISTS `investment_target` (
