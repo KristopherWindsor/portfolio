@@ -38,12 +38,10 @@ INSERT INTO `annual_breakdown` VALUES
 ;
 
 INSERT INTO `investment_category` VALUES
-  ("CASH_LIQD", "Cash (housing fund)", 9, "LIQUID",
-    "This money is set aside for a downpayment on a house. The target is $80,000"),
-  ("BONDS_LIQD", "Bonds (housing fund)", 8, "LIQUID",
-    "This money is set aside for a downpayment on a house. The target is $80,000"),
+  ("HOUSING", "Housing fund", 8, "LIQUID",
+    "Funds set aside for a house downpayment in stocks/bonds. The target is $80,000"),
   ("LC_LIQD", "Lending Club", 7, "LIQUID",
-    "Funds invested through Lending Club, a peer-to-peer lending service expected to earn 5-10% annual interest. Repayments are automatically lent out to new borrowers"),
+    "Funds invested through Lending Club, a peer-to-peer lending service expected to earn 5-10% annual interest. Repayments are automatically lent out to new borrowers, so the funds are not immediately available"),
   ("CASH_RET", "Cash (retirement)", 6, "RETIREMENT",
     "This cash is in retirement accounts, uninvested"),
   ("MM_RET", "Cash (restricted)", 5, "RETIREMENT",
@@ -59,8 +57,7 @@ INSERT INTO `investment_category` VALUES
 ;
 
 INSERT INTO `investment_target` VALUES
-  ("CASH_LIQD",  20),
-  ("BONDS_LIQD", 20),
+  ("HOUSING",    40),
   ("LC_LIQD",     5),
   ("SCAP_RET",   10),
   ("GLOBAL_RET", 20),
@@ -68,8 +65,7 @@ INSERT INTO `investment_target` VALUES
  ;
 
 INSERT INTO `investments` VALUES
-  (2014, 12, "CASH_LIQD",  0),
-  (2014, 12, "BONDS_LIQD", 0),
+  (2014, 12, "HOUSING",    0),
   (2014, 12, "LC_LIQD",    0),
   (2014, 12, "CASH_RET",   40851),
   (2014, 12, "MM_RET",     0),
@@ -78,8 +74,7 @@ INSERT INTO `investments` VALUES
   (2014, 12, "GLOBAL_RET", 0),
   (2014, 12, "LCAP_RET",   0),
 
-  (2015,  1, "CASH_LIQD",  0),
-  (2015,  1, "BONDS_LIQD", 0),
+  (2015,  1, "HOUSING",    0),
   (2015,  1, "LC_LIQD",    0),
   (2015,  1, "CASH_RET",   35659),
   (2015,  1, "MM_RET",     0),
@@ -88,8 +83,7 @@ INSERT INTO `investments` VALUES
   (2015,  1, "GLOBAL_RET", 0),
   (2015,  1, "LCAP_RET",   5111),
 
-  (2015,  2, "CASH_LIQD",  0),
-  (2015,  2, "BONDS_LIQD", 0),
+  (2015,  2, "HOUSING",    0),
   (2015,  2, "LC_LIQD",    5000),
   (2015,  2, "CASH_RET",   30676),
   (2015,  2, "MM_RET",     0),
@@ -98,8 +92,7 @@ INSERT INTO `investments` VALUES
   (2015,  2, "GLOBAL_RET", 0),
   (2015,  2, "LCAP_RET",   10158),
 
-  (2015,  3, "CASH_LIQD",  0),
-  (2015,  3, "BONDS_LIQD", 0),
+  (2015,  3, "HOUSING",    0),
   (2015,  3, "LC_LIQD",    5030),
   (2015,  3, "CASH_RET",   33905),
   (2015,  3, "MM_RET",     750),
@@ -108,8 +101,7 @@ INSERT INTO `investments` VALUES
   (2015,  3, "GLOBAL_RET", 0),
   (2015,  3, "LCAP_RET",   14051),
 
-  (2015,  4, "CASH_LIQD",  4245),
-  (2015,  4, "BONDS_LIQD", 15869),
+  (2015,  4, "HOUSING",    20114),
   (2015,  4, "LC_LIQD",    5065),
   (2015,  4, "CASH_RET",   30475),
   (2015,  4, "MM_RET",     1500),
@@ -118,8 +110,7 @@ INSERT INTO `investments` VALUES
   (2015,  4, "GLOBAL_RET", 0),
   (2015,  4, "LCAP_RET",   17760),
 
-  (2015,  5, "CASH_LIQD",  9245),
-  (2015,  5, "BONDS_LIQD", 15616),
+  (2015,  5, "HOUSING",    24861),
   (2015,  5, "LC_LIQD",    5105),
   (2015,  5, "CASH_RET",   25466),
   (2015,  5, "MM_RET",     2250),
@@ -128,8 +119,7 @@ INSERT INTO `investments` VALUES
   (2015,  5, "GLOBAL_RET", 0),
   (2015,  5, "LCAP_RET",   22961),
 
-  (2015,  6, "CASH_LIQD",  9245),
-  (2015,  6, "BONDS_LIQD", 15445),
+  (2015,  6, "HOUSING",    24690),
   (2015,  6, "LC_LIQD",    5150),
   (2015,  6, "CASH_RET",   20527),
   (2015,  6, "MM_RET",     3000),
@@ -138,8 +128,7 @@ INSERT INTO `investments` VALUES
   (2015,  6, "GLOBAL_RET", 0),
   (2015,  6, "LCAP_RET",   22730),
 
-  (2015,  7, "CASH_LIQD",  9245),
-  (2015,  7, "BONDS_LIQD", 15477),
+  (2015,  7, "HOUSING",    24722),
   (2015,  7, "LC_LIQD",    5200),
   (2015,  7, "CASH_RET",   15560),
   (2015,  7, "MM_RET",     4560),
@@ -148,8 +137,7 @@ INSERT INTO `investments` VALUES
   (2015,  7, "GLOBAL_RET", 4849),
   (2015,  7, "LCAP_RET",   22657),
 
-  (2015,  8, "CASH_LIQD",  9185),
-  (2015,  8, "BONDS_LIQD", 15567),
+  (2015,  8, "HOUSING",    24752),
   (2015,  8, "LC_LIQD",    5225),
   (2015,  8, "CASH_RET",   11200),
   (2015,  8, "MM_RET",     11045),
