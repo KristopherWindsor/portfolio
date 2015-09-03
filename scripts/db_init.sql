@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS `investment_category` (
   `key` VARCHAR(16),
   `name` VARCHAR(64),
   `rank` INT(12),
-  `type` ENUM("RETIREMENT", "LIQUID"),
   `description` text,
 primary KEY (`key`));
 
@@ -26,5 +25,7 @@ CREATE TABLE IF NOT EXISTS `investments` (
   `year` INT(12),
   `month` INT(12),
   `category_key` VARCHAR(16),
-  `value` INT(12),
+  `value_no_ret` INT(12),
+  `value_ret_pretax` INT(12),
+  `value_ret_posttax` INT(12),
 primary KEY (`month`, `year`, `category_key`));
