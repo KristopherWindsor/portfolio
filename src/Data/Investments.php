@@ -19,8 +19,9 @@ class Investments {
       for ($g = 255 - 16 * 5; $g <= 255 - 16 * 2; $g += 16)
         for ($b = 255 - 16 * 5; $b <= 255 - 16 * 2; $b += 16)
           if ($r != $g && $r != $b && $g != $b)
-            $colors[] = [$r, $g, $b];
-    return $colors;
+            $colors[ md5("$r.$g.$b") ] = [$r, $g, $b];
+    ksort($colors);
+    return array_values($colors);
   }
 
   private function getBaseData($categories, $colors){
