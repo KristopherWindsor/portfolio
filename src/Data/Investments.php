@@ -20,6 +20,8 @@ class Investments {
         for ($b = 255 - 16 * 5; $b <= 255 - 16 * 2; $b += 16)
           if ($r != $g && $r != $b && $g != $b)
             $colors[ md5("$r.$g.$b") ] = [$r, $g, $b];
+    unset($colors[md5('223.207.175')]);
+    unset($colors[md5('223.207.191')]);
     ksort($colors);
     return array_values($colors);
   }
