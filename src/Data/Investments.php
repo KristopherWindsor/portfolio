@@ -19,7 +19,7 @@ class Investments {
   }
 
   private function getColors(){
-    $colors = [];
+    $colors = array();
     for ($r = 255 - 16 * 5; $r <= 255 - 16 * 2; $r += 16)
       for ($g = 255 - 16 * 5; $g <= 255 - 16 * 2; $g += 16)
         for ($b = 255 - 16 * 5; $b <= 255 - 16 * 2; $b += 16)
@@ -33,29 +33,29 @@ class Investments {
   }
 
   private function getBaseData($categories, $colors){
-    $cdata = [
-      'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ],
-      'datasets' => [],
-    ];
+    $cdata = array(
+      'labels' => array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ),
+      'datasets' => array(),
+    );
     foreach ($categories as $i => $category)
       $cdata['datasets'][$i] = array(
         'label' => $category->name,
         'fillColor' => sprintf('rgba(%s, %s, %s, %s)', $colors[$i][0], $colors[$i][1], $colors[$i][2], 1),
         'pointColor' => sprintf('rgba(%s, %s, %s, %s)', $colors[$i][0], $colors[$i][1], $colors[$i][2], 1),
         'strokeColor' => 'black',
-        'data' => [],
+        'data' => array(),
       );
     return $cdata;
   }
 
   private function getOptions(){
-    return [
+    return array(
       'legendTemplate' => "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
       'multiTooltipTemplate' => "<%= ' \$' + value.toFixed(2).replace(/(\\d)(?=(\\d{3})+\\.)/g, '\$1,') %>",
       'responsive' => true,
       'pointDot' => false,
       'scaleBeginAtZero' => true,
-    ];
+    );
   }
 
   private function getExtra($categories, $colors){
@@ -64,9 +64,9 @@ class Investments {
       $category_map[$category->name] = $i;
     }
 
-    return [
+    return array(
       'categoryMap' => $category_map,
-    ];
+    );
   }
 
   private function year($mysqli, $year){
@@ -89,7 +89,7 @@ class Investments {
       }
     }
 
-    echo json_encode(["Line", $cdata, $this->getOptions(), $this->getExtra($categories, $colors), ]);
+    echo json_encode(array("Line", $cdata, $this->getOptions(), $this->getExtra($categories, $colors), ));
   }
 
   private function multiYear($mysqli, $mode, $start_year, $end_year){
@@ -158,7 +158,7 @@ class Investments {
           }
 
     // redo labels
-    $labels = [];
+    $labels = array();
     for ($i = $start_month; $i <= $end_month; $i++)
       $labels[] = $cdata['labels'][$i % 12] . ' ' . intval($i / 12);
     $cdata['labels'] = $labels;
@@ -176,7 +176,7 @@ class Investments {
       }
     }
 
-    echo json_encode(["Line", $cdata, $this->getOptions(), $this->getExtra($categories, $colors), ]);
+    echo json_encode(array("Line", $cdata, $this->getOptions(), $this->getExtra($categories, $colors), ));
   }
 
 }

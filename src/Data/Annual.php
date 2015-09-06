@@ -18,25 +18,25 @@ class Annual {
   private function pie($mysqli, $year){
     $data = Db\AnnualApi::getYear($mysqli, $year);
     $sum = array_sum($data);
-    $cdata = [
-      ["label" => 'Federal Taxes',        "color" => "#ABC", "value" => $data['FEDERAL_TAXES'], ],
-      ["label" => 'State Taxes',          "color" => "#BCA", "value" => $data['STATE_TAXES'], ],
-      ["label" => 'Donations',            "color" => "#CAB", "value" => $data['DONATIONS'], ],
-      ["label" => 'Investments',          "color" => "#ACB", "value" => $data['INVESTMENTS'], ],
-      ["label" => 'Cash surplus',         "color" => "#CBA", "value" => $data['CASH_GROWTH'], ],
-      ["label" => 'Remainder (expenses)', "color" => "#BAC", "value" => $data['GROSS_INCOME'] * 2 - $sum , ],
-    ];
-    $options = [
+    $cdata = array(
+      array("label" => 'Federal Taxes',        "color" => "#ABC", "value" => $data['FEDERAL_TAXES'], ),
+      array("label" => 'State Taxes',          "color" => "#BCA", "value" => $data['STATE_TAXES'], ),
+      array("label" => 'Donations',            "color" => "#CAB", "value" => $data['DONATIONS'], ),
+      array("label" => 'Investments',          "color" => "#ACB", "value" => $data['INVESTMENTS'], ),
+      array("label" => 'Cash surplus',         "color" => "#CBA", "value" => $data['CASH_GROWTH'], ),
+      array("label" => 'Remainder (expenses)', "color" => "#BAC", "value" => $data['GROSS_INCOME'] * 2 - $sum , ),
+    );
+    $options = array(
       'tooltipTemplate' => "<%if (label){%><%=label%>: <%}%>$<%= value.toFixed(2).replace(/(\\d)(?=(\\d{3})+\\.)/g, '\$1,') %>",
       'responsive' => true,
-    ];
+    );
 
     $current_year = date("Y");
-    $extra = [
+    $extra = array(
       'headerText' => $year . ' &mdash; $' . number_format($data['GROSS_INCOME'], 2) . ($year >= $current_year ? ' (est)' : ''),
-    ];
+    );
 
-    echo json_encode(["Pie", $cdata, $options, $extra]);
+    echo json_encode(array("Pie", $cdata, $options, $extra));
   }
 
   private function incomeVsSavings($mysqli, $start_year, $end_year){
@@ -70,7 +70,7 @@ class Annual {
       'responsive' => true,
     );
 
-    echo json_encode(["Bar", $cdata, $options, null]);
+    echo json_encode(array("Bar", $cdata, $options, null));
   }
 
   private function summary($mysqli, $start_year, $end_year){
