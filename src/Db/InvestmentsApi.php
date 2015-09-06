@@ -17,11 +17,12 @@ class InvestmentsApi {
     return $res;
   }
 
-  public static function getInvestments($mysqli, $start_year, $end_year, $start_month = 1, $end_month = 12){
+  private static function getInvestmentsHelper($mysqli, $start_year, $end_year, $start_month = 1, $end_month = 12){
     $stmt = $mysqli->prepare("
       SELECT
         *,
         `value_ret_pretax` + `value_ret_posttax` AS `value_ret`,
+        `value_no_ret`     + `value_ret_posttax` AS `value_posttax`,
         `value_ret_pretax` + `value_ret_posttax` + `value_no_ret` AS `value`
       FROM `investments`
       LEFT JOIN `investment_category` ON `category_key` = `key`
@@ -35,7 +36,22 @@ class InvestmentsApi {
     $result = $stmt->get_result();
     $res = array();
     while ($row = $result->fetch_object())
-      $res[ $row->year ][ $row->month ][ $row->key ] = $row->value;
+      yield $row;
+  }
+
+  public static function getInvestments($mysqli, $start_year, $end_year, $start_month = 1, $end_month = 12){
+    $res = array();
+    foreach (self::getInvestmentsHelper($mysqli, $start_year, $end_year, $start_month, $end_month) as $i){
+      $res[ $i->year ][ $i->month ][ $i->key ] = $i->value;
+    }
+    return $res;
+  }
+
+  public static function getInvestmentsSegmented($mysqli, $start_year, $end_year, $start_month = 1, $end_month = 12){
+    $res = array();
+    foreach (self::getInvestmentsHelper($mysqli, $start_year, $end_year, $start_month, $end_month) as $i){
+      $res[ $i->year ][ $i->month ][ $i->key ] = $i;
+    }
     return $res;
   }
 

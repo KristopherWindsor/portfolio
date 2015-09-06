@@ -5,12 +5,17 @@ namespace Portfolio\Data;
 Use Portfolio\Db;
 
 class Investments {
+  const MODE_CATEGORIES = 'categories';
+  const MODE_TAX        = 'tax';
+  const MODE_RETIREMENT = 'retirement';
+  const MODE_TAX_RET    = 'tax_ret';
+
   public function __construct($mysqli, $report, $data = null){
     header('Content-Type: application/json');
     if ($report == 'year')
       $this->year($mysqli, (int) $data[0]);
-    else if ($report == 'multiyear')
-      $this->multiYear($mysqli, (int) $data[0], (int) $data[1]);
+    else if ($report == 'multiyear' && in_array($data[0], array(self::MODE_TAX, self::MODE_RETIREMENT, self::MODE_TAX_RET, self::MODE_CATEGORIES)))
+      $this->multiYear($mysqli, $data[0], (int) $data[1], (int) $data[2]);
   }
 
   private function getColors(){
@@ -20,6 +25,7 @@ class Investments {
         for ($b = 255 - 16 * 5; $b <= 255 - 16 * 2; $b += 16)
           if ($r != $g && $r != $b && $g != $b)
             $colors[ md5("$r.$g.$b") ] = [$r, $g, $b];
+    unset($colors[md5('191.207.175')]);
     unset($colors[md5('223.207.175')]);
     unset($colors[md5('223.207.191')]);
     ksort($colors);
@@ -48,6 +54,7 @@ class Investments {
       'multiTooltipTemplate' => "<%= ' \$' + value.toFixed(2).replace(/(\\d)(?=(\\d{3})+\\.)/g, '\$1,') %>",
       'responsive' => true,
       'pointDot' => false,
+      'scaleBeginAtZero' => true,
     ];
   }
 
@@ -73,7 +80,7 @@ class Investments {
       $category = $categories[$i];
       for ($j = 0; $j < 12; $j++){
         if (isset($data[$year][$j + 1][$category->key]))
-          $value = $data[$year][$j + 1][$category->key];
+          $value = $data[$year][$j + 1][$category->key]->value;
         else
           $value = null;
         if ($value !== null && isset( $cdata['datasets'][$i + 1]['data'][$j] ))
@@ -85,15 +92,32 @@ class Investments {
     echo json_encode(["Line", $cdata, $this->getOptions(), $this->getExtra($categories, $colors), ]);
   }
 
-  private function multiYear($mysqli, $start_year, $end_year){
-    $data = Db\InvestmentsApi::getInvestments($mysqli, $start_year, $end_year);
-    if (!$data){
+  private function multiYear($mysqli, $mode, $start_year, $end_year){
+    $segmented = Db\InvestmentsApi::getInvestmentsSegmented($mysqli, $start_year, $end_year);
+    if (!$segmented){
       // year() is better at showing empty data
       $this->year($mysqli, $start_year);
       return;
     }
-    $categories = Db\InvestmentsApi::getCategories($mysqli);
 
+    if ($mode == self::MODE_RETIREMENT)
+      $categories = array(
+        (object) array('name' => 'Non-retirement', 'key' => 'NO_RET'),
+        (object) array('name' => 'Retirement',     'key' => 'RET'),
+      );
+    else if ($mode == self::MODE_TAX)
+      $categories = array(
+        (object) array('name' => 'Post-tax', 'key' => 'POST_TAX'),
+        (object) array('name' => 'Pre-tax',  'key' => 'PRE_TAX'),
+      );
+    else if ($mode == self::MODE_TAX_RET)
+      $categories = array(
+        (object) array('name' => 'Non-retirement funds',      'key' => 'NO_RET'),
+        (object) array('name' => 'Pre-tax retirement funds',  'key' => 'PRE_TAX'),
+        (object) array('name' => 'Post-tax retirement funds', 'key' => 'POST_TAX'),
+      );
+    else
+      $categories = Db\InvestmentsApi::getCategories($mysqli);
     $colors = $this->getColors();
     $cdata = $this->getBaseData($categories, $colors);
 
@@ -101,12 +125,37 @@ class Investments {
     $start_month = $end_month = null;
     for ($year = $start_year; $year <= $end_year; $year++)
       for ($i = 1; $i <= 12; $i++){
-        if (isset($data[$year][$i])){
+        if (isset($segmented[$year][$i])){
           if (!$start_month)
             $start_month = $year * 12 + $i - 1;
           $end_month = $year * 12 + $i - 1;
         }
       }
+
+    // transform $segmented to $data depending on $mode
+    $data = array();
+    foreach ($segmented as $year => $i)
+      foreach ($i as $month => $j)
+        foreach ($j as $key => $k)
+          if ($mode == self::MODE_RETIREMENT){
+            if (empty($data[$year][$month]))
+              $data[$year][$month] = array('RET' => 0, 'NO_RET' => 0);
+            $data[$year][$month]['RET']      += $k->value_ret;
+            $data[$year][$month]['NO_RET']   += $k->value_no_ret;
+          } else if ($mode == self::MODE_TAX){
+            if (empty($data[$year][$month]))
+              $data[$year][$month] = array('PRE_TAX' => 0, 'POST_TAX' => 0);
+            $data[$year][$month]['PRE_TAX']  += $k->value_ret_pretax;
+            $data[$year][$month]['POST_TAX'] += $k->value_posttax;
+          } else if ($mode == self::MODE_TAX_RET){
+            if (empty($data[$year][$month]))
+              $data[$year][$month] = array('NO_RET' => 0, 'PRE_TAX' => 0, 'POST_TAX' => 0);
+            $data[$year][$month]['NO_RET']   += $k->value_no_ret;
+            $data[$year][$month]['PRE_TAX']  += $k->value_ret_pretax;
+            $data[$year][$month]['POST_TAX'] += $k->value_ret_posttax;
+          } else {
+            $data[$year][$month][$key] = $k->value;
+          }
 
     // redo labels
     $labels = [];
