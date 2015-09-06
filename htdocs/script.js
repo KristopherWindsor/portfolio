@@ -142,12 +142,14 @@ function renderDatasectionTable(datasection, data){
 function renderDatasectionDefList(datasection, data){
   if (!data) return;
 
-  var dl = $("<dl/>");
+  var article;
 
   for (var i in data){
-    $("<dt/>", {text : i}).appendTo(dl);
-    $("<dd/>", {text : data[i]}).appendTo(dl);
+    article = $("<article/>");
+    if (data[i].icon)
+      $("<img/>", {src : data[i].icon, alt : ""}).appendTo(article);
+    $("<h3/>", {text : data[i].term}).appendTo(article);
+    $("<p/>", {text : data[i].definition}).appendTo(article);
+    $(datasection).append(article);
   }
-
-  $(datasection).append(dl);
 }

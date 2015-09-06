@@ -16,7 +16,11 @@ class Categories {
 
     $res = array();
     foreach ($categories as $i)
-      $res[$i->name] = $i->description;
+      $res[] = array(
+        'term'       => $i->name,
+        'definition' => $i->description,
+        'icon'       => $i->icon,
+      );
 
     echo json_encode(array("DefList", $res));
   }

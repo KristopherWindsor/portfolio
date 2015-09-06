@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `investment_category` (
   `key` VARCHAR(16),
   `name` VARCHAR(64),
   `rank` INT(12),
+  `icon` VARCHAR(64),
   `description` text,
 primary KEY (`key`));
 

@@ -41,21 +41,21 @@ INSERT INTO `annual_breakdown` VALUES
 
 TRUNCATE `investment_category`;
 INSERT INTO `investment_category` VALUES
-  ("HOUSING", "Housing fund", 8,
+  ("HOUSING", "Housing fund", 8, "/images/icons/house.svg",
     "Funds set aside for a house downpayment in stocks/bonds. The target is $80,000"),
-  ("LC", "Lending Club", 7,
+  ("LC", "Lending Club", 7, "/images/icons/peer-lending.svg",
     "Funds invested through Lending Club, a peer-to-peer lending service expected to earn 5-10% annual interest. Repayments are automatically lent out to new borrowers, so the funds are not immediately available"),
-  ("CASH", "Cash", 6,
+  ("CASH", "Cash", 6, "/images/icons/cash.svg",
     "This cash is ready to be invested (may be in a money market)"),
-  ("MM_RET", "Cash (restricted)", 5,
+  ("MM_RET", "Cash (restricted)", 5, "/images/icons/cash.svg",
     "Funds restricted to an employer's 401(k) plan, with limited investment options. Typically it is placed in a low-interest money market"),
-  ("MISC_STOCK", "Other Stocks", 4,
+  ("MISC_STOCK", "Other Stocks", 4, "/images/icons/stock.svg",
     "Funds in misc things such as commodities or individual (hand-picked) companies"),
-  ("SMALL_CAP", "US Small-cap", 3,
+  ("SMALL_CAP", "US Small-cap", 3, "/images/icons/stock.svg",
     "Funds in small and medium-sized US-based companies"),
-  ("INTL_STOCK", "International Stocks", 2,
+  ("INTL_STOCK", "International Stocks", 2, "/images/icons/stock.svg",
     "Funds in internationally-based companies"),
-  ("LARGE_CAP", "US Total Stock Market", 1,
+  ("LARGE_CAP", "US Total Stock Market", 1, "/images/icons/stock.svg",
     "Funds in US-based companies, with heavy weighting for the largest companies")
 ;
 
