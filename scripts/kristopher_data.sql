@@ -41,14 +41,14 @@ INSERT INTO `annual_breakdown` VALUES
 
 TRUNCATE `investment_category`;
 INSERT INTO `investment_category` VALUES
-  ("HOUSING", "Housing fund", 8, "/images/icons/house.svg",
-    "Funds set aside for a house downpayment in stocks/bonds. The target is $80,000"),
-  ("LC", "Lending Club", 7, "/images/icons/peer-lending.svg",
-    "Funds invested through Lending Club, a peer-to-peer lending service expected to earn 5-10% annual interest. Repayments are automatically lent out to new borrowers, so the funds are not immediately available"),
-  ("CASH", "Cash", 6, "/images/icons/cash.svg",
-    "This cash is ready to be invested (may be in a money market)"),
-  ("MM_RET", "Cash (restricted)", 5, "/images/icons/cash.svg",
+  ("MM_RET", "Cash (restricted)", 8, "/images/icons/cash.svg",
     "Funds restricted to an employer's 401(k) plan, with limited investment options. Typically it is placed in a low-interest money market"),
+  ("CASH", "Cash", 7, "/images/icons/cash.svg",
+    "This cash is ready to be invested (may be in a money market)"),
+  ("HOUSING", "Housing fund", 6, "/images/icons/house.svg",
+    "Funds set aside for a house downpayment in cash/bonds. The target is $80,000"),
+  ("LC", "Lending Club", 5, "/images/icons/peer-lending.svg",
+    "Funds invested through Lending Club, a peer-to-peer lending service expected to earn 5-10% annual interest. Repayments are automatically lent out to new borrowers, so the funds are not immediately available"),
   ("MISC_STOCK", "Other Stocks", 4, "/images/icons/stock.svg",
     "Funds in misc things such as commodities or individual (hand-picked) companies"),
   ("SMALL_CAP", "US Small-cap", 3, "/images/icons/stock.svg",
