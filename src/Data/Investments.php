@@ -80,7 +80,7 @@ class Investments {
       $category = $categories[$i];
       for ($j = 0; $j < 12; $j++){
         if (isset($data[$year][$j + 1][$category->key]))
-          $value = $data[$year][$j + 1][$category->key]->value;
+          $value = $data[$year][$j + 1][$category->key];
         else
           $value = null;
         if ($value !== null && isset( $cdata['datasets'][$i + 1]['data'][$j] ))

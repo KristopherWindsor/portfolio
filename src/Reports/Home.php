@@ -72,7 +72,13 @@ class Home {
   }
 
   private function renderInvestmentsMultiyear($start_year, $end_year){
-    echo '<div class="datasection line" data-src="/data/investments/multiyear/' . $start_year . '/' . $end_year . '"></div>';
+    echo '<div>';
+    echo '<form>';
+    echo '<label>Simplified view <input type="checkbox" onChange="completeReportInvestmentsToggleHandler(this)"></label>';
+    echo '</form>';
+    echo '<div class="datasection line" data-src="/data/investments/multiyear/categories/' . $start_year . '/' . $end_year . '"></div>';
+    echo '<div class="datasection line noload" data-src="/data/investments/multiyear/tax_ret/' . $start_year . '/' . $end_year . '" style="display: none"></div>';
+    echo '</div>';
   }
 
   private function renderGrowthSummary(){

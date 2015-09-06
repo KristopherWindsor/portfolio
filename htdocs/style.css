@@ -9,6 +9,9 @@ h1 {border-bottom: 1px solid black; padding-bottom: .2em;}
 .pie-grid-legend .pie-legend span {width: 13pt; height: 13pt; display: inline-block; margin: 0 .5em 0 1em;}
 .pie-grid-legend .pie-legend li {list-style-type: none; display: inline-block;}
 
+form {margin: 1em 0;}
+form label:hover {text-decoration: underline; cursor: pointer;}
+
 .datasection.pie {position: relative; width: 30%; height: auto; margin: 0 1.5%; min-width: 200px;}
 .datasection h3 {position: absolute; }
 .datasection.pie canvas {}

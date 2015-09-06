@@ -1,23 +1,46 @@
 $(function (){
-  $('.datasection').each(function () {
-    var datasection = this;
-    var url = $(datasection).data('src');
-
-    $.get(url, null, function (response){
-      var type = response[0], data = response[1], options = response[2], extra = response[3];
-
-      if (type == "Pie"){
-        renderDatasectionPie(datasection, data, options, extra);
-      } else if (type == "Line"){
-        renderDatasectionLine(datasection, data, options, extra);
-      } else if (type == "Bar"){
-        renderDatasectionBar(datasection, data, options, extra);
-      } else if (type == "Table"){
-        renderDatasectionTable(datasection, data);
-      }
-    });
-  });
+  $('.datasection:not(.noload)').each(renderDatasection);
 });
+
+function completeReportInvestmentsToggleHandler(checkbox){
+  var $container = $(checkbox).parent().parent().parent();
+
+  var fn = function (){
+    $container.find(".datasection").toggle();
+  }
+
+  if ($container.find(".datasection.noload").length){
+    $container.find(".datasection.noload").each(function (){
+      $(this).removeClass('noload');
+      renderDatasection.call(this, fn);
+    });
+  } else
+    fn();
+}
+
+function renderDatasection(onPreLoad){
+  var datasection = this;
+  var url = $(datasection).data('src');
+
+  $.get(url, null, function (response){
+    var type = response[0], data = response[1], options = response[2], extra = response[3];
+
+    if (onPreLoad && typeof onPreLoad === "function"){
+      console.log(onPreLoad);
+      onPreLoad.call(datasection);
+    }
+
+    if (type == "Pie"){
+      renderDatasectionPie(datasection, data, options, extra);
+    } else if (type == "Line"){
+      renderDatasectionLine(datasection, data, options, extra);
+    } else if (type == "Bar"){
+      renderDatasectionBar(datasection, data, options, extra);
+    } else if (type == "Table"){
+      renderDatasectionTable(datasection, data);
+    }
+  });
+}
 
 function renderDatasectionPie(datasection, data, options, extra){
   var header = $("<h3/>", {html : extra.headerText});
