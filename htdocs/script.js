@@ -38,6 +38,8 @@ function renderDatasection(onPreLoad){
       renderDatasectionBar(datasection, data, options, extra);
     } else if (type == "Table"){
       renderDatasectionTable(datasection, data);
+    } else if (type == "DefList"){
+      renderDatasectionDefList(datasection, data);
     }
   });
 }
@@ -135,4 +137,17 @@ function renderDatasectionTable(datasection, data){
   }
 
   $(datasection).append(table);
+}
+
+function renderDatasectionDefList(datasection, data){
+  if (!data) return;
+
+  var dl = $("<dl/>");
+
+  for (var i in data){
+    $("<dt/>", {text : i}).appendTo(dl);
+    $("<dd/>", {text : data[i]}).appendTo(dl);
+  }
+
+  $(datasection).append(dl);
 }

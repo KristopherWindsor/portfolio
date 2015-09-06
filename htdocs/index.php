@@ -19,6 +19,8 @@ else if (count($request) >= 3 && $request[0] == 'data' && $request[1] == 'invest
   new Data\Investments($db, $request[2], array_slice($request, 3));
 else if (count($request) >= 3 && $request[0] == 'data' && $request[1] == 'growthsummary')
   new Data\GrowthSummary($db, $request[2], array_slice($request, 3));
+else if (count($request) >= 3 && $request[0] == 'data' && $request[1] == 'categories')
+  new Data\Categories($db, $request[2], array_slice($request, 3));
 else if (count($request) == 1 && $request[0] == 'phpinfo')
   phpinfo();
 else {

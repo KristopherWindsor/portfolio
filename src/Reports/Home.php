@@ -60,8 +60,8 @@ class Home {
     $this->renderInvestmentsMultiyear($start_year, $end_year);
     echo '<p>Note: displayed values are cumulative.</p>';
 
-    // echo '<h2>Investment descriptions</h2>';
-    //
+    echo '<h2>Investment descriptions</h2>';
+    $this->renderInvestmentDescriptions();
 
     // echo '<h2>Investment allocations</h2>';
     //
@@ -74,7 +74,7 @@ class Home {
   private function renderInvestmentsMultiyear($start_year, $end_year){
     echo '<div>';
     echo '<form>';
-    echo '<label>Simplified view <input type="checkbox" onChange="completeReportInvestmentsToggleHandler(this)"></label>';
+    echo '<label>Simplified view<input type="checkbox" onChange="completeReportInvestmentsToggleHandler(this)"></label>';
     echo '</form>';
     echo '<div class="datasection line" data-src="/data/investments/multiyear/categories/' . $start_year . '/' . $end_year . '"></div>';
     echo '<div class="datasection line noload" data-src="/data/investments/multiyear/tax_ret/' . $start_year . '/' . $end_year . '" style="display: none"></div>';
@@ -91,6 +91,10 @@ class Home {
 
   private function renderAnnualSummary($start_year, $end_year){
     echo '<div class="datasection table" data-src="/data/annual/summary/' . $start_year . '/' . $end_year . '"></div>';
+  }
+
+  private function renderInvestmentDescriptions(){
+    echo '<div class="datasection deflist" data-src="/data/categories/show"></div>';
   }
 
   public function yearReport($mysqli, $year){

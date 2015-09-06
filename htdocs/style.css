@@ -35,3 +35,6 @@ form label:hover {text-decoration: underline; cursor: pointer;}
 .datasection.table th {background-color: #BBD;}
 .datasection.table td {background-color: #DDE;}
 .datasection.table th, td { border: 1px solid #BBD; padding: .4em 2em;}
+
+.datasection.deflist {line-height: 1.5em;}
+.datasection.deflist dt {margin: .5em 0 .25em 0;}
