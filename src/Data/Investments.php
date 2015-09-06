@@ -44,6 +44,7 @@ class Investments {
         'pointColor' => sprintf('rgba(%s, %s, %s, %s)', $colors[$i][0], $colors[$i][1], $colors[$i][2], 1),
         'strokeColor' => 'black',
         'data' => array(),
+        'itemData' => array(),
       );
     return $cdata;
   }
@@ -51,7 +52,6 @@ class Investments {
   private function getOptions(){
     return array(
       'legendTemplate' => "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
-      'multiTooltipTemplate' => "<%= ' \$' + value.toFixed(2).replace(/(\\d)(?=(\\d{3})+\\.)/g, '\$1,') %>",
       'responsive' => true,
       'pointDot' => false,
       'scaleBeginAtZero' => true,
@@ -170,6 +170,7 @@ class Investments {
           $value = $data[intval($j / 12)][($j % 12) + 1][$category->key];
         else
           $value = null;
+        $cdata['datasets'][$i]['itemData'][$j - $start_month] = $value;
         if ($value !== null && isset( $cdata['datasets'][$i + 1]['data'][$j - $start_month] ))
           $value += $cdata['datasets'][$i + 1]['data'][$j - $start_month];
         $cdata['datasets'][$i]['data'][$j - $start_month] = $value;

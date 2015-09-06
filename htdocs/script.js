@@ -84,8 +84,16 @@ function renderDatasectionPie(datasection, data, options, extra){
 function renderDatasectionLine(datasection, data, options, extra){
   var colorHistory = {};
 
-  var canvas = $("<canvas/>");
+  // for multi-line graphs, we want the tooltip to show the individual item value, not the sum with all items below it
+  options.multiTooltipTemplate = function (x){
+    var monthIndex = data.labels.indexOf(x.label);
+    for (var i in data.datasets)
+      if (data.datasets[i].label == x.datasetLabel){
+        return x.datasetLabel + ": $" + (Math.round(data.datasets[i].itemData[monthIndex] / 100) * 100).toLocaleString('en');
+      }
+  };
 
+  var canvas = $("<canvas/>");
   $(datasection).append(canvas);
 
   var ctx = $(canvas).get(0).getContext("2d");
