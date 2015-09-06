@@ -22,7 +22,7 @@ class Annual {
       array("label" => 'Federal Taxes',        "color" => "#ABC", "value" => $data['FEDERAL_TAXES'], ),
       array("label" => 'State Taxes',          "color" => "#BCA", "value" => $data['STATE_TAXES'], ),
       array("label" => 'Donations',            "color" => "#CAB", "value" => $data['DONATIONS'], ),
-      array("label" => 'Investments',          "color" => "#ACB", "value" => $data['INVESTMENTS'], ),
+      array("label" => 'Savings & Investments',"color" => "#ACB", "value" => $data['INVESTMENTS'], ),
       array("label" => 'Cash surplus',         "color" => "#CBA", "value" => $data['CASH_GROWTH'], ),
       array("label" => 'Remainder (expenses)', "color" => "#BAC", "value" => $data['GROSS_INCOME'] * 2 - $sum , ),
     );
