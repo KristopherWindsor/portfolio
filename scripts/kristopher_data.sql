@@ -61,10 +61,12 @@ INSERT INTO `investment_category` VALUES
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
   ("HOUSING",    40),
-  ("LC",          5),
-  ("SMALL_CAP",   10),
+  ("LARGE_CAP",  25),
   ("INTL_STOCK", 20),
-  ("LARGE_CAP",   25)
+  ("SMALL_CAP",  10),
+  ("LC",          5),
+  ("MISC_STOCK",  0),
+  ("CASH",        0)
  ;
 
 TRUNCATE `investments`;
@@ -109,7 +111,7 @@ INSERT INTO `investments` VALUES
   (2015,  3, "INTL_STOCK", 0,     0,     0),
   (2015,  3, "LARGE_CAP",  0,     0, 14051),
 
-  (2015,  4, "EMERGENCY",  8000,  0,     0),
+  (2015,  4, "EMERGENCY",  10000, 0,     0),
   (2015,  4, "HOUSING",    20114, 0,     0),
   (2015,  4, "LC",         5065,  0,     0),
   (2015,  4, "CASH",       0, 21106,  9369),
