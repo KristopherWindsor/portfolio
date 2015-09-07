@@ -64,7 +64,7 @@ class Home {
 
     echo '<h2>Investment allocations</h2>';
     echo '<div class="pie-grid two">';
-    $this->renderAllocationRealVsTarget();
+    $this->renderAllocationRealVsTarget($end_year);
     echo '</div>';
     echo '<div class="pie-grid-legend"></div>';
   }
@@ -99,9 +99,9 @@ class Home {
     echo '<div class="datasection deflist" data-src="/data/categories/show"></div>';
   }
 
-  private function renderAllocationRealVsTarget(){
-    echo '<div class="datasection pie" data-src="/data/allocations/target/"></div>';
-    echo '<div class="datasection pie" data-src="/data/allocations/actual/"></div>';
+  private function renderAllocationRealVsTarget($end_year){
+    echo '<div class="datasection pie" data-src="/data/allocations/target"></div>';
+    echo '<div class="datasection pie" data-src="/data/allocations/actual/' . $end_year . '"></div>';
   }
 
   public function yearReport($mysqli, $year){

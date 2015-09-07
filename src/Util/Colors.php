@@ -10,7 +10,9 @@ class Colors {
    * @param int $upperbound the number of colors needed (or more)
    */
   public function __construct($upperbound){
-    if ($upperbound <= 2)
+    if ($upperbound <= 1)
+      $this->list = array('#ABC');
+    else if ($upperbound <= 2)
       $this->list = array('#BCA', '#ABC');
     else if ($upperbound <= 6)
       $this->list = array('#ABC', '#BCA', '#CAB', '#ACB', '#BAC', '#CBA');
