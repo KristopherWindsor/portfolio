@@ -72,6 +72,9 @@ function renderDatasectionPie(datasection, data, options, extra){
     });
   };
 
+  if (extra.nodata)
+    return;
+
   var isGrid = $(datasection).parent().is(".pie-grid");
 
   if (isGrid){
