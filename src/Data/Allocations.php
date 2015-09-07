@@ -3,6 +3,7 @@
 namespace Portfolio\Data;
 
 Use Portfolio\Db;
+Use Portfolio\Util;
 
 class Allocations {
   public function __construct($mysqli, $report, $data = null){
@@ -13,17 +14,13 @@ class Allocations {
       $this->actual($mysqli);
   }
 
-  private function getColors(){
-    return array('#ABC', '#BCA', '#CAB', '#ACB', '#BAC', '#CBA');
-  }
-
   private function target($mysqli){
     $allocations = Db\TargetApi::getTargets($mysqli);
 
     $cdata = array();
-    $colors = $this->getColors();
+    $colors = new Util\Colors( count($allocations) );
     foreach ($allocations as $name => $percent)
-      $cdata[] = array('label' => $name, 'color' => array_shift($colors), 'value' => $percent);
+      $cdata[] = array('label' => $name, 'color' => $colors->getNext(), 'value' => $percent);
 
     $options = array(
       'tooltipTemplate' => "<%if (label){%><%=label%>: <%}%><%= value %>%",

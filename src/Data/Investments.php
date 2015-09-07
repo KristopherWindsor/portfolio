@@ -3,6 +3,7 @@
 namespace Portfolio\Data;
 
 Use Portfolio\Db;
+Use Portfolio\Util;
 
 class Investments {
   const MODE_CATEGORIES = 'categories';
@@ -18,21 +19,8 @@ class Investments {
       $this->multiYear($mysqli, $data[0], (int) $data[1], (int) $data[2]);
   }
 
-  private function getColors(){
-    $colors = array();
-    for ($r = 255 - 16 * 5; $r <= 255 - 16 * 2; $r += 16)
-      for ($g = 255 - 16 * 5; $g <= 255 - 16 * 2; $g += 16)
-        for ($b = 255 - 16 * 5; $b <= 255 - 16 * 2; $b += 16)
-          if ($r != $g && $r != $b && $g != $b)
-            $colors[ md5("$r.$g.$b") ] = [$r, $g, $b];
-    unset($colors[md5('191.207.175')]);
-    unset($colors[md5('223.207.175')]);
-    unset($colors[md5('223.207.191')]);
-    ksort($colors);
-    return array_values($colors);
-  }
-
-  private function getBaseData($categories, $colors){
+  private function getBaseData($categories){
+    $colors = new Util\Colors( count($categories) );
     $cdata = array(
       'labels' => array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ),
       'datasets' => array(),
@@ -40,8 +28,8 @@ class Investments {
     foreach ($categories as $i => $category)
       $cdata['datasets'][$i] = array(
         'label' => $category->name,
-        'fillColor' => sprintf('rgba(%s, %s, %s, %s)', $colors[$i][0], $colors[$i][1], $colors[$i][2], 1),
-        'pointColor' => sprintf('rgba(%s, %s, %s, %s)', $colors[$i][0], $colors[$i][1], $colors[$i][2], 1),
+        'fillColor' => $colors->getNext(),
+        'pointColor' => $colors->getCurrent(),
         'strokeColor' => 'black',
         'data' => array(),
         'itemData' => array(),
@@ -73,7 +61,7 @@ class Investments {
     );
   }
 
-  private function getExtra($categories, $colors){
+  private function getExtra($categories){
     $category_map = array();
     foreach ($categories as $i => $category){
       $category_map[$category->name] = $i;
@@ -88,8 +76,7 @@ class Investments {
     $data = Db\InvestmentsApi::getInvestments($mysqli, $year, $year);
     $categories = Db\InvestmentsApi::getCategories($mysqli);
 
-    $colors = $this->getColors();
-    $cdata = $this->getBaseData($categories, $colors);
+    $cdata = $this->getBaseData($categories);
     $max_value = 0;
 
     for ($i = count($categories) - 1; $i >= 0; $i--){
@@ -106,7 +93,7 @@ class Investments {
       }
     }
 
-    echo json_encode(array("Line", $cdata, $this->getOptions($max_value), $this->getExtra($categories, $colors), ));
+    echo json_encode(array("Line", $cdata, $this->getOptions($max_value), $this->getExtra($categories), ));
   }
 
   private function multiYear($mysqli, $mode, $start_year, $end_year){
@@ -135,8 +122,7 @@ class Investments {
       );
     else
       $categories = Db\InvestmentsApi::getCategories($mysqli);
-    $colors = $this->getColors();
-    $cdata = $this->getBaseData($categories, $colors);
+    $cdata = $this->getBaseData($categories);
 
     // compute date range
     $start_month = $end_month = null;
@@ -197,7 +183,7 @@ class Investments {
       }
     }
 
-    echo json_encode(array("Line", $cdata, $this->getOptions($max_value), $this->getExtra($categories, $colors), ));
+    echo json_encode(array("Line", $cdata, $this->getOptions($max_value), $this->getExtra($categories), ));
   }
 
 }

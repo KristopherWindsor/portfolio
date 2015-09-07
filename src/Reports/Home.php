@@ -65,6 +65,7 @@ class Home {
     echo '<h2>Investment allocations</h2>';
     echo '<div class="pie-grid two">';
     $this->renderAllocationRealVsTarget();
+    echo '</div>';
     echo '<div class="pie-grid-legend"></div>';
   }
 

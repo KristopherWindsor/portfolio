@@ -3,6 +3,7 @@
 namespace Portfolio\Data;
 
 Use Portfolio\Db;
+Use Portfolio\Util;
 
 class Annual {
   public function __construct($mysqli, $report, $data = null){
@@ -18,12 +19,14 @@ class Annual {
   private function pie($mysqli, $year){
     $data = Db\AnnualApi::getYear($mysqli, $year);
     $sum = array_sum($data);
+
+    $colors = new Util\Colors(5);
     $cdata = array(
-      array("label" => 'Federal Taxes',        "color" => "#ABC", "value" => $data['FEDERAL_TAXES'], ),
-      array("label" => 'State Taxes',          "color" => "#BCA", "value" => $data['STATE_TAXES'], ),
-      array("label" => 'Donations',            "color" => "#CAB", "value" => $data['DONATIONS'], ),
-      array("label" => 'Savings',              "color" => "#ACB", "value" => $data['INVESTMENTS'], ),
-      array("label" => 'Remainder (expenses)', "color" => "#BAC", "value" => $data['GROSS_INCOME'] * 2 - $sum , ),
+      array("label" => 'Federal Taxes',        "color" => $colors->getNext(), "value" => $data['FEDERAL_TAXES'], ),
+      array("label" => 'State Taxes',          "color" => $colors->getNext(), "value" => $data['STATE_TAXES'], ),
+      array("label" => 'Donations',            "color" => $colors->getNext(), "value" => $data['DONATIONS'], ),
+      array("label" => 'Savings',              "color" => $colors->getNext(), "value" => $data['INVESTMENTS'], ),
+      array("label" => 'Remainder (expenses)', "color" => $colors->getNext(), "value" => $data['GROSS_INCOME'] * 2 - $sum , ),
     );
     $options = array(
       'tooltipTemplate' => "<%if (label){%><%=label%>: <%}%>$<%= value.toFixed(2).replace(/(\\d)(?=(\\d{3})+\\.)/g, '\$1,') %>",
@@ -41,17 +44,18 @@ class Annual {
   private function incomeVsSavings($mysqli, $start_year, $end_year){
     $data = Db\AnnualApi::getMultiYear($mysqli, $start_year, $end_year);
 
+    $colors = new Util\Colors(2);
     $cdata = array(
       'labels' => array(),
       'datasets' => array(
         array(
           'label' => 'Gross Income',
-          'fillColor' => '#BCA',
+          'fillColor' => $colors->getNext(),
           'data' => array(),
         ),
         array(
           'label' => 'Savings',
-          'fillColor' => '#ABC',
+          'fillColor' => $colors->getNext(),
           'data' => array(),
         ),
       ),
