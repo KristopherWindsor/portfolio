@@ -3,6 +3,8 @@ body {min-width: 700px;}
 h1 {border-bottom: 1px solid black; padding-bottom: .2em;}
 
 .pie-grid {}
+.pie-grid.two .datasection.pie {width: 35%; margin: 0 0 0 10%;}
+.pie-grid.three .datasection.pie {width: 30%;}
 .pie-grid > div {float: left;}
 .pie-grid-legend {clear: both;}
 .pie-grid-legend .pie-legend {margin: 0; padding: 1em;}
@@ -12,7 +14,7 @@ h1 {border-bottom: 1px solid black; padding-bottom: .2em;}
 form {margin: 1em 0;}
 form label:hover {text-decoration: underline; cursor: pointer;}
 
-.datasection.pie {position: relative; width: 30%; height: auto; margin: 0 1.5%; min-width: 200px;}
+.datasection.pie {position: relative; height: auto; margin: 0 1.5%; min-width: 200px;}
 .datasection.pie h3 {position: absolute; }
 .datasection.pie canvas {}
 .datasection.pie .pie-legend {font-size: 10pt; margin: 0; padding: 1em; border: 1px solid black; display: inline-block; bottom: 0; right: 0; position: absolute; background: rgba(255, 255, 255, .5);}

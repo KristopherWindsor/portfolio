@@ -21,6 +21,8 @@ else if (count($request) >= 3 && $request[0] == 'data' && $request[1] == 'growth
   new Data\GrowthSummary($db, $request[2], array_slice($request, 3));
 else if (count($request) >= 3 && $request[0] == 'data' && $request[1] == 'categories')
   new Data\Categories($db, $request[2], array_slice($request, 3));
+else if (count($request) >= 3 && $request[0] == 'data' && $request[1] == 'allocations')
+  new Data\Allocations($db, $request[2], array_slice($request, 3));
 else if (count($request) == 1 && $request[0] == 'phpinfo')
   phpinfo();
 else {

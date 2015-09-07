@@ -49,7 +49,7 @@ class Home {
     $this->renderIncomeVsSavings($rough_start_year, $end_year);
 
     echo '<h2>Allocation of income per year</h2>';
-    echo '<div class="pie-grid">';
+    echo '<div class="pie-grid three">';
     for ($i = $start_year; $i <= $end_year; $i++)
       $this->renderAnnualPie($i);
     echo '</div>';
@@ -62,8 +62,10 @@ class Home {
     $this->renderGrowthSummary();
     $this->renderInvestmentsMultiyear($start_year, $end_year);
 
-    // echo '<h2>Investment allocations</h2>';
-    //
+    echo '<h2>Investment allocations</h2>';
+    echo '<div class="pie-grid two">';
+    $this->renderAllocationRealVsTarget();
+    echo '<div class="pie-grid-legend"></div>';
   }
 
   private function renderAnnualPie($year){
@@ -94,6 +96,11 @@ class Home {
 
   private function renderInvestmentDescriptions(){
     echo '<div class="datasection deflist" data-src="/data/categories/show"></div>';
+  }
+
+  private function renderAllocationRealVsTarget(){
+    echo '<div class="datasection pie" data-src="/data/allocations/target/"></div>';
+    echo '<div class="datasection pie" data-src="/data/allocations/actual/"></div>';
   }
 
   public function yearReport($mysqli, $year){
