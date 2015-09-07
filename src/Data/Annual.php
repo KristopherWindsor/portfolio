@@ -22,8 +22,7 @@ class Annual {
       array("label" => 'Federal Taxes',        "color" => "#ABC", "value" => $data['FEDERAL_TAXES'], ),
       array("label" => 'State Taxes',          "color" => "#BCA", "value" => $data['STATE_TAXES'], ),
       array("label" => 'Donations',            "color" => "#CAB", "value" => $data['DONATIONS'], ),
-      array("label" => 'Savings & Investments',"color" => "#ACB", "value" => $data['INVESTMENTS'], ),
-      array("label" => 'Cash surplus',         "color" => "#CBA", "value" => $data['CASH_GROWTH'], ),
+      array("label" => 'Savings',              "color" => "#ACB", "value" => $data['INVESTMENTS'], ),
       array("label" => 'Remainder (expenses)', "color" => "#BAC", "value" => $data['GROSS_INCOME'] * 2 - $sum , ),
     );
     $options = array(
@@ -61,8 +60,7 @@ class Annual {
     for ($i = $start_year; $i <= $end_year; $i++){
       $cdata['labels'][] = $i . ($i >= $current_year ? ' (est)' : '');
       $cdata['datasets'][0]['data'][] = isset($data[$i]['GROSS_INCOME']) ? $data[$i]['GROSS_INCOME'] : 0;
-      $cdata['datasets'][1]['data'][] = isset($data[$i]['INVESTMENTS']) || isset($data[$i]['CASH_GROWTH']) ?
-        @$data[$i]['INVESTMENTS'] + @$data[$i]['CASH_GROWTH']: 0;
+      $cdata['datasets'][1]['data'][] = isset($data[$i]['INVESTMENTS']) ? $data[$i]['INVESTMENTS'] : 0;
     }
 
     $options = array(

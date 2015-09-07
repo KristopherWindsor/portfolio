@@ -55,10 +55,10 @@ class Home {
     echo '</div>';
     echo '<div class="pie-grid-legend"></div>';
 
-    echo '<h2>Savings &amp; Investments</h2>';
+    echo '<h2>Savings &amp; investments</h2>';
     $this->renderInvestmentDescriptions();
 
-    echo '<h2>Investment growth</h2>';
+    echo '<h2>Savings &amp; investments growth</h2>';
     $this->renderGrowthSummary();
     $this->renderInvestmentsMultiyear($start_year, $end_year);
 

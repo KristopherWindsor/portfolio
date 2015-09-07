@@ -49,12 +49,27 @@ class Investments {
     return $cdata;
   }
 
-  private function getOptions(){
+  private function getOptions($max_value){
+    if ($max_value <= 40000)
+      $width = 1000;
+    else if ($max_value <= 200000)
+      $width = 5000;
+    else if ($max_value <= 400000)
+      $width = 10000;
+    else if ($max_value <= 1000000)
+      $width = 50000;
+    else
+      $width = 100000;
+    $steps = ceil(1.02 * $max_value / $width);
+
     return array(
       'legendTemplate' => "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
       'responsive' => true,
       'pointDot' => false,
-      'scaleBeginAtZero' => true,
+      'scaleOverride'=> true,
+      'scaleSteps'=> $steps,
+      'scaleStepWidth'=> $width,
+      'scaleStartValue'=> 0,
     );
   }
 
@@ -75,6 +90,7 @@ class Investments {
 
     $colors = $this->getColors();
     $cdata = $this->getBaseData($categories, $colors);
+    $max_value = 0;
 
     for ($i = count($categories) - 1; $i >= 0; $i--){
       $category = $categories[$i];
@@ -86,10 +102,11 @@ class Investments {
         if ($value !== null && isset( $cdata['datasets'][$i + 1]['data'][$j] ))
           $value += $cdata['datasets'][$i + 1]['data'][$j];
         $cdata['datasets'][$i]['data'][$j] = $value;
+        $max_value = max($max_value, $value);
       }
     }
 
-    echo json_encode(array("Line", $cdata, $this->getOptions(), $this->getExtra($categories, $colors), ));
+    echo json_encode(array("Line", $cdata, $this->getOptions($max_value), $this->getExtra($categories, $colors), ));
   }
 
   private function multiYear($mysqli, $mode, $start_year, $end_year){
@@ -163,6 +180,8 @@ class Investments {
       $labels[] = $cdata['labels'][$i % 12] . ' ' . intval($i / 12);
     $cdata['labels'] = $labels;
 
+    // format data for chart
+    $max_value = 0;
     for ($i = count($categories) - 1; $i >= 0; $i--){
       $category = $categories[$i];
       for ($j = $start_month; $j <= $end_month; $j++){
@@ -174,10 +193,11 @@ class Investments {
         if ($value !== null && isset( $cdata['datasets'][$i + 1]['data'][$j - $start_month] ))
           $value += $cdata['datasets'][$i + 1]['data'][$j - $start_month];
         $cdata['datasets'][$i]['data'][$j - $start_month] = $value;
+        $max_value = max($max_value, $value);
       }
     }
 
-    echo json_encode(array("Line", $cdata, $this->getOptions(), $this->getExtra($categories, $colors), ));
+    echo json_encode(array("Line", $cdata, $this->getOptions($max_value), $this->getExtra($categories, $colors), ));
   }
 
 }
