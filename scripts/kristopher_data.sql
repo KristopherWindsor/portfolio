@@ -21,30 +21,29 @@ INSERT INTO `annual_breakdown` VALUES
   (2014, "FEDERAL_TAXES",   12831),
   (2014, "STATE_TAXES",     4500),
   (2014, "DONATIONS",       12381),
-  (2014, "INVESTMENTS",     5000),
-  (2014, "CASH_GROWTH",     20000),
+  (2014, "INVESTMENTS",     25000),
 
   (2015, "GROSS_INCOME",    130000),
   (2015, "FEDERAL_TAXES",   14000),
   (2015, "STATE_TAXES",     5000),
   (2015, "DONATIONS",       13000),
   (2015, "INVESTMENTS",     35000),
-  (2015, "CASH_GROWTH",     0),
 
   (2016, "GROSS_INCOME",    160000),
   (2016, "FEDERAL_TAXES",   17000),
   (2016, "STATE_TAXES",     6000),
   (2016, "DONATIONS",       16000),
-  (2016, "INVESTMENTS",     55000),
-  (2016, "CASH_GROWTH",     0)
+  (2016, "INVESTMENTS",     55000)
 ;
 
 TRUNCATE `investment_category`;
 INSERT INTO `investment_category` VALUES
+  ("EMERGENCY", "Emergency fund (est)", 9, "/images/icons/emergency.svg",
+    "Approximately, money in the bank less credit card balances. Includes cash for emergencies such as a broken car"),
   ("MM_RET", "Cash (restricted)", 8, "/images/icons/cash.svg",
-    "Funds restricted to an employer's 401(k) plan, with limited investment options. Typically it is placed in a low-interest money market"),
+    "Funds restricted to an employer's 401(k) plan, with limited investment options. Typically placed in a low-interest money market"),
   ("CASH", "Cash", 7, "/images/icons/cash.svg",
-    "This cash is ready to be invested (may be in a money market)"),
+    "This cash is ready to be invested (might be in a money market)"),
   ("HOUSING", "Housing fund", 6, "/images/icons/house.svg",
     "Funds set aside for a house downpayment in cash/bonds. The target is $80,000"),
   ("LC", "Lending Club", 5, "/images/icons/peer-lending.svg",
@@ -70,6 +69,7 @@ INSERT INTO `investment_target` VALUES
 
 TRUNCATE `investments`;
 INSERT INTO `investments` VALUES
+  (2014, 12, "EMERGENCY",  20000, 0,     0),
   (2014, 12, "HOUSING",    0,     0,     0),
   (2014, 12, "LC",         0,     0,     0),
   (2014, 12, "CASH",       0, 21106, 19745),
@@ -79,6 +79,7 @@ INSERT INTO `investments` VALUES
   (2014, 12, "INTL_STOCK", 0,     0,     0),
   (2014, 12, "LARGE_CAP",  0,     0,     0),
 
+  (2015,  1, "EMERGENCY",  20000, 0,     0),
   (2015,  1, "HOUSING",    0,     0,     0),
   (2015,  1, "LC",         0,     0,     0),
   (2015,  1, "CASH",       0, 21106, 14553),
@@ -88,6 +89,7 @@ INSERT INTO `investments` VALUES
   (2015,  1, "INTL_STOCK", 0,     0,     0),
   (2015,  1, "LARGE_CAP",  0,     0,  5111),
 
+  (2015,  2, "EMERGENCY",  20000, 0,     0),
   (2015,  2, "HOUSING",    0,     0,     0),
   (2015,  2, "LC",         5000,  0,     0),
   (2015,  2, "CASH",       0, 21106,  9570),
@@ -97,6 +99,7 @@ INSERT INTO `investments` VALUES
   (2015,  2, "INTL_STOCK", 0,     0,     0),
   (2015,  2, "LARGE_CAP",  0,     0, 10158),
 
+  (2015,  3, "EMERGENCY",  20000, 0,     0),
   (2015,  3, "HOUSING",    0,     0,     0),
   (2015,  3, "LC",         5030,  0,     0),
   (2015,  3, "CASH",       0, 21106, 12799),
@@ -106,6 +109,7 @@ INSERT INTO `investments` VALUES
   (2015,  3, "INTL_STOCK", 0,     0,     0),
   (2015,  3, "LARGE_CAP",  0,     0, 14051),
 
+  (2015,  4, "EMERGENCY",  8000,  0,     0),
   (2015,  4, "HOUSING",    20114, 0,     0),
   (2015,  4, "LC",         5065,  0,     0),
   (2015,  4, "CASH",       0, 21106,  9369),
@@ -115,6 +119,7 @@ INSERT INTO `investments` VALUES
   (2015,  4, "INTL_STOCK", 0,     0,     0),
   (2015,  4, "LARGE_CAP",  0,     0, 17760),
 
+  (2015,  5, "EMERGENCY",  8000,  0,     0),
   (2015,  5, "HOUSING",    24861, 0,     0),
   (2015,  5, "LC",         5105,  0,     0),
   (2015,  5, "CASH",       0, 21106,  4360),
@@ -124,6 +129,7 @@ INSERT INTO `investments` VALUES
   (2015,  5, "INTL_STOCK", 0,     0,     0),
   (2015,  5, "LARGE_CAP",  0,     0, 22961),
 
+  (2015,  6, "EMERGENCY",  8000,  0,     0),
   (2015,  6, "HOUSING",    24690, 0,     0),
   (2015,  6, "LC",         5150,  0,     0),
   (2015,  6, "CASH",       0, 16167,  4360),
@@ -133,6 +139,7 @@ INSERT INTO `investments` VALUES
   (2015,  6, "INTL_STOCK", 0,     0,     0),
   (2015,  6, "LARGE_CAP",  0,     0, 22730),
 
+  (2015,  7, "EMERGENCY",  8000,  0,     0),
   (2015,  7, "HOUSING",    24722, 0,     0),
   (2015,  7, "LC",         5200,  0,     0),
   (2015,  7, "CASH",       0, 11200,  4360),
@@ -142,6 +149,7 @@ INSERT INTO `investments` VALUES
   (2015,  7, "INTL_STOCK", 0,  4849,     0),
   (2015,  7, "LARGE_CAP",  0,     0, 22657),
 
+  (2015,  8, "EMERGENCY",  8000,  0,     0),
   (2015,  8, "HOUSING",    24752, 0,     0),
   (2015,  8, "LC",         5225,  0,     0),
   (2015,  8, "CASH",       0, 11200,     0),
@@ -151,9 +159,10 @@ INSERT INTO `investments` VALUES
   (2015,  8, "INTL_STOCK", 0,  4820,  4360),
   (2015,  8, "LARGE_CAP",  0,     0, 22658),
 
+  (2015,  9, "EMERGENCY",  8000,  0,     0),
   (2015,  9, "HOUSING",    24766, 0,     0),
   (2015,  9, "LC",         5237,  0,     0),
-  (2015,  9, "CASH",       0, 10200,     0),
+  (2015,  9, "CASH",       0,  6200,     0),
   (2015,  9, "MM_RET",     0,  8045,  3000),
   (2015,  9, "MISC_STOCK", 0,     0,  1819),
   (2015,  9, "SMALL_CAP",  0,  4560,  5754),
