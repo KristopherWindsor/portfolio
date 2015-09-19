@@ -3,7 +3,7 @@
 namespace Portfolio\Db;
 
 class AnnualApi {
-  const SCALE_DOWN_FACTOR = .32;
+  const SCALE_DOWN_FACTOR = 1;
 
   public static function getYear($mysqli, $year){
     $stmt = $mysqli->prepare("

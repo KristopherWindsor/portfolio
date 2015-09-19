@@ -3,7 +3,7 @@
 namespace Portfolio\Db;
 
 class InvestmentsApi {
-  const SCALE_DOWN_FACTOR = .12345;
+  const SCALE_DOWN_FACTOR = 1;
 
   public static function getCategories($mysqli){
     $stmt = $mysqli->prepare("
