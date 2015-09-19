@@ -3,6 +3,7 @@
 namespace Portfolio\Db;
 
 class AnnualApi {
+  const SCALE_DOWN_FACTOR = .32;
 
   public static function getYear($mysqli, $year){
     $stmt = $mysqli->prepare("
@@ -13,7 +14,7 @@ class AnnualApi {
     $stmt->execute();
     $result = $stmt->get_result();
     $res = array();
-    while ($row = $result->fetch_object())
+    while ($row = self::scaleDown($result->fetch_object()))
       $res[ $row->category ] = $row->value;
     return $res;
   }
@@ -27,9 +28,14 @@ class AnnualApi {
     $stmt->execute();
     $result = $stmt->get_result();
     $res = array();
-    while ($row = $result->fetch_object())
+    while ($row = self::scaleDown($result->fetch_object()))
       $res[ $row->year ][ $row->category ] = $row->value;
     return $res;
   }
 
+  private static function scaleDown($row){
+    if (is_object($row))
+      $row->value *= self::SCALE_DOWN_FACTOR;
+    return $row;
+  }
 }

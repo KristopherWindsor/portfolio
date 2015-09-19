@@ -3,6 +3,7 @@
 namespace Portfolio\Db;
 
 class InvestmentsApi {
+  const SCALE_DOWN_FACTOR = .12345;
 
   public static function getCategories($mysqli){
     $stmt = $mysqli->prepare("
@@ -35,7 +36,7 @@ class InvestmentsApi {
     $stmt->execute();
     $result = $stmt->get_result();
     $res = array();
-    while ($row = $result->fetch_object())
+    while ($row = self::scaleDown($result->fetch_object()))
       yield $row;
   }
 
@@ -55,4 +56,11 @@ class InvestmentsApi {
     return $res;
   }
 
+  private static function scaleDown($row){
+    if (is_object($row))
+      foreach ($row as $key => $value)
+        if (strpos($key, 'value') !== false)
+          $row->{$key} *= self::SCALE_DOWN_FACTOR;
+    return $row;
+  }
 }
