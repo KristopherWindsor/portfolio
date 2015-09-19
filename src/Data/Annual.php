@@ -100,7 +100,7 @@ class Annual {
     $current_year = date("Y");
     $est = ($end_year >= $current_year ? ' (est)' : '');
     $tdata = array(
-      'headers' => array('Average income (3-year trend)', 'Income for ' . $end_year . $est, 'Total savings for ' . $end_year . $est),
+      'headers' => array('Average annual income (3-year trend)', 'Income for ' . $end_year . $est, 'Total savings for ' . $end_year . $est),
       'rows' => array(
         array(
           $col1,
