@@ -12,10 +12,8 @@ class SettingsApi {
     $stmt = $mysqli->prepare("
       SELECT * FROM `settings`
     ");
-    $stmt->execute();
-    $result = $stmt->get_result();
     $res = array();
-    while ($row = $result->fetch_object())
+    foreach (Connection::fetchAll($stmt) as $row)
       $res[ $row->key ] = $row->value;
     return $res;
   }

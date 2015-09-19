@@ -10,12 +10,7 @@ class InvestmentsApi {
       SELECT * FROM `investment_category`
       ORDER BY `rank` desc
     ");
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $res = array();
-    while ($row = $result->fetch_object())
-      $res[] = $row;
-    return $res;
+    return Connection::fetchAll($stmt);
   }
 
   private static function getInvestmentsHelper($mysqli, $start_year, $end_year, $start_month = 1, $end_month = 12){
@@ -33,11 +28,10 @@ class InvestmentsApi {
       ORDER BY `year`, `month`, `rank` desc
     ");
     $stmt->bind_param('iiiiii', $start_year, $start_year, $start_month, $end_year, $end_year, $end_month);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $res = array();
-    while ($row = self::scaleDown($result->fetch_object()))
-      yield $row;
+    $res = Connection::fetchAll($stmt);
+    foreach ($res as $key => $i)
+      $res[$key] = self::scaleDown($i);
+    return $res;
   }
 
   public static function getInvestments($mysqli, $start_year, $end_year, $start_month = 1, $end_month = 12){

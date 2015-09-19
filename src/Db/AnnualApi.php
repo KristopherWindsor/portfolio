@@ -11,11 +11,10 @@ class AnnualApi {
       WHERE `year` = ?
     ");
     $stmt->bind_param('i', $year);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $res = array();
-    while ($row = self::scaleDown($result->fetch_object()))
+    foreach (Connection::fetchAll($stmt) as $row){
+      $row = self::scaleDown($row);
       $res[ $row->category ] = $row->value;
+    }
     return $res;
   }
 
@@ -25,11 +24,10 @@ class AnnualApi {
       WHERE `year` >= ? AND `year` <= ?
     ");
     $stmt->bind_param('ii', $start_year, $end_year);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $res = array();
-    while ($row = self::scaleDown($result->fetch_object()))
+    foreach (Connection::fetchAll($stmt) as $row){
+      $row = self::scaleDown($row);
       $res[ $row->year ][ $row->category ] = $row->value;
+    }
     return $res;
   }
 
