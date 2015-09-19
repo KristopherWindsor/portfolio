@@ -18,7 +18,8 @@ class Home {
     <title>Portfolio</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
-    <link rel="stylesheet" href="/style.css">
+    <?php /* <link rel="stylesheet" href="/style.css"> */ ?>
+    <style><?php readfile( dirname(dirname(__DIR__)) . '/htdocs/style.css' ) ?></style>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
