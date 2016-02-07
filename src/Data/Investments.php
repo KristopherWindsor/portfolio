@@ -37,7 +37,7 @@ class Investments {
     return $cdata;
   }
 
-  private function getOptions($max_value){
+  private function getOptions($max_value, $bezier_curve){
     if ($max_value <= 40000)
       $width = 1000;
     else if ($max_value <= 200000)
@@ -58,6 +58,7 @@ class Investments {
       'scaleSteps'=> $steps,
       'scaleStepWidth'=> $width,
       'scaleStartValue'=> 0,
+      'bezierCurve' => $bezier_curve,
     );
   }
 
@@ -93,7 +94,7 @@ class Investments {
       }
     }
 
-    echo json_encode(array("Line", $cdata, $this->getOptions($max_value), $this->getExtra($categories), ));
+    echo json_encode(array("Line", $cdata, $this->getOptions($max_value, true), $this->getExtra($categories), ));
   }
 
   private function multiYear($mysqli, $mode, $start_year, $end_year){
@@ -183,7 +184,7 @@ class Investments {
       }
     }
 
-    echo json_encode(array("Line", $cdata, $this->getOptions($max_value), $this->getExtra($categories), ));
+    echo json_encode(array("Line", $cdata, $this->getOptions($max_value, $start_year + 1 >= $end_year), $this->getExtra($categories), ));
   }
 
 }
