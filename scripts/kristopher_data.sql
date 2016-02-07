@@ -27,7 +27,7 @@ INSERT INTO `annual_breakdown` VALUES
   (2015, "FEDERAL_TAXES",   14000),
   (2015, "STATE_TAXES",     5000),
   (2015, "DONATIONS",       13000),
-  (2015, "INVESTMENTS",     40000),
+  (2015, "INVESTMENTS",     45000),
 
   (2016, "GROSS_INCOME",    160000),
   (2016, "FEDERAL_TAXES",   17000),
@@ -215,10 +215,10 @@ INSERT INTO `investments` VALUES
   (2016,  2, "EMERGENCY",  10000, 0,     0),
   (2016,  2, "HOUSING",    32615, 0,     0),
   (2016,  2, "LC",         5399,  0,     0),
-  (2016,  2, "CASH",       0,  5191,  1928),
+  (2016,  2, "CASH",       0,   191,  1928),
   (2016,  2, "MISC_STOCK", 0,     0,  1247),
   (2016,  2, "REAL_EST",   0,  4592,     0),
   (2016,  2, "SMALL_CAP",  0,  8021,  5310),
   (2016,  2, "INTL_STOCK", 0, 17958,  3645),
-  (2016,  2, "LARGE_CAP",  0,  4487, 20307)
+  (2016,  2, "LARGE_CAP",  0,  9487, 20307)
 ;
