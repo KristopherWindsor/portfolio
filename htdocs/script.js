@@ -26,7 +26,6 @@ function renderDatasection(onPreLoad){
     var type = response[0], data = response[1], options = response[2], extra = response[3];
 
     if (onPreLoad && typeof onPreLoad === "function"){
-      console.log(onPreLoad);
       onPreLoad.call(datasection);
     }
 
@@ -92,7 +91,8 @@ function renderDatasectionLine(datasection, data, options, extra){
     var monthIndex = data.labels.indexOf(x.label);
     for (var i in data.datasets)
       if (data.datasets[i].label == x.datasetLabel){
-        return x.datasetLabel + ": $" + (Math.round(data.datasets[i].itemData[monthIndex] / 100) * 100).toLocaleString('en');
+        return x.datasetLabel + ": $" + (Math.round(data.datasets[i].itemData[monthIndex] / 100) * 100).toLocaleString('en') +
+          (i == 0 ? " [Σ $" + (Math.round(data.datasets[i].data[monthIndex] / 100) * 100).toLocaleString('en') + "]" : "");
       }
   };
 
