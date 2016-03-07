@@ -63,9 +63,9 @@ INSERT INTO `investment_target` VALUES
   ("HOUSING",    35),
   ("LARGE_CAP",  25),
   ("INTL_STOCK", 20),
-  ("REAL_EST",    5),
+  ("REAL_EST",   10),
   ("SMALL_CAP",  10),
-  ("LC",          5),
+  ("LC",          0),
   ("MISC_STOCK",  0),
   ("CASH",        0)
  ;
@@ -220,5 +220,15 @@ INSERT INTO `investments` VALUES
   (2016,  2, "REAL_EST",   0,  4592,     0),
   (2016,  2, "SMALL_CAP",  0,  8021,  5310),
   (2016,  2, "INTL_STOCK", 0, 17958,  3645),
-  (2016,  2, "LARGE_CAP",  0,  9487, 20307)
+  (2016,  2, "LARGE_CAP",  0,  9487, 20307),
+
+  (2016,  3, "EMERGENCY",  10000,   0,     0),
+  (2016,  3, "HOUSING",    33995,   0,     0),
+  (2016,  3, "LC",         5394,    0,     0),
+  (2016,  3, "CASH",       0,     191,   554),
+  (2016,  3, "MISC_STOCK", 0,       0,  1357),
+  (2016,  3, "REAL_EST",   0,    4783,  5000),
+  (2016,  3, "SMALL_CAP",  0,    8926,  5829),
+  (2016,  3, "INTL_STOCK", 3867, 18988,    0),
+  (2016,  3, "LARGE_CAP",  0,    10252, 21759)
 ;
