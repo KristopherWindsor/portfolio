@@ -9,12 +9,15 @@ INSERT INTO `settings` VALUES
 TRUNCATE `annual_breakdown`;
 INSERT INTO `annual_breakdown` VALUES
   (2011, "GROSS_INCOME",    45765),
+  (2011, "SOCIAL_SEC",      8000), #est of all taxes
   (2011, "INVESTMENTS",     0),
 
   (2012, "GROSS_INCOME",    80000),
+  (2012, "SOCIAL_SEC",      15000), #est of all taxes
   (2012, "INVESTMENTS",     17000),
 
   (2013, "GROSS_INCOME",    90647),
+  (2013, "SOCIAL_SEC",      20000), #est of all taxes
   (2013, "INVESTMENTS",     20000),
 
   (2014, "GROSS_INCOME",    113757),
