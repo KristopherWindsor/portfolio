@@ -11,7 +11,7 @@ class Annual {
     if ($report == 'pie')
       $this->pie($mysqli, (int) $data[0]);
     else if ($report == 'income-vs-savings')
-      $this->incomeVsSavings($mysqli, (int) $data[0], (int) $data[1]);
+      $this->incomeVsSavings($mysqli, (int) $data[0], (int) $data[1], (bool) @$data[2]);
     else if ($report == 'summary')
       $this->summary($mysqli, (int) $data[0], (int) $data[1]);
   }
@@ -42,15 +42,15 @@ class Annual {
     echo json_encode(array("Pie", $cdata, $options, $extra));
   }
 
-  private function incomeVsSavings($mysqli, $start_year, $end_year){
+  private function incomeVsSavings($mysqli, $start_year, $end_year, $show_expenses = false){
     $data = Db\AnnualApi::getMultiYear($mysqli, $start_year, $end_year);
 
-    $colors = new Util\Colors(2);
+    $colors = new Util\Colors(3);
     $cdata = array(
       'labels' => array(),
       'datasets' => array(
         array(
-          'label' => 'Gross Income',
+          'label' => ($show_expenses ? 'Expenses' : 'Gross Income'),
           'fillColor' => $colors->getNext(),
           'data' => array(),
         ),
@@ -63,9 +63,13 @@ class Annual {
     );
     $current_year = date("Y");
     for ($i = $start_year; $i <= $end_year; $i++){
+      $gross_income = isset($data[$i]['GROSS_INCOME']) ? $data[$i]['GROSS_INCOME'] : 0;
+      $investments  = isset($data[$i]['INVESTMENTS']) ? $data[$i]['INVESTMENTS'] : 0;
+      $expenses = $gross_income * 2 - array_sum($data[$i]);
+
       $cdata['labels'][] = $i . ($i >= $current_year ? ' (est)' : '');
-      $cdata['datasets'][0]['data'][] = isset($data[$i]['GROSS_INCOME']) ? $data[$i]['GROSS_INCOME'] : 0;
-      $cdata['datasets'][1]['data'][] = isset($data[$i]['INVESTMENTS']) ? $data[$i]['INVESTMENTS'] : 0;
+      $cdata['datasets'][0]['data'][] = $show_expenses ? $expenses : $gross_income;
+      $cdata['datasets'][1]['data'][] = $investments;
     }
 
     $options = array(

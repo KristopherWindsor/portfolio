@@ -2,7 +2,7 @@ $(function (){
   $('.datasection:not(.noload)').each(renderDatasection);
 });
 
-function completeReportInvestmentsToggleHandler(checkbox){
+function datasectionToggleHandler(checkbox){
   var $container = $(checkbox).parent().parent().parent();
 
   var fn = function (){
