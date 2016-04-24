@@ -20,10 +20,11 @@ class Annual {
     $data = Db\AnnualApi::getYear($mysqli, $year);
     $sum = array_sum($data);
 
-    $colors = new Util\Colors(5);
+    $colors = new Util\Colors(6);
     $cdata = array(
-      array("label" => 'Federal Taxes',        "color" => $colors->getNext(), "value" => $data['FEDERAL_TAXES'], ),
-      array("label" => 'State Taxes',          "color" => $colors->getNext(), "value" => $data['STATE_TAXES'], ),
+      array("label" => 'Federal taxes',        "color" => $colors->getNext(), "value" => $data['FEDERAL_TAXES'], ),
+      array("label" => 'State taxes',          "color" => $colors->getNext(), "value" => $data['STATE_TAXES'], ),
+      array("label" => 'Other government fees (est)', "color" => $colors->getNext(), "value" => $data['SOCIAL_SEC'], ),
       array("label" => 'Donations',            "color" => $colors->getNext(), "value" => $data['DONATIONS'], ),
       array("label" => 'Savings',              "color" => $colors->getNext(), "value" => $data['INVESTMENTS'], ),
       array("label" => 'Remainder (expenses)', "color" => $colors->getNext(), "value" => $data['GROSS_INCOME'] * 2 - $sum , ),

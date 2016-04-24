@@ -15,7 +15,7 @@ class Colors {
     else if ($upperbound <= 2)
       $this->list = array('#BCA', '#ABC');
     else if ($upperbound <= 6)
-      $this->list = array('#ABC', '#BCA', '#CAB', '#ACB', '#BAC', '#CBA');
+      $this->list = array('#ABC', '#BCA', '#CAB', '#ACB', '#BAC', '#DBB');
     else
       $this->list = self::getColors12();
     $this->index = -1;
