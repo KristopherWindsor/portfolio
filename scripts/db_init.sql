@@ -11,6 +11,13 @@ CREATE TABLE `annual_breakdown` (
   `value` INT(12),
 primary KEY (`year`, `category`));
 
+DROP TABLE IF EXISTS `savings`;
+CREATE TABLE `savings` (
+  `year` INT(12),
+  `month` INT(12),
+  `value` INT(12),
+primary KEY (`month`, `year`));
+
 DROP TABLE IF EXISTS `investment_category`;
 CREATE TABLE `investment_category` (
   `key` VARCHAR(16),

@@ -42,6 +42,15 @@ INSERT INTO `annual_breakdown` VALUES
   (2016, "INVESTMENTS",     55000)
 ;
 
+TRUNCATE `savings`;
+INSERT INTO `savings` VALUES
+  (2016,  1, 5500),
+  (2016,  2, 5000),
+  (2016,  3, 5000),
+  (2016,  4, 8500),
+  (2016,  5, 14000) #max both iras and 3k to 401(k)
+;
+
 TRUNCATE `investment_category`;
 INSERT INTO `investment_category` VALUES
   ("EMERGENCY", "Emergency fund (est)", 9, "/images/icons/emergency.svg",
