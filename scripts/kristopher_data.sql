@@ -16,18 +16,18 @@ INSERT INTO `annual_breakdown` VALUES
   (2012, "SOCIAL_SEC",      15000), #est of all taxes
   (2012, "INVESTMENTS",     17000),
 
-  (2013, "GROSS_INCOME",    90647),
+  (2013, "GROSS_INCOME",    90726),
   (2013, "SOCIAL_SEC",      20000), #est of all taxes
   (2013, "INVESTMENTS",     20000),
 
-  (2014, "GROSS_INCOME",    113757),
+  (2014, "GROSS_INCOME",    113195),
   (2014, "FEDERAL_TAXES",   12831),
   (2014, "STATE_TAXES",     4500),
   (2014, "SOCIAL_SEC",      9096),
   (2014, "DONATIONS",       12381),
   (2014, "INVESTMENTS",     25000),
 
-  (2015, "GROSS_INCOME",    134235),
+  (2015, "GROSS_INCOME",    130601),
   (2015, "FEDERAL_TAXES",   17249),
   (2015, "STATE_TAXES",     5603),
   (2015, "SOCIAL_SEC",      9200),
