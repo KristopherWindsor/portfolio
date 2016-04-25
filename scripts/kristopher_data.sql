@@ -10,36 +10,36 @@ TRUNCATE `annual_breakdown`;
 INSERT INTO `annual_breakdown` VALUES
   (2011, "GROSS_INCOME",    45765),
   (2011, "SOCIAL_SEC",      8000), #est of all taxes
-  (2011, "INVESTMENTS",     0),
+  (2011, "SAVINGS",         0),
 
   (2012, "GROSS_INCOME",    80000),
   (2012, "SOCIAL_SEC",      15000), #est of all taxes
-  (2012, "INVESTMENTS",     17000),
+  (2012, "SAVINGS",         17000),
 
   (2013, "GROSS_INCOME",    90726),
   (2013, "SOCIAL_SEC",      20000), #est of all taxes
-  (2013, "INVESTMENTS",     20000),
+  (2013, "SAVINGS",         20000),
 
   (2014, "GROSS_INCOME",    113195),
   (2014, "FEDERAL_TAXES",   12831),
   (2014, "STATE_TAXES",     4500),
   (2014, "SOCIAL_SEC",      9096),
   (2014, "DONATIONS",       12381),
-  (2014, "INVESTMENTS",     31000),
+  (2014, "SAVINGS",         31000),
 
   (2015, "GROSS_INCOME",    130601),
   (2015, "FEDERAL_TAXES",   17249),
   (2015, "STATE_TAXES",     5603),
   (2015, "SOCIAL_SEC",      9200),
   (2015, "DONATIONS",       14630),
-  (2015, "INVESTMENTS",     39000),
+  (2015, "SAVINGS",         39000),
 
   (2016, "GROSS_INCOME",    155000),
   (2016, "FEDERAL_TAXES",   21000),
   (2016, "STATE_TAXES",     7000),
   (2016, "SOCIAL_SEC",      10030),
   (2016, "DONATIONS",       16000),
-  (2016, "INVESTMENTS",     55000)
+  (2016, "SAVINGS",         55000)
 ;
 
 TRUNCATE `savings`;

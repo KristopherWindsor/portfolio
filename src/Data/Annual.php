@@ -26,7 +26,7 @@ class Annual {
       array("label" => 'State taxes',          "color" => $colors->getNext(), "value" => $data['STATE_TAXES'], ),
       array("label" => 'Other government fees (est)', "color" => $colors->getNext(), "value" => $data['SOCIAL_SEC'], ),
       array("label" => 'Donations',            "color" => $colors->getNext(), "value" => $data['DONATIONS'], ),
-      array("label" => 'Savings',              "color" => $colors->getNext(), "value" => $data['INVESTMENTS'], ),
+      array("label" => 'Savings',              "color" => $colors->getNext(), "value" => $data['SAVINGS'], ),
       array("label" => 'Remainder (expenses)', "color" => $colors->getNext(), "value" => $data['GROSS_INCOME'] * 2 - $sum , ),
     );
     $options = array(
@@ -46,17 +46,21 @@ class Annual {
     $data = Db\AnnualApi::getMultiYear($mysqli, $start_year, $end_year);
 
     $colors = new Util\Colors(3);
+    $color1 = $colors->getNext();
+    $color2 = $colors->getNext();
+    $color3 = $colors->getNext();
+
     $cdata = array(
       'labels' => array(),
       'datasets' => array(
         array(
           'label' => ($show_expenses ? 'Expenses' : 'Gross Income'),
-          'fillColor' => $colors->getNext(),
+          'fillColor' => ($show_expenses ? $color3 : $color1),
           'data' => array(),
         ),
         array(
           'label' => 'Savings',
-          'fillColor' => $colors->getNext(),
+          'fillColor' => $color2,
           'data' => array(),
         ),
       ),
@@ -64,7 +68,7 @@ class Annual {
     $current_year = date("Y");
     for ($i = $start_year; $i <= $end_year; $i++){
       $gross_income = isset($data[$i]['GROSS_INCOME']) ? $data[$i]['GROSS_INCOME'] : 0;
-      $investments  = isset($data[$i]['INVESTMENTS']) ? $data[$i]['INVESTMENTS'] : 0;
+      $investments  = isset($data[$i]['SAVINGS']) ? $data[$i]['SAVINGS'] : 0;
       $expenses = $gross_income * 2 - array_sum($data[$i]);
 
       $cdata['labels'][] = $i . ($i >= $current_year ? ' (est)' : '');
@@ -97,7 +101,7 @@ class Annual {
     if ($year_income && $last_year_income)
       $col2 .= sprintf(' (+%s%% yoy)', number_format(100 * ($year_income - $last_year_income) / $last_year_income, 0));
 
-    $investments = @$data[$end_year]['INVESTMENTS'];
+    $investments = @$data[$end_year]['SAVINGS'];
     $col3 = '$' . number_format($investments, 2);
     if ($investments && $year_income)
       $col3 .= sprintf(' (%s%% of income)', number_format(100 * $investments / $year_income, 0));

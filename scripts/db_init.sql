@@ -7,7 +7,7 @@ primary KEY (`key`));
 DROP TABLE IF EXISTS `annual_breakdown`;
 CREATE TABLE `annual_breakdown` (
   `year` INT(12),
-  `category` ENUM("GROSS_INCOME", "FEDERAL_TAXES", "STATE_TAXES", "DONATIONS", "INVESTMENTS", "SOCIAL_SEC"),
+  `category` ENUM("GROSS_INCOME", "FEDERAL_TAXES", "STATE_TAXES", "DONATIONS", "SAVINGS", "SOCIAL_SEC"),
   `value` INT(12),
 primary KEY (`year`, `category`));
 
