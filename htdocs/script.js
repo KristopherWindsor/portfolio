@@ -36,7 +36,7 @@ function renderDatasection(onPreLoad){
     } else if (type == "Bar"){
       renderDatasectionBar(datasection, data, options, extra);
     } else if (type == "Table"){
-      renderDatasectionTable(datasection, data);
+      renderDatasectionTable(datasection, data, options);
     } else if (type == "DefList"){
       renderDatasectionDefList(datasection, data);
     }
@@ -130,24 +130,38 @@ function renderDatasectionBar(datasection, data, options, extra){
   $(datasection).prepend( chart.generateLegend() );
 }
 
-function renderDatasectionTable(datasection, data){
+function renderDatasectionTable(datasection, data, options){
   if (!data) return;
 
-  var table = $("<table/>"), tr;
+  var table = $("<table class=\"tablesorter\" />"), tr, thead = $("<thead />"), tbody = $("<tbody />");
+  var isSortable = (options && options.sortable);
 
   tr = $("<tr/>");
   for (var i in data.headers)
-    $("<th/>", {text : data.headers[i]}).appendTo(tr);
-  tr.appendTo(table);
+    if (isSortable && data.headerSortType && data.headerSortType[i])
+      $("<th/>", {text : data.headers[i], "data-sort-method" : data.headerSortType[i]}).appendTo(tr);
+    else
+      $("<th/>", {text : data.headers[i]}).appendTo(tr);
+
+  tr.appendTo(thead);
 
   for (var i in data.rows){
     tr = $("<tr/>");
     for (var j in data.rows[i])
-      $("<td/>", {text : data.rows[i][j]}).appendTo(tr);
-    tr.appendTo(table);
+      if (isSortable && data.rowSortData)
+        $("<td/>", {text : data.rows[i][j], "data-sort" : data.rowSortData[i][j]}).appendTo(tr);
+      else
+        $("<td/>", {text : data.rows[i][j]}).appendTo(tr);
+    tr.appendTo(tbody);
   }
 
+  thead.appendTo(table);
+  tbody.appendTo(table);
+
   $(datasection).append(table);
+
+  if (options && options.sortable)
+    new Tablesort(table[0]);
 }
 
 function renderDatasectionDefList(datasection, data){

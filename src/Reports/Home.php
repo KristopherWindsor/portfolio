@@ -23,6 +23,8 @@ class Home {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script src="/tablesort.min.js"></script>
+    <script src="/tablesort.number.js"></script>
     <script src="/script.js"></script>
   </head>
   <body>
@@ -66,6 +68,9 @@ class Home {
     $this->renderAllocationRealVsTarget($end_year);
     echo '</div>';
     echo '<div class="pie-grid-legend"></div>';
+
+    echo '<br>';
+    $this->renderRebalanceTable($end_year);
   }
 
   private function renderAnnualPie($year){
@@ -107,6 +112,10 @@ class Home {
   private function renderAllocationRealVsTarget($end_year){
     echo '<div class="datasection pie" data-src="/data/allocations/target"></div>';
     echo '<div class="datasection pie" data-src="/data/allocations/actual/' . $end_year . '"></div>';
+  }
+
+  private function renderRebalanceTable($year){
+    echo '<div class="datasection table" data-src="/data/allocations/rebalancetable/' . $year . '"></div>';
   }
 
   public function yearReport($mysqli, $year){
