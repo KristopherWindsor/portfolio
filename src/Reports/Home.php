@@ -45,32 +45,41 @@ class Home {
 
     printf('<h1>%s</h1>', $settings[Db\SettingsApi::REPORT_TITLE]);
 
+    echo '<div class="section">';
     echo '<h2>Income and expenses per year vs. savings</h2>';
     $this->renderAnnualSummary($rough_start_year, $end_year);
     $this->renderIncomeVsSavings($rough_start_year, $end_year);
+    echo '</div>';
 
+    echo '<div class="section">';
     echo '<h2>Allocation of income per year</h2>';
     echo '<div class="pie-grid three">';
     for ($i = $start_year; $i <= $end_year; $i++)
       $this->renderAnnualPie($i);
     echo '</div>';
     echo '<div class="pie-grid-legend"></div>';
+    echo '</div>';
 
+    echo '<div class="section">';
     echo '<h2>Savings &amp; investments</h2>';
     $this->renderInvestmentDescriptions();
+    echo '</div>';
 
+    echo '<div class="section">';
     echo '<h2>Savings &amp; investments growth</h2>';
     $this->renderGrowthSummary();
     $this->renderInvestmentsMultiyear($start_year, $end_year);
+    echo '</div>';
 
+    echo '<div class="section">';
     echo '<h2>Investment allocations</h2>';
     echo '<div class="pie-grid two">';
     $this->renderAllocationRealVsTarget($end_year);
     echo '</div>';
     echo '<div class="pie-grid-legend"></div>';
-
     echo '<br>';
     $this->renderRebalanceTable($end_year);
+    echo '</div>';
   }
 
   private function renderAnnualPie($year){
@@ -80,7 +89,7 @@ class Home {
   private function renderInvestmentsMultiyear($start_year, $end_year){
     echo '<div>';
     echo '<form>';
-    echo '<label>Simplified view<input type="checkbox" onChange="datasectionToggleHandler(this)" autocomplete="off"></label>';
+    echo '<label class="interactive">Simplified view<input type="checkbox" onChange="datasectionToggleHandler(this)" autocomplete="off"></label>';
     echo '</form>';
     echo '<div class="datasection line" data-src="/data/investments/multiyear/categories/' . $start_year . '/' . $end_year . '"></div>';
     echo '<div class="datasection line noload" data-src="/data/investments/multiyear/tax_ret/' . $start_year . '/' . $end_year . '" style="display: none"></div>';
@@ -94,7 +103,7 @@ class Home {
   private function renderIncomeVsSavings($start_year, $end_year){
     echo '<div>';
     echo '<form>';
-    echo '<label>Show expenses instead of income<input type="checkbox" onChange="datasectionToggleHandler(this)" autocomplete="off"></label>';
+    echo '<label class="interactive">Show expenses instead of income<input type="checkbox" onChange="datasectionToggleHandler(this)" autocomplete="off"></label>';
     echo '</form>';
     echo '<div class="datasection bar" data-src="/data/annual/income-vs-savings/' . $start_year . '/' . $end_year . '"></div>';
     echo '<div class="datasection bar noload" data-src="/data/annual/income-vs-savings/' . $start_year . '/' . $end_year . '/1" style="display: none"></div>';

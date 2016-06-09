@@ -2,6 +2,8 @@ body {min-width: 700px;}
 
 h1 {border-bottom: 1px solid black; padding-bottom: .2em;}
 
+.section {page-break-inside: avoid;}
+
 .pie-grid {}
 .pie-grid.two .datasection.pie {width: 35%; margin: 0 0 0 10%;}
 .pie-grid.three .datasection.pie {width: 30%;}
@@ -48,3 +50,7 @@ form label:hover {text-decoration: underline; cursor: pointer;}
 .datasection.deflist h3 {margin: 0 0 .25em 72px;}
 .datasection.deflist p {margin: 0 0 0 72px;}
 .datasection.deflist img {width: 3em; position: absolute;}
+
+@media print {
+    .interactive {display: none;}
+}
