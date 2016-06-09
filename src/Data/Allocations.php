@@ -145,7 +145,7 @@ class Allocations {
         round(100 * $current / $total, 2),
         '$ ' . (round($current / 10) * 10),
         '$ ' . ($current < $target ? '(' : '') . abs(round(($current - $target) / 10) * 10) . ($current < $target ? ')' : ''),
-        $current < $target ? 'Buy' : 'Sell',
+        $current < $target ? 'Add funds' : 'Remove funds',
       );
       $rowSortData[] = array(
         $i->name,
