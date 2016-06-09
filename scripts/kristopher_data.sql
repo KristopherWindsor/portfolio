@@ -60,17 +60,17 @@ INSERT INTO `investment_category` VALUES
     "This cash is ready to be invested (might be in a money market)"),
   ("HOUSING", "Housing fund", 7, "/images/icons/house.svg",
     "Funds set aside for a house downpayment in cash/bonds. The target is $80,000"),
-  ("HIGH_ERN", "High earnings fund", 6, "/images/icons/house.svg",
+  ("HIGH_ERN", "High earnings fund", 6, "/images/icons/stock.svg",
     "Funds that are high leverage, high earning, and high yielding. These are high risk, high profit, individually selected stocks, currently IRT, F, and GM"),
   ("LC", "Lending Club", 5, "/images/icons/peer-lending.svg",
     "Funds invested through Lending Club, a peer-to-peer lending service expected to earn 5-10% annual interest. Repayments are automatically lent out to new borrowers, so the funds are not immediately available"),
   ("COMMOD", "Commodities", 4, "/images/icons/commodities.svg",
     "Commodities can include gas / oil, precious metals, water, and investments in raw manufacturing materials, among others"),
-  ("SMALL_CAP", "US Small-cap", 3, "/images/icons/stock.svg",
+  ("SMALL_CAP", "US Small-cap", 3, "/images/icons/startup.svg",
     "Funds in small and medium-sized US-based companies"),
-  ("INTL_STOCK", "International Stocks", 2, "/images/icons/stock.svg",
+  ("INTL_STOCK", "International Stocks", 2, "/images/icons/world.svg",
     "Funds in internationally-based companies"),
-  ("LARGE_CAP", "US Total Stock Market", 1, "/images/icons/stock.svg",
+  ("LARGE_CAP", "US Total Stock Market", 1, "/images/icons/usa.svg",
     "Funds in US-based companies, with heavy weighting for the largest companies")
 ;
 
