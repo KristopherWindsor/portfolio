@@ -10,7 +10,7 @@ h1 {border-bottom: 1px solid black; padding-bottom: .2em;}
 .pie-grid > div {float: left;}
 .pie-grid-legend {clear: both;}
 .pie-grid-legend .pie-legend {margin: 0; padding: 1em;}
-.pie-grid-legend .pie-legend span {width: 13pt; height: 13pt; display: inline-block; margin: 0 .5em 0 1em;}
+.pie-grid-legend .pie-legend span {width: 0; height: 0; display: inline-block; margin: 0 .5em 0 1em; border: 8px solid;}
 .pie-grid-legend .pie-legend li {list-style-type: none; display: inline-block;}
 
 form {margin: 1em 0;}
@@ -20,19 +20,19 @@ form label:hover {text-decoration: underline; cursor: pointer;}
 .datasection.pie h3 {position: absolute; }
 .datasection.pie canvas {}
 .datasection.pie .pie-legend {font-size: 10pt; margin: 0; padding: 1em; border: 1px solid black; display: inline-block; bottom: 0; right: 0; position: absolute; background: rgba(255, 255, 255, .5);}
-.datasection.pie .pie-legend span {width: 13pt; height: 13pt; display: inline-block; margin-right: .5em;}
+.datasection.pie .pie-legend span {width: 0; height: 0; display: inline-block; margin-right: .5em; border: 8px solid;}
 .datasection.pie .pie-legend li {list-style-type: none;}
 
 .datasection.line {position: relative;}
 .datasection.line canvas {width: 100% !important; height: 100% !important;}
 .datasection.line .line-legend {font-size: 10pt; margin: 0; padding: 1em; border: 1px solid black; display: inline-block; top: 12px; left: 50px; position: absolute; z-index: 2; background: rgba(255, 255, 255, .5);}
-.datasection.line .line-legend span {width: 13pt; height: 13pt; display: inline-block; margin-right: .5em;}
+.datasection.line .line-legend span {width: 0; height: 0; display: inline-block; margin-right: .5em; border: 8px solid;}
 .datasection.line .line-legend li {list-style-type: none;}
 
 .datasection.bar {position: relative; max-width: 1000px; margin: 0 auto;}
 .datasection.bar canvas {width: 100% !important; height: 100% !important;}
 .datasection.bar .bar-legend {font-size: 10pt; margin: 0; padding: 1em; border: 1px solid black; display: inline-block; top: 12px; left: 50px; position: absolute; z-index: 2; background: rgba(255, 255, 255, .5);}
-.datasection.bar .bar-legend span {width: 13pt; height: 13pt; display: inline-block; margin-right: .5em;}
+.datasection.bar .bar-legend span {width: 0; height: 0; display: inline-block; margin-right: .5em; border: 8px solid;}
 .datasection.bar .bar-legend li {list-style-type: none;}
 
 .datasection.table table {width: 100%; border: 1px solid #BBD; border-collapse: collapse; margin-bottom: 2em;}
@@ -53,4 +53,7 @@ form label:hover {text-decoration: underline; cursor: pointer;}
 
 @media print {
     .interactive {display: none;}
+
+    .pie-grid.two canvas {width: 3in !important; height: 3in !important;}
+    .pie-grid.three canvas {width: 2.2in !important; height: 2.2in !important;}
 }

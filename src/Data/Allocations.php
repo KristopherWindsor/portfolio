@@ -48,6 +48,7 @@ class Allocations {
 
     $options = array(
       'tooltipTemplate' => "<%if (label){%><%=label%>: <%}%><%= value %>%",
+      'legendTemplate' => "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"border-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
       'responsive' => true,
     );
 
@@ -93,6 +94,7 @@ class Allocations {
       );
     $options = array(
       'tooltipTemplate' => "<%if (label){%><%=label%>: <%}%><%= value %>% ($<%= Math.round(value * $total / 100000) %>k)",
+      'legendTemplate' => "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"border-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
       'responsive' => true,
     );
     $extra = array(
