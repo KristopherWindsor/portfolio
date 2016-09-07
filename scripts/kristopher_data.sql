@@ -44,14 +44,15 @@ INSERT INTO `annual_breakdown` VALUES
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
-  (2016,  1,  5500),
-  (2016,  2,  5000),
-  (2016,  3,  5000),
-  (2016,  4,  8500),
-  (2016,  5, 14000), #max both iras and 3k to 401(k)
-  (2016,  6,  3000),  #for 401(k)
+  (2016,  1,  5500), #late ira
+  (2016,  2,  5000), #housing fund
+  (2016,  3,  5000), #housing fund
+  (2016,  4,  8500), #starting 401(k) 3k per month
+  (2016,  5, 14000), #max both iras & 3k to 401(k)
+  (2016,  6,  3000),
   (2016,  7,  4500),
-  (2016,  8,  3000)
+  (2016,  8,  3000),
+  (2016,  9,  5500)  #1.5k 401(k) & 3k housing fund
 ;
 
 TRUNCATE `investment_category`;
@@ -298,5 +299,15 @@ INSERT INTO `investments` VALUES
   (2016,  8, "HIGH_ERN",       0,  7038, 19371),
   (2016,  8, "SMALL_CAP",      0,  7928,  6586),
   (2016,  8, "INTL_STOCK",  4159, 20370,  6358),
-  (2016,  8, "LARGE_CAP",      0,  5355, 31114)
+  (2016,  8, "LARGE_CAP",      0,  5355, 31114),
+
+  (2016,  9, "EMERGENCY",  10000,     0,     0),
+  (2016,  9, "HOUSING",    39096,     0,     0),
+  (2016,  9, "LC",          3191,     0,     0),
+  (2016,  9, "CASH",           0, 15495,     0),
+  (2016,  9, "COMMOD",         0,     0,  1321),
+  (2016,  9, "HIGH_ERN",       0,  7415, 20338),
+  (2016,  9, "SMALL_CAP",      0,  7978,  6723),
+  (2016,  9, "INTL_STOCK",  4299, 21046,  6571),
+  (2016,  9, "LARGE_CAP",      0,  9692, 31329)
 ;
