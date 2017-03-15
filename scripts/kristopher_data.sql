@@ -2,7 +2,7 @@ TRUNCATE `settings`;
 INSERT INTO `settings` VALUES
   ("REPORT_START_YEAR_LOOSE", "2011"),
   ("REPORT_START_YEAR_STRICT", "2014"),
-  ("REPORT_END_YEAR", "2016"),
+  ("REPORT_END_YEAR", "2017"),
   ("REPORT_TITLE", "Kristopher &amp; Rachel Windsor&apos;s Financial Report")
 ;
 
@@ -34,12 +34,19 @@ INSERT INTO `annual_breakdown` VALUES
   (2015, "DONATIONS",       14630),
   (2015, "SAVINGS",         39000),
 
-  (2016, "GROSS_INCOME",    155000),
-  (2016, "FEDERAL_TAXES",   21000),
-  (2016, "STATE_TAXES",     7000),
-  (2016, "SOCIAL_SEC",      10030),
-  (2016, "DONATIONS",       16000),
-  (2016, "SAVINGS",         55000)
+  (2016, "GROSS_INCOME",    159000),
+  (2016, "FEDERAL_TAXES",   14600),
+  (2016, "STATE_TAXES",     5340),
+  (2016, "SOCIAL_SEC",      9600),
+  (2016, "DONATIONS",       16450), #10300 at end-of-year counted to next year
+  (2016, "SAVINGS",         71000),
+
+  (2017, "GROSS_INCOME",    160000),
+  (2017, "FEDERAL_TAXES",   21000),
+  (2017, "STATE_TAXES",     8000),
+  (2017, "SOCIAL_SEC",      11000),
+  (2017, "DONATIONS",       17000),
+  (2017, "SAVINGS",         60000)
 ;
 
 -- Keeping quarterly summary in case I put it in a table
@@ -47,6 +54,7 @@ INSERT INTO `annual_breakdown` VALUES
 --     Housing fund is now all bonds instead of 50/50 bonds/cash because home buying is deferred.
 --     Commodities allocation changed from 0% to 2% to support regular rebalancing.
 --     Cash moved to brokerage account / stocks moved to retirement accounts.
+-- Mar 2017: Regular rebalancing. Increase housing fund and commodities.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -61,7 +69,8 @@ INSERT INTO `savings` VALUES
   (2016,  9,  5500), #1.5k 401(k) & 4k housing fund
   (2016, 10,     0),
   (2016, 11, 10000), #bank to housing fund
-  (2016, 12,  7000)  #bank to housing fund
+  (2016, 12,  7000), #bank to housing fund
+  (2017,  3, 14000)  #9k to 401(k) (ending 3/8) + 11k (max iras) - 16k moved back to bank in dec + 10k bank to housing fund
 ;
 
 TRUNCATE `investment_category`;
@@ -88,13 +97,13 @@ INSERT INTO `investment_category` VALUES
 
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
-  ("LARGE_CAP",  24),
-  ("HOUSING",    21),
+  ("LARGE_CAP",  23),
+  ("HOUSING",    23),
   ("INTL_STOCK", 18),
   ("HIGH_ERN",   15),
-  ("SMALL_CAP",  10),
-  ("CASH",       10), # NOT including emergency fund
-  ("COMMOD",      2),
+  ("SMALL_CAP",   9),
+  ("CASH",        9), # NOT including emergency fund
+  ("COMMOD",      3),
   ("LC",          0)
  ;
 
@@ -348,5 +357,15 @@ INSERT INTO `investments` VALUES
   (2016, 12, "HIGH_ERN",       0,  6573, 23271),
   (2016, 12, "SMALL_CAP",   4230,     0, 15642),
   (2016, 12, "INTL_STOCK",  4194, 24722,  6411),
-  (2016, 12, "LARGE_CAP",      0, 28971, 18460)
+  (2016, 12, "LARGE_CAP",      0, 28971, 18460),
+
+  (2017,  3, "EMERGENCY",   8000,     0,     0),
+  (2017,  3, "HOUSING",    33586,     0,     0),
+  (2017,  3, "LC",          2017,     0,     0),
+  (2017,  3, "CASH",       10885,  1551, 11360),
+  (2017,  3, "COMMOD",         0,     0,  3421),
+  (2017,  3, "HIGH_ERN",       0,  6667, 23436),
+  (2017,  3, "SMALL_CAP",   4107,     0, 15189),
+  (2017,  3, "INTL_STOCK",  4407, 25988,  6737),
+  (2017,  3, "LARGE_CAP",      0, 39473, 19295)
 ;
