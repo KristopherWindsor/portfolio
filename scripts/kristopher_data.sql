@@ -55,6 +55,7 @@ INSERT INTO `annual_breakdown` VALUES
 --     Commodities allocation changed from 0% to 2% to support regular rebalancing.
 --     Cash moved to brokerage account / stocks moved to retirement accounts.
 -- Mar 2017: Regular rebalancing. Increase housing fund and commodities.
+-- Jun 2017: Regular rebalancing.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -70,7 +71,8 @@ INSERT INTO `savings` VALUES
   (2016, 10,     0),
   (2016, 11, 10000), #bank to housing fund
   (2016, 12,  7000), #bank to housing fund
-  (2017,  3, 14000)  #9k to 401(k) (ending 3/8) + 11k (max iras) - 16k moved back to bank in dec + 10k bank to housing fund
+  (2017,  3, 14000), #9k to 401(k) (ending 3/8) + 11k (max iras) - 16k moved back to bank in dec + 10k bank to housing fund
+  (2017,  6, 17000)  #9k to 401(k) + 8k bank to vanguard
 ;
 
 TRUNCATE `investment_category`;
@@ -367,5 +369,15 @@ INSERT INTO `investments` VALUES
   (2017,  3, "HIGH_ERN",       0,  6667, 24536),
   (2017,  3, "SMALL_CAP",   4107,     0, 15189),
   (2017,  3, "INTL_STOCK",  4407, 25988,  6737),
-  (2017,  3, "LARGE_CAP",      0, 39473,  7767)
+  (2017,  3, "LARGE_CAP",      0, 39473,  7767),
+
+  (2017,  6, "EMERGENCY",   8000,     0,     0),
+  (2017,  6, "HOUSING",    45916,     0,  4000),
+  (2017,  6, "LC",          1995,     0,     0),
+  (2017,  6, "CASH",           0,  9667, 16164),
+  (2017,  6, "COMMOD",         0,     0,  5614),
+  (2017,  6, "HIGH_ERN",       0,  7892, 26170),
+  (2017,  6, "SMALL_CAP",   4234,     0, 15658),
+  (2017,  6, "INTL_STOCK",  4762, 28078,  7281),
+  (2017,  6, "LARGE_CAP",      0, 41750,  8035)
 ;
