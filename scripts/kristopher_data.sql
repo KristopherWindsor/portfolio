@@ -56,6 +56,7 @@ INSERT INTO `annual_breakdown` VALUES
 --     Cash moved to brokerage account / stocks moved to retirement accounts.
 -- Mar 2017: Regular rebalancing. Increase housing fund and commodities.
 -- Jun 2017: Regular rebalancing.
+-- Sep 2017: rebalancing. ($3k goes off the books for 2018 tithe, $2k goes off the books for car purchase. $7k in bank = $4k emergency fund + $3k saved)
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -72,7 +73,8 @@ INSERT INTO `savings` VALUES
   (2016, 11, 10000), #bank to housing fund
   (2016, 12,  7000), #bank to housing fund
   (2017,  3, 14000), #9k to 401(k) (ending 3/8) + 11k (max iras) - 16k moved back to bank in dec + 10k bank to housing fund
-  (2017,  6, 17000)  #9k to 401(k) + 8k bank to vanguard
+  (2017,  6, 17000), #9k to 401(k) + 8k bank to vanguard
+  (2017,  9,  3000)  #3k bank to vanguard
 ;
 
 TRUNCATE `investment_category`;
@@ -372,12 +374,22 @@ INSERT INTO `investments` VALUES
   (2017,  3, "LARGE_CAP",      0, 39473,  7767),
 
   (2017,  6, "EMERGENCY",   4000,     0,     0),
-  (2017,  6, "HOUSING",    45916,     0,  6300),
+  (2017,  6, "HOUSING",    45916,     0,  6300), -- Note: should not have counted retirement $$ as housing fund
   (2017,  6, "LC",          1995,     0,     0),
   (2017,  6, "CASH",           0,  7167, 12664),
   (2017,  6, "COMMOD",         0,     0,  6814),
   (2017,  6, "HIGH_ERN",       0,  7892, 26170),
   (2017,  6, "SMALL_CAP",   4234,     0, 15658),
   (2017,  6, "INTL_STOCK",  4762, 28078,  7281),
-  (2017,  6, "LARGE_CAP",      0, 44250,  8035)
+  (2017,  6, "LARGE_CAP",      0, 44250,  8035),
+
+  (2017,  9, "EMERGENCY",   4000,     0,     0),
+  (2017,  9, "HOUSING",    45201,     0,     0),
+  (2017,  9, "LC",           967,     0,     0),
+  (2017,  9, "CASH",        9219,  7186, 19012),
+  (2017,  9, "COMMOD",         0,     0,  8386),
+  (2017,  9, "HIGH_ERN",       0,  8146, 27364),
+  (2017,  9, "SMALL_CAP",   4179,     0, 15453),
+  (2017,  9, "INTL_STOCK",  5009, 29542,  7656),
+  (2017,  9, "LARGE_CAP",      0, 41429,  8148)
 ;
