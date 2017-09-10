@@ -56,7 +56,7 @@ INSERT INTO `annual_breakdown` VALUES
 --     Cash moved to brokerage account / stocks moved to retirement accounts.
 -- Mar 2017: Regular rebalancing. Increase housing fund and commodities.
 -- Jun 2017: Regular rebalancing.
--- Sep 2017: rebalancing. ($3k goes off the books for 2018 tithe, $2k goes off the books for car purchase. $7k in bank = $4k emergency fund + $3k saved)
+-- Sep 2017: Rebalancing. ($3k goes off the books for 2018 tithe, $2k goes off the books for car purchase. $7k in bank = $4k emergency fund + $3k saved)
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -384,12 +384,12 @@ INSERT INTO `investments` VALUES
   (2017,  6, "LARGE_CAP",      0, 44250,  8035),
 
   (2017,  9, "EMERGENCY",   4000,     0,     0),
-  (2017,  9, "HOUSING",    45201,     0,     0),
+  (2017,  9, "HOUSING",    54401,     0,     0),
   (2017,  9, "LC",           967,     0,     0),
-  (2017,  9, "CASH",        9219,  7186, 19012),
+  (2017,  9, "CASH",          19,  7186, 12412),
   (2017,  9, "COMMOD",         0,     0,  8386),
   (2017,  9, "HIGH_ERN",       0,  8146, 27364),
-  (2017,  9, "SMALL_CAP",   4179,     0, 15453),
+  (2017,  9, "SMALL_CAP",   4179,     0, 17153),
   (2017,  9, "INTL_STOCK",  5009, 29542,  7656),
-  (2017,  9, "LARGE_CAP",      0, 41429,  8148)
+  (2017,  9, "LARGE_CAP",      0, 41429, 13048)
 ;
