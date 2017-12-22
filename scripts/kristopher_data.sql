@@ -57,7 +57,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Mar 2017: Regular rebalancing. Increase housing fund and commodities.
 -- Jun 2017: Regular rebalancing.
 -- Sep 2017: Rebalancing. ($3k goes off the books for 2018 tithe, $2k goes off the books for car purchase. $7k in bank = $4k emergency fund + $3k saved)
--- Dec 2017: Rebalancing. Paying tithe for second half of 2017 and advancing tithe for all of 2018 ($26k). $3k off the books for car purchase. $10k in bank (less credit cards) = $4k emergency fund + $6k saved
+-- Dec 2017: Rebalancing. Paying tithe for second half of 2017 and advancing tithe for all of 2018 ($24k). $3k off the books for car purchase. $10k in bank (less credit cards) = $4k emergency fund + $8k saved
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -76,7 +76,7 @@ INSERT INTO `savings` VALUES
   (2017,  3, 14000), #9k to 401(k) (ending 3/8) + 11k (max iras) - 16k moved back to bank in dec + 10k bank to housing fund
   (2017,  6, 17000), #9k to 401(k) + 8k bank to vanguard
   (2017,  9,  3000), #3k bank to vanguard
-  (2017, 12,  6000)  #6k bank to vanguard
+  (2017, 12,  8000)  #8k bank to vanguard
 ;
 
 TRUNCATE `investment_category`;
@@ -396,7 +396,7 @@ INSERT INTO `investments` VALUES
   (2017,  9, "LARGE_CAP",      0, 41429, 13048),
 
   (2017, 12, "EMERGENCY",   4000,     0,     0),
-  (2017, 12, "HOUSING",    59835,     0,     0),
+  (2017, 12, "HOUSING",    61835,     0,     0),
   (2017, 12, "LC",           516,     0,     0),
   (2017, 12, "CASH",        3429,  7185, 15701),
   (2017, 12, "COMMOD",         0,     0,  8752),
