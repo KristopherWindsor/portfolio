@@ -2,7 +2,7 @@ TRUNCATE `settings`;
 INSERT INTO `settings` VALUES
   ("REPORT_START_YEAR_LOOSE", "2011"),
   ("REPORT_START_YEAR_STRICT", "2014"),
-  ("REPORT_END_YEAR", "2017"),
+  ("REPORT_END_YEAR", "2018"),
   ("REPORT_TITLE", "Kristopher &amp; Rachel Windsor&apos;s Financial Report")
 ;
 
@@ -41,12 +41,20 @@ INSERT INTO `annual_breakdown` VALUES
   (2016, "DONATIONS",       16450), #10300 at end-of-year counted to next year
   (2016, "SAVINGS",         71000),
 
-  (2017, "GROSS_INCOME",    160000),
-  (2017, "FEDERAL_TAXES",   21000),
-  (2017, "STATE_TAXES",     8000),
-  (2017, "SOCIAL_SEC",      11000),
-  (2017, "DONATIONS",       17000),
-  (2017, "SAVINGS",         60000)
+  (2017, "GROSS_INCOME",    170700),
+  (2017, "FEDERAL_TAXES",   18400),
+  (2017, "STATE_TAXES",     6532),
+  (2017, "SOCIAL_SEC",      10363), #Including Medicare
+  (2017, "DONATIONS",       24780), #17000 at end-of-year counted to next year
+  (2017, "SAVINGS",         42000),
+
+  #Forecast
+  (2018, "GROSS_INCOME",    170000),
+  (2018, "FEDERAL_TAXES",   20000),
+  (2018, "STATE_TAXES",     8000),
+  (2018, "SOCIAL_SEC",      11000), #Including Medicare
+  (2018, "DONATIONS",       17000),
+  (2018, "SAVINGS",         50000)
 ;
 
 -- Keeping quarterly summary in case I put it in a table
@@ -58,6 +66,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Jun 2017: Regular rebalancing.
 -- Sep 2017: Rebalancing. ($3k goes off the books for 2018 tithe, $2k goes off the books for car purchase. $7k in bank = $4k emergency fund + $3k saved)
 -- Dec 2017: Rebalancing. Paying tithe for second half of 2017 and advancing tithe for all of 2018 ($24k). $3k off the books for car purchase. $10k in bank (less credit cards) = $4k emergency fund + $8k saved
+-- Mar 2018: Rebalancing. Tax refund applied. $6k in bank + cash covers new car purchase but nothing more.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -76,7 +85,8 @@ INSERT INTO `savings` VALUES
   (2017,  3, 14000), #9k to 401(k) (ending 3/8) + 11k (max iras) - 16k moved back to bank in dec + 10k bank to housing fund
   (2017,  6, 17000), #9k to 401(k) + 8k bank to vanguard
   (2017,  9,  3000), #3k bank to vanguard
-  (2017, 12,  8000)  #8k bank to vanguard
+  (2017, 12,  8000), #8k bank to vanguard
+  (2018,  3, 34500)  #11k (max iras), 7.5k (401k), 16k to brokerage account
 ;
 
 TRUNCATE `investment_category`;
@@ -403,5 +413,15 @@ INSERT INTO `investments` VALUES
   (2017, 12, "HIGH_ERN",       0,  8363, 28349),
   (2017, 12, "SMALL_CAP",   4658,     0, 18765),
   (2017, 12, "INTL_STOCK",  5179, 30544,  9417),
-  (2017, 12, "LARGE_CAP",      0, 49011, 10709)
+  (2017, 12, "LARGE_CAP",      0, 49011, 10709),
+
+  (2018,  3, "EMERGENCY",      0,     0,     0),
+  (2018,  3, "HOUSING",    68005,     0,     0), #7580 is in cash; rest is in bonds
+  (2018,  3, "LC",           301,     0,     0),
+  (2018,  3, "CASH",       11859,  9215,  5174),
+  (2018,  3, "COMMOD",         0,     0,  8916),
+  (2018,  3, "HIGH_ERN",       0,  7140, 37227),
+  (2018,  3, "SMALL_CAP",   4868,     0, 21761),
+  (2018,  3, "INTL_STOCK",  5376, 31719, 16130),
+  (2018,  3, "LARGE_CAP",      0, 56771, 11226)
 ;
