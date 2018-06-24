@@ -67,6 +67,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Sep 2017: Rebalancing. ($3k goes off the books for 2018 tithe, $2k goes off the books for car purchase. $7k in bank = $4k emergency fund + $3k saved)
 -- Dec 2017: Rebalancing. Paying tithe for second half of 2017 and advancing tithe for all of 2018 ($24k). $3k off the books for car purchase. $10k in bank (less credit cards) = $4k emergency fund + $8k saved
 -- Mar 2018: Rebalancing. Tax refund applied. $6k in bank + cash covers new car purchase but nothing more.
+-- Jun 2018: Rebalancing. 2 week late.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -86,7 +87,8 @@ INSERT INTO `savings` VALUES
   (2017,  6, 17000), #9k to 401(k) + 8k bank to vanguard
   (2017,  9,  3000), #3k bank to vanguard
   (2017, 12,  8000), #8k bank to vanguard
-  (2018,  3, 34500)  #11k (max iras), 7.5k (401k), 16k to brokerage account
+  (2018,  3, 34500), #11k (max iras), 7.5k (401k), 16k to brokerage account
+  (2018,  6, 21000)  #11k (401k), 10k to brokerage account
 ;
 
 TRUNCATE `investment_category`;
@@ -423,5 +425,15 @@ INSERT INTO `investments` VALUES
   (2018,  3, "HIGH_ERN",       0,  7140, 37227),
   (2018,  3, "SMALL_CAP",   4868,     0, 21761),
   (2018,  3, "INTL_STOCK",  5376, 31719, 16130),
-  (2018,  3, "LARGE_CAP",      0, 56771, 11226)
+  (2018,  3, "LARGE_CAP",      0, 56771, 11226),
+
+  (2018,  6, "EMERGENCY",      0,     0,     0),
+  (2018,  6, "HOUSING",    72987,     0,     0), #12480 is in cash; rest is in bonds
+  (2018,  6, "LC",           195,     0,     0),
+  (2018,  6, "CASH",       17034, 6004,  5233),
+  (2018,  6, "COMMOD",         0,     0,  9678),
+  (2018,  6, "HIGH_ERN",       0,  3470, 44735),
+  (2018,  6, "SMALL_CAP",   5248,     0, 23461),
+  (2018,  6, "INTL_STOCK",  5171, 35624, 15503),
+  (2018,  6, "LARGE_CAP",      0, 61735, 11253)
 ;
