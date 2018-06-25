@@ -67,7 +67,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Sep 2017: Rebalancing. ($3k goes off the books for 2018 tithe, $2k goes off the books for car purchase. $7k in bank = $4k emergency fund + $3k saved)
 -- Dec 2017: Rebalancing. Paying tithe for second half of 2017 and advancing tithe for all of 2018 ($24k). $3k off the books for car purchase. $10k in bank (less credit cards) = $4k emergency fund + $8k saved
 -- Mar 2018: Rebalancing. Tax refund applied. $6k in bank + cash covers new car purchase but nothing more.
--- Jun 2018: Rebalancing. 2 week late.
+-- Jun 2018: Rebalancing. 2 week late. $3k off books for annual tithe.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -430,7 +430,7 @@ INSERT INTO `investments` VALUES
   (2018,  6, "EMERGENCY",      0,     0,     0),
   (2018,  6, "HOUSING",    72987,     0,     0), #12480 is in cash; rest is in bonds
   (2018,  6, "LC",           195,     0,     0),
-  (2018,  6, "CASH",       17034, 6004,  5233),
+  (2018,  6, "CASH",       14034, 6004,  5233),
   (2018,  6, "COMMOD",         0,     0,  9678),
   (2018,  6, "HIGH_ERN",       0,  3470, 44735),
   (2018,  6, "SMALL_CAP",   5248,     0, 23461),
