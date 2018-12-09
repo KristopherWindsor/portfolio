@@ -69,6 +69,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Mar 2018: Rebalancing. Tax refund applied. $6k in bank + cash covers new car purchase but nothing more.
 -- Jun 2018: Rebalancing. 2 week late. $3k off books for annual tithe.
 -- Sep 2018: Rebalancing. 1 week early. $10k off books for annual tithe.
+-- Dec 2018: Rebalancing. First time using YNAB and having a 529. $16.5k off books for tithe. Housing fund locked in 12-month CD so it is overweight.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -90,7 +91,8 @@ INSERT INTO `savings` VALUES
   (2017, 12,  8000), #8k bank to vanguard
   (2018,  3, 34500), #11k (max iras), 7.5k (401k), 16k to brokerage account
   (2018,  6, 21000), #11k (401k), 10k to brokerage account
-  (2018,  9,     0)
+  (2018,  9,     0),
+  (2018, 12,  8500)  #brokerage account
 ;
 
 TRUNCATE `investment_category`;
@@ -118,11 +120,11 @@ INSERT INTO `investment_category` VALUES
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
   ("LARGE_CAP",  23),
-  ("HOUSING",    22),
-  ("INTL_STOCK", 18),
+  ("HOUSING",    25),
+  ("INTL_STOCK", 19),
   ("HIGH_ERN",   16),
   ("SMALL_CAP",   9),
-  ("CASH",        9), # NOT including emergency fund
+  ("CASH",        5), # NOT including emergency fund
   ("COMMOD",      3),
   ("LC",          0)
  ;
@@ -442,10 +444,20 @@ INSERT INTO `investments` VALUES
   (2018,  9, "EMERGENCY",   1000,     0,     0),
   (2018,  9, "HOUSING",    73618,     0,     0), #12480 is in cash; rest is in bonds
   (2018,  9, "LC",           123,     0,     0),
-  (2018,  9, "CASH",       17115,  6511,  14549),
+  (2018,  9, "CASH",       17115,  5011,  8549),
   (2018,  9, "COMMOD",         0,     0, 10018),
-  (2018,  9, "HIGH_ERN",       0,  3555, 45843),
+  (2018,  9, "HIGH_ERN",       0,  3555, 50043),
   (2018,  9, "SMALL_CAP",   5513,     0, 24648),
-  (2018,  9, "INTL_STOCK",  5177, 35750, 15524),
-  (2018,  9, "LARGE_CAP",      0, 74522, 2527)
+  (2018,  9, "INTL_STOCK",  5177, 37250, 17324),
+  (2018,  9, "LARGE_CAP",      0, 74522,  2527),
+
+  (2018, 12, "EMERGENCY",   8000,     0,     0),
+  (2018, 12, "HOUSING",    80207,     0,     0),
+  (2018, 12, "LC",           125,     0,     0),
+  (2018, 12, "CASH",       18700,   3385, 4610),
+  (2018, 12, "COMMOD",         0,     0,  7562),
+  (2018, 12, "HIGH_ERN",       0,   691, 50983),
+  (2018, 12, "SMALL_CAP",   4586,     0, 24451),
+  (2018, 12, "INTL_STOCK",  4619, 33298, 15456),
+  (2018, 12, "LARGE_CAP",      0, 71908,  2291)
 ;
