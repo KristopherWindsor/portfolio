@@ -2,7 +2,7 @@ TRUNCATE `settings`;
 INSERT INTO `settings` VALUES
   ("REPORT_START_YEAR_LOOSE", "2011"),
   ("REPORT_START_YEAR_STRICT", "2014"),
-  ("REPORT_END_YEAR", "2018"),
+  ("REPORT_END_YEAR", "2019"),
   ("REPORT_TITLE", "Kristopher &amp; Rachel Windsor&apos;s Financial Report")
 ;
 
@@ -48,13 +48,20 @@ INSERT INTO `annual_breakdown` VALUES
   (2017, "DONATIONS",       24780), #17000 at end-of-year counted to next year
   (2017, "SAVINGS",         42000),
 
+  (2018, "GROSS_INCOME",    180000),
+  (2018, "FEDERAL_TAXES",   22200),
+  (2018, "STATE_TAXES",     8400),
+  (2018, "SOCIAL_SEC",      10400), #Including Medicare
+  (2018, "DONATIONS",       20700), #Includes 16700 donated January 2019
+  (2018, "SAVINGS",         64100),
+
   #Forecast
-  (2018, "GROSS_INCOME",    170000),
-  (2018, "FEDERAL_TAXES",   20000),
-  (2018, "STATE_TAXES",     8000),
-  (2018, "SOCIAL_SEC",      11000), #Including Medicare
-  (2018, "DONATIONS",       17000),
-  (2018, "SAVINGS",         50000)
+  (2019, "GROSS_INCOME",    190000),
+  (2019, "FEDERAL_TAXES",   25000),
+  (2019, "STATE_TAXES",     12000),
+  (2019, "SOCIAL_SEC",      12000), #Including Medicare
+  (2019, "DONATIONS",       17000),
+  (2019, "SAVINGS",         70000)
 ;
 
 -- Keeping quarterly summary in case I put it in a table
@@ -70,6 +77,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Jun 2018: Rebalancing. 2 week late. $3k off books for annual tithe.
 -- Sep 2018: Rebalancing. 1 week early. $10k off books for annual tithe.
 -- Dec 2018: Rebalancing. First time using YNAB and having a 529. $16.5k off books for tithe. Housing fund locked in 12-month CD so it is overweight.
+-- Mar 2019: Rebalancing. Reducing cash target allocation.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -92,7 +100,8 @@ INSERT INTO `savings` VALUES
   (2018,  3, 34500), #11k (max iras), 7.5k (401k), 16k to brokerage account
   (2018,  6, 21000), #11k (401k), 10k to brokerage account
   (2018,  9,     0),
-  (2018, 12,  8600)  #8500 brokerage account, 100 for the 529
+  (2018, 12,  8600), #8500 brokerage account, 100 for the 529
+  (2019,  3, 14000)  #14000 brokerage account (might add more in a week)
 ;
 
 TRUNCATE `investment_category`;
@@ -121,12 +130,12 @@ INSERT INTO `investment_category` VALUES
 
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
-  ("LARGE_CAP",  23),
+  ("LARGE_CAP",  24),
   ("HOUSING",    25),
   ("INTL_STOCK", 19),
   ("HIGH_ERN",   16),
   ("SMALL_CAP",   9),
-  ("CASH",        5), # NOT including emergency fund
+  ("CASH",        4), # NOT including emergency fund (one month of expenses)
   ("COMMOD",      3),
   ("LC",          0)
  ;
@@ -495,5 +504,16 @@ INSERT INTO `investments` VALUES
   (2018, 12, "THE_529",     2850,     0,     0),
   (2018, 12, "SMALL_CAP",   4586,     0, 24451),
   (2018, 12, "INTL_STOCK",  7619, 36198, 15456),
-  (2018, 12, "LARGE_CAP",      0, 71908,  2291)
+  (2018, 12, "LARGE_CAP",      0, 71908,  2291),
+
+  (2019, 03, "EMERGENCY",   8000,     0,     0),
+  (2019, 03, "HOUSING",    80674,     0,     0),
+  (2019, 03, "LC",           127,     0,     0),
+  (2019, 03, "CASH",       29783,   498,  4629),
+  (2019, 03, "COMMOD",         0,     0,  7984),
+  (2019, 03, "HIGH_ERN",       0,   696, 51791),
+  (2019, 03, "THE_529",     3069,     0,     0),
+  (2019, 03, "SMALL_CAP",   4970,     0, 26497),
+  (2019, 03, "INTL_STOCK",  8252, 39093, 16678),
+  (2019, 03, "LARGE_CAP",      0, 77061,  2455)
 ;
