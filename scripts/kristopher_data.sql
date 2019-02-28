@@ -130,12 +130,12 @@ INSERT INTO `investment_category` VALUES
 
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
-  ("LARGE_CAP",  24),
-  ("HOUSING",    25),
+  ("LARGE_CAP",  23),
+  ("HOUSING",    23),
   ("INTL_STOCK", 19),
   ("HIGH_ERN",   16),
-  ("SMALL_CAP",   9),
-  ("CASH",        4), # NOT including emergency fund (one month of expenses)
+  ("SMALL_CAP",  10),
+  ("CASH",        6), # NOT including emergency fund (one month of expenses)
   ("COMMOD",      3),
   ("LC",          0)
  ;
@@ -509,11 +509,11 @@ INSERT INTO `investments` VALUES
   (2019, 03, "EMERGENCY",   8000,     0,     0),
   (2019, 03, "HOUSING",    80674,     0,     0),
   (2019, 03, "LC",           127,     0,     0),
-  (2019, 03, "CASH",       29783,   498,  4629),
+  (2019, 03, "CASH",       23345,   498,  3389),
   (2019, 03, "COMMOD",         0,     0,  7984),
   (2019, 03, "HIGH_ERN",       0,   696, 51791),
   (2019, 03, "THE_529",     3069,     0,     0),
-  (2019, 03, "SMALL_CAP",   4970,     0, 26497),
-  (2019, 03, "INTL_STOCK",  8252, 39093, 16678),
-  (2019, 03, "LARGE_CAP",      0, 77061,  2455)
+  (2019, 03, "SMALL_CAP",   4970,     0, 30192),
+  (2019, 03, "INTL_STOCK", 10952, 39093, 16678),
+  (2019, 03, "LARGE_CAP",   3738, 77061,     0)
 ;
