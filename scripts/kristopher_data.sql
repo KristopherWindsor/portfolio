@@ -77,7 +77,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Jun 2018: Rebalancing. 2 week late. $3k off books for annual tithe.
 -- Sep 2018: Rebalancing. 1 week early. $10k off books for annual tithe.
 -- Dec 2018: Rebalancing. First time using YNAB and having a 529. $16.5k off books for tithe. Housing fund locked in 12-month CD so it is overweight.
--- Mar 2019: Rebalancing. Reducing cash target allocation.
+-- Mar 2019: Rebalancing.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -101,7 +101,7 @@ INSERT INTO `savings` VALUES
   (2018,  6, 21000), #11k (401k), 10k to brokerage account
   (2018,  9,     0),
   (2018, 12,  8600), #8500 brokerage account, 100 for the 529
-  (2019,  3, 14000)  #14000 brokerage account (might add more in a week)
+  (2019,  3, 14000)  #14000 brokerage account
 ;
 
 TRUNCATE `investment_category`;
