@@ -78,6 +78,9 @@ INSERT INTO `annual_breakdown` VALUES
 -- Sep 2018: Rebalancing. 1 week early. $10k off books for annual tithe.
 -- Dec 2018: Rebalancing. First time using YNAB and having a 529. $16.5k off books for tithe. Housing fund locked in 12-month CD so it is overweight.
 -- Mar 2019: Rebalancing.
+-- Jun 2019: Rebalancing. Divesting $UGA (target is 0%) and housing fund (target is ~20%).
+--     Keeping more emergency fund due to potential job change coming soon.
+--     Trouble buying stocks due to no 401(k)/IRA contributions this year, so increasing cash position.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -101,7 +104,8 @@ INSERT INTO `savings` VALUES
   (2018,  6, 21000), #11k (401k), 10k to brokerage account
   (2018,  9,     0),
   (2018, 12,  8600), #8500 brokerage account, 100 for the 529
-  (2019,  3, 14000)  #14000 brokerage account
+  (2019,  3, 14000), #14000 brokerage account
+  (2019,  6,  9000)  #9000 ally "account of saved money"
 ;
 
 TRUNCATE `investment_category`;
@@ -131,12 +135,12 @@ INSERT INTO `investment_category` VALUES
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
   ("LARGE_CAP",  23),
-  ("HOUSING",    23),
+  ("HOUSING",    22),
   ("INTL_STOCK", 19),
   ("HIGH_ERN",   16),
   ("SMALL_CAP",  10),
-  ("CASH",        6), # NOT including emergency fund (one month of expenses)
-  ("COMMOD",      3),
+  ("CASH",        8), # NOT including emergency fund (one month of expenses)
+  ("COMMOD",      2),
   ("LC",          0)
  ;
 
@@ -515,5 +519,23 @@ INSERT INTO `investments` VALUES
   (2019, 03, "THE_529",     3069,     0,     0),
   (2019, 03, "SMALL_CAP",   4970,     0, 30192),
   (2019, 03, "INTL_STOCK", 10952, 39093, 16678),
-  (2019, 03, "LARGE_CAP",   3738, 77061,     0)
+  (2019, 03, "LARGE_CAP",   3738, 77061,     0),
+
+  (2019, 06, "EMERGENCY",  12000,     0,     0),
+  (2019, 06, "HOUSING",    81341,     0,     0),
+  (2019, 06, "LC",           132,     0,     0),
+  (2019, 06, "CASH",       35505-1959-539,   35,   188),
+  (2019, 06, "COMMOD",         0,     0,  8720-3000),
+  (2019, 06, "HIGH_ERN",       0,   815, 64331-3490),
+  (2019, 06, "THE_529",     3200,     0,     0),
+  (2019, 06, "SMALL_CAP",   4792+539,     0, 29111+3000),
+  (2019, 06, "INTL_STOCK", 11253, 40124, 17118+3483),
+  (2019, 06, "LARGE_CAP",   3954+1959, 81703,     0)
 ;
+
+-- get international in rachel account (sell irt $3490) #sell is done
+-- get total stock market in brokerage account (use cash $1959) #done
+-- get ijr in roth ira account (sell uga 3000) #sell is done, need to buy
+-- get ijr in brokerage account (539) from cash #done
+
+
