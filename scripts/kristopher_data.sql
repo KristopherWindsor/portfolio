@@ -147,8 +147,8 @@ INSERT INTO `investment_target` VALUES
   ("INTL_STOCK", 21),
   ("SMALL_CAP",  12),
   ("HIGH_ERN",   11),
-  ("CASH",        5), # NOT including emergency fund (one month of expenses)
-  ("BONDS",       5),
+  ("CASH",        6), # NOT including emergency fund (one month of expenses)
+  ("BONDS",       4),
   ("COMMOD",      0),
   ("LC",          0)
  ;
