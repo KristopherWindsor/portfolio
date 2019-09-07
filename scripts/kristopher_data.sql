@@ -147,9 +147,9 @@ INSERT INTO `investment_target` VALUES
   ("INTL_STOCK", 21),
   ("SMALL_CAP",  12),
   ("HIGH_ERN",   11),
-  ("CASH",        7), # NOT including emergency fund (one month of expenses)
-  ("BONDS",       1),
-  ("COMMOD",      1),
+  ("CASH",        5), # NOT including emergency fund (one month of expenses)
+  ("BONDS",       4),
+  ("COMMOD",      0),
   ("LC",          0)
  ;
 
@@ -580,9 +580,9 @@ INSERT INTO `investments` VALUES
   (2019, 09, "EMERGENCY",  14234,     0,     0),
   (2019, 09, "HOUSING",    81791,     0,     0),
   (2019, 09, "LC",             0,     0,     0),
-  (2019, 09, "CASH",        3435,  2000, 12619),
+  (2019, 09, "CASH",        3435,  2000, 27828),
   (2019, 09, "COMMOD",         0,     0,  5562),
-  (2019, 09, "HIGH_ERN",       0,     0, 59357),
+  (2019, 09, "HIGH_ERN",       0,     0, 44148),
   (2019, 09, "BONDS",          0, 12013,  5139),
   (2019, 09, "THE_529",     5270,     0,     0),
   (2019, 09, "SMALL_CAP",   5304,     0, 31953),
