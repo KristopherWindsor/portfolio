@@ -56,12 +56,12 @@ INSERT INTO `annual_breakdown` VALUES
   (2018, "SAVINGS",         64100),
 
   #Forecast
-  (2019, "GROSS_INCOME",    190000),
+  (2019, "GROSS_INCOME",    250000),
   (2019, "FEDERAL_TAXES",   25000),
   (2019, "STATE_TAXES",     12000),
   (2019, "SOCIAL_SEC",      12000), #Including Medicare
   (2019, "DONATIONS",       17000),
-  (2019, "SAVINGS",         70000)
+  (2019, "SAVINGS",         80000)
 ;
 
 -- Keeping quarterly summary in case I put it in a table
@@ -81,6 +81,11 @@ INSERT INTO `annual_breakdown` VALUES
 -- Jun 2019: Rebalancing. Divesting $UGA (target is 0%) and housing fund (target is ~20%).
 --     Keeping more emergency fund due to potential job change coming soon.
 --     Trouble buying stocks due to no 401(k)/IRA contributions this year, so increasing cash position.
+-- Sep 2019: Joining Google: add signing bonus, 401(k) match, annual HSA employer contribution; exercise Pinger stock (equity not tracked here).
+--     IRT position reduced due to yield being low. Adding new category BONDS because Vanguard funds include bonds. Doing two rollovers.
+--     Continuing to reduce housing target allocation due to increased income (can save a downpayment more quickly when I want to buy now).
+--     HSA investments will be grouped into the pre-tax retirement accounts for accounting.
+--     Emergency fund amount will now be calculated directly from YNAB.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -102,26 +107,29 @@ INSERT INTO `savings` VALUES
   (2017, 12,  8000), #8k bank to vanguard
   (2018,  3, 34500), #11k (max iras), 7.5k (401k), 16k to brokerage account
   (2018,  6, 21000), #11k (401k), 10k to brokerage account
-  (2018,  9,     0),
+  (2018,  9,  3000), #3k bank to 529 account
   (2018, 12,  8600), #8500 brokerage account, 100 for the 529
   (2019,  3, 14000), #14000 brokerage account
-  (2019,  6,  9000)  #9000 ally "account of saved money"
+  (2019,  6,  9000), #9000 ally "account of saved money"
+  (2019,  9, 38000)  #30,000 unsaved. $300 saved. $2,000 to 529. $0 to HSA. $49,200 to 401(k) including employer match. $16,500 for Pinger stock.
 ;
 
 TRUNCATE `investment_category`;
 INSERT INTO `investment_category` VALUES
-  ("EMERGENCY", "Emergency fund (est)", 10, "/images/icons/emergency.svg",
-    "Approximately, money in the bank less credit card balances. Includes cash for emergencies such as a broken car"),
-  ("CASH", "Cash", 9, "/images/icons/cash.svg",
-    "This cash is ready to be invested (might be in a money market or temporarily in bonds)"),
-  ("HOUSING", "Housing fund", 8, "/images/icons/house.svg",
+  ("EMERGENCY", "Emergency fund (est)", 11, "/images/icons/emergency.svg",
+    "Money in the bank plus household cash, less credit card balances. Includes cash for emergencies such as a broken car."),
+  ("CASH", "Cash", 10, "/images/icons/cash.svg",
+    "Cash or money market balance."),
+  ("HOUSING", "Housing fund", 9, "/images/icons/house.svg",
     "Funds set aside for a house downpayment in cash/bonds. The target is $80,000"),
-  ("HIGH_ERN", "High earnings fund", 7, "/images/icons/stock.svg",
-    "Funds that are high leverage, high earning, and high yielding. These are high risk, high profit, individually selected stocks, currently IRT, F, and GM"),
-  ("LC", "Lending Club", 6, "/images/icons/peer-lending.svg",
-    "Funds invested through Lending Club, a peer-to-peer lending service expected to earn 5-10% annual interest. Repayments are automatically lent out to new borrowers, so the funds are not immediately available"),
-  ("COMMOD", "Commodities", 5, "/images/icons/commodities.svg",
-    "Commodities can include gas / oil, precious metals, water, and investments in raw manufacturing materials, among others"),
+  ("HIGH_ERN", "High earnings fund", 8, "/images/icons/stock.svg",
+    "Stock picked based on value and fundamentals. Past or present stocks: GM and IRT."),
+  ("LC", "Lending Club", 7, "/images/icons/peer-lending.svg",
+    "Funds invested through Lending Club, a peer-to-peer lending service expected to earn 5-10% annually. Loans are repaid over 3-5 years, so the funds are not immediately available"),
+  ("COMMOD", "Commodities", 6, "/images/icons/commodities.svg",
+    "Commodities can include gas / oil, precious metals, water, and investments in raw manufacturing materials, among others. Purpose of this investment was not clear."),
+  ("BONDS", "Bonds", 5, "/images/icons/cash.svg",
+    "Public and private, US and international bonds of all durations -- no futures"),
   ("THE_529", "529 College Savings Plan", 4, "/images/icons/stock.svg",
     "College savings plan invested in US and international stocks"),
   ("SMALL_CAP", "US Small-cap", 3, "/images/icons/startup.svg",
@@ -134,13 +142,14 @@ INSERT INTO `investment_category` VALUES
 
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
-  ("LARGE_CAP",  23),
-  ("HOUSING",    22),
-  ("INTL_STOCK", 19),
-  ("HIGH_ERN",   16),
-  ("SMALL_CAP",  10),
-  ("CASH",        8), # NOT including emergency fund (one month of expenses)
-  ("COMMOD",      2),
+  ("LARGE_CAP",  26),
+  ("HOUSING",    21),
+  ("INTL_STOCK", 21),
+  ("SMALL_CAP",  12),
+  ("HIGH_ERN",   11),
+  ("CASH",        7), # NOT including emergency fund (one month of expenses)
+  ("BONDS",       1),
+  ("COMMOD",      1),
   ("LC",          0)
  ;
 
@@ -530,12 +539,53 @@ INSERT INTO `investments` VALUES
   (2019, 06, "THE_529",     3200,     0,     0),
   (2019, 06, "SMALL_CAP",   4792+539,     0, 29111+3000),
   (2019, 06, "INTL_STOCK", 11253, 40124, 17118+3483),
-  (2019, 06, "LARGE_CAP",   3954+1959, 81703,     0)
+  (2019, 06, "LARGE_CAP",   3954+1959, 81703,     0),
+
+  (2014, 12, "BONDS", 0, 0, 0),
+  (2015,  1, "BONDS", 0, 0, 0),
+  (2015,  2, "BONDS", 0, 0, 0),
+  (2015,  3, "BONDS", 0, 0, 0),
+  (2015,  4, "BONDS", 0, 0, 0),
+  (2015,  5, "BONDS", 0, 0, 0),
+  (2015,  6, "BONDS", 0, 0, 0),
+  (2015,  7, "BONDS", 0, 0, 0),
+  (2015,  8, "BONDS", 0, 0, 0),
+  (2015,  9, "BONDS", 0, 0, 0),
+  (2015, 10, "BONDS", 0, 0, 0),
+  (2015, 11, "BONDS", 0, 0, 0),
+  (2015, 12, "BONDS", 0, 0, 0),
+  (2016,  1, "BONDS", 0, 0, 0),
+  (2016,  2, "BONDS", 0, 0, 0),
+  (2016,  3, "BONDS", 0, 0, 0),
+  (2016,  4, "BONDS", 0, 0, 0),
+  (2016,  5, "BONDS", 0, 0, 0),
+  (2016,  6, "BONDS", 0, 0, 0),
+  (2016,  7, "BONDS", 0, 0, 0),
+  (2016,  8, "BONDS", 0, 0, 0),
+  (2016,  9, "BONDS", 0, 0, 0),
+  (2016, 10, "BONDS", 0, 0, 0),
+  (2016, 11, "BONDS", 0, 0, 0),
+  (2016, 12, "BONDS", 0, 0, 0),
+  (2017,  3, "BONDS", 0, 0, 0),
+  (2017,  6, "BONDS", 0, 0, 0),
+  (2017,  9, "BONDS", 0, 0, 0),
+  (2017, 12, "BONDS", 0, 0, 0),
+  (2018,  3, "BONDS", 0, 0, 0),
+  (2018,  6, "BONDS", 0, 0, 0),
+  (2018,  9, "BONDS", 0, 0, 0),
+  (2018, 12, "BONDS", 0, 0, 0),
+  (2019,  3, "BONDS", 0, 0, 0),
+  (2019,  6, "BONDS", 0, 0, 0),
+
+  (2019, 09, "EMERGENCY",  14234,     0,     0),
+  (2019, 09, "HOUSING",    81791,     0,     0),
+  (2019, 09, "LC",             0,     0,     0),
+  (2019, 09, "CASH",        3435,  2000, 12619),
+  (2019, 09, "COMMOD",         0,     0,  5562),
+  (2019, 09, "HIGH_ERN",       0,     0, 59357),
+  (2019, 09, "BONDS",          0,  3983,  5139),
+  (2019, 09, "THE_529",     5270,     0,     0),
+  (2019, 09, "SMALL_CAP",   5304,     0, 31953),
+  (2019, 09, "INTL_STOCK", 11050, 14196, 38581),
+  (2019, 09, "LARGE_CAP",   5951, 21255, 27425)
 ;
-
--- get international in rachel account (sell irt $3490) #sell is done
--- get total stock market in brokerage account (use cash $1959) #done
--- get ijr in roth ira account (sell uga 3000) #sell is done, need to buy
--- get ijr in brokerage account (539) from cash #done
-
-
