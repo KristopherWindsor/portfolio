@@ -111,7 +111,7 @@ INSERT INTO `savings` VALUES
   (2018, 12,  8600), #8500 brokerage account, 100 for the 529
   (2019,  3, 14000), #14000 brokerage account
   (2019,  6,  9000), #9000 ally "account of saved money"
-  (2019,  9, 38000)  #30,000 unsaved. $300 saved. $2,000 to 529. $0 to HSA. $49,200 to 401(k) including employer match. $16,500 for Pinger stock.
+  (2019,  9, 36000)  #30,000 unsaved. $300 saved. $2,000 to 529. $0 to HSA. $49,200 to 401(k) including employer match. $16,500 for Pinger stock.
 ;
 
 TRUNCATE `investment_category`;
@@ -580,7 +580,7 @@ INSERT INTO `investments` VALUES
   (2019, 09, "EMERGENCY",  14234,     0,     0),
   (2019, 09, "HOUSING",    81791+3000,     0,     0),
   (2019, 09, "LC",             0,     0,     0),
-  (2019, 09, "CASH",        3435-3000,  2000, 27828+5562+6500-4500-10029),
+  (2019, 09, "CASH",        3435-3000,  0, 27828+5562+6500-4500-10029),
   (2019, 09, "COMMOD",         0,     0,  5562-5562),
   (2019, 09, "HIGH_ERN",       0,     0, 44148),
   (2019, 09, "BONDS",          0, 12013,  5139),
