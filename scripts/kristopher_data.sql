@@ -61,7 +61,7 @@ INSERT INTO `annual_breakdown` VALUES
   (2019, "STATE_TAXES",     12000),
   (2019, "SOCIAL_SEC",      12000), #Including Medicare
   (2019, "DONATIONS",       17000),
-  (2019, "SAVINGS",         80000)
+  (2019, "SAVINGS",         81900)
 ;
 
 -- Keeping quarterly summary in case I put it in a table
@@ -86,6 +86,9 @@ INSERT INTO `annual_breakdown` VALUES
 --     Continuing to reduce housing target allocation due to increased income (can save a downpayment more quickly when I want to buy now).
 --     HSA investments will be grouped into the pre-tax retirement accounts for accounting.
 --     Emergency fund amount will now be calculated directly from YNAB.
+-- Dec 2019: Sold all IRT. Holding some vested GOOG due to autosale rules.
+--     Now have one bank account for income and one for expenses (Chase bank which I've had). Money should be moved from the "income" account to the "saved money" account each quarter.
+--     I will count the "income" account balance (if any) as part of the emergency fund.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -111,7 +114,8 @@ INSERT INTO `savings` VALUES
   (2018, 12,  8600), #8500 brokerage account, 100 for the 529
   (2019,  3, 14000), #14000 brokerage account
   (2019,  6,  9000), #9000 ally "account of saved money"
-  (2019,  9, 36000)  #30,000 unsaved. $300 saved. $2,000 to 529. $0 to HSA. $49,200 to 401(k) including employer match. $16,500 for Pinger stock.
+  (2019,  9, 36000), #30,000 unsaved. $300 saved. $2,000 to 529. $0 to HSA. $49,200 to 401(k) including employer match. $16,500 for Pinger stock.
+  (2019, 12, 22900)  #$12,000 to IRAs. $6,800 to 401(k). $2,000 to 529. $2,100 savings/brokerage.
 ;
 
 TRUNCATE `investment_category`;
@@ -123,7 +127,7 @@ INSERT INTO `investment_category` VALUES
   ("HOUSING", "Housing fund", 9, "/images/icons/house.svg",
     "Funds set aside for a house downpayment in cash/bonds. The target is $80,000"),
   ("HIGH_ERN", "High earnings fund", 8, "/images/icons/stock.svg",
-    "Stock picked based on value and fundamentals. Past or present stocks: GM and IRT."),
+    "Stock picked based on value and fundamentals. Past or present stocks: GM, IRT, and GOOG (vested but in cool-off / blackout)."),
   ("LC", "Lending Club", 7, "/images/icons/peer-lending.svg",
     "Funds invested through Lending Club, a peer-to-peer lending service expected to earn 5-10% annually. Loans are repaid over 3-5 years, so the funds are not immediately available"),
   ("COMMOD", "Commodities", 6, "/images/icons/commodities.svg",
@@ -579,7 +583,7 @@ INSERT INTO `investments` VALUES
 
   (2019, 09, "EMERGENCY",  14234,     0,     0),
   (2019, 09, "HOUSING",    81791+3000,     0,     0),
-  (2019, 09, "LC",             0,     0,     0),
+  (2019, 09, "LC",           130,     0,     0),
   (2019, 09, "CASH",        3435-3000,  0, 27828+5562+6500-4500-10029),
   (2019, 09, "COMMOD",         0,     0,  5562-5562),
   (2019, 09, "HIGH_ERN",       0,     0, 44148),
@@ -587,5 +591,19 @@ INSERT INTO `investments` VALUES
   (2019, 09, "THE_529",     5270,     0,     0),
   (2019, 09, "SMALL_CAP",   5304,     0, 31953+10029),
   (2019, 09, "INTL_STOCK", 11050, 42818, 38581-6500),
-  (2019, 09, "LARGE_CAP",   5951, 64108, 27425+4500)
+  (2019, 09, "LARGE_CAP",   5951, 64108, 27425+4500),
+
+  # Note: retirement fund is 54% large cap, 36% international, 10% bonds
+
+  (2019, 12, "EMERGENCY",  10012,     0,     0),
+  (2019, 12, "HOUSING",    85120,     0,     0),
+  (2019, 12, "LC",           127,     0,     0),
+  (2019, 12, "CASH",        3146,     0, 84310),
+  (2019, 12, "COMMOD",         0,     0,     0),
+  (2019, 12, "HIGH_ERN",    7145,     0,     0),
+  (2019, 12, "BONDS",          0, 12340,  6029),
+  (2019, 12, "THE_529",     7513,     0,     0),
+  (2019, 12, "SMALL_CAP",   5646,     0, 44689),
+  (2019, 12, "INTL_STOCK", 11614, 44423, 36183),
+  (2019, 12, "LARGE_CAP",   6253, 66634, 37280)
 ;
