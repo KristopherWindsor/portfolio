@@ -61,7 +61,7 @@ INSERT INTO `annual_breakdown` VALUES
   (2019, "STATE_TAXES",     12000),
   (2019, "SOCIAL_SEC",      12000), #Including Medicare
   (2019, "DONATIONS",       17000),
-  (2019, "SAVINGS",         81900)
+  (2019, "SAVINGS",         87650)
 ;
 
 -- Keeping quarterly summary in case I put it in a table
@@ -115,7 +115,7 @@ INSERT INTO `savings` VALUES
   (2019,  3, 14000), #14000 brokerage account
   (2019,  6,  9000), #9000 ally "account of saved money"
   (2019,  9, 36000), #30,000 unsaved. $300 saved. $2,000 to 529. $0 to HSA. $49,200 to 401(k) including employer match. $16,500 for Pinger stock.
-  (2019, 12, 22900)  #$12,000 to IRAs. $6,800 to 401(k). $2,000 to 529. $2,100 savings/brokerage.
+  (2019, 12, 28650)  #$12,000 to IRAs. $6,800 to 401(k). $5,750 to HSA. $2,000 to 529. $2,100 savings/brokerage.
 ;
 
 TRUNCATE `investment_category`;
@@ -598,12 +598,12 @@ INSERT INTO `investments` VALUES
   (2019, 12, "EMERGENCY",  10012,     0,     0),
   (2019, 12, "HOUSING",    85120,     0,     0),
   (2019, 12, "LC",           127,     0,     0),
-  (2019, 12, "CASH",        3146,     0, 84310-20500-25000-12750),
+  (2019, 12, "CASH",        3146,   500, 84310-20500-25000-12750), #500 is HSA
   (2019, 12, "COMMOD",         0,     0,     0),
   (2019, 12, "HIGH_ERN",    7145,     0,     0),
   (2019, 12, "BONDS",          0, 12340,  6029),
   (2019, 12, "THE_529",     7513,     0,     0),
-  (2019, 12, "SMALL_CAP",   5646,     0, 44689+12750),
+  (2019, 12, "SMALL_CAP",   5646,  6520, 44689+12750), #6520 is HSA
   (2019, 12, "INTL_STOCK", 11614, 44423, 36183+20500),
   (2019, 12, "LARGE_CAP",   6253, 66634, 37280+25000)
 ;
