@@ -2,7 +2,7 @@ TRUNCATE `settings`;
 INSERT INTO `settings` VALUES
   ("REPORT_START_YEAR_LOOSE", "2011"),
   ("REPORT_START_YEAR_STRICT", "2014"),
-  ("REPORT_END_YEAR", "2019"),
+  ("REPORT_END_YEAR", "2020"),
   ("REPORT_TITLE", "Kristopher &amp; Rachel Windsor&apos;s Financial Report")
 ;
 
@@ -55,13 +55,21 @@ INSERT INTO `annual_breakdown` VALUES
   (2018, "DONATIONS",       20700), #Includes 16700 donated January 2019
   (2018, "SAVINGS",         64100),
 
-  #Forecast
+  #Forecast-savings is tallied up but not taxes
   (2019, "GROSS_INCOME",    250000),
   (2019, "FEDERAL_TAXES",   25000),
   (2019, "STATE_TAXES",     12000),
   (2019, "SOCIAL_SEC",      12000), #Including Medicare
   (2019, "DONATIONS",       17000),
-  (2019, "SAVINGS",         87650)
+  (2019, "SAVINGS",         87650),
+
+  #Forecast
+  (2020, "GROSS_INCOME",    300000),
+  (2020, "FEDERAL_TAXES",   50000),
+  (2020, "STATE_TAXES",     15000),
+  (2020, "SOCIAL_SEC",      12000), #Including Medicare
+  (2020, "DONATIONS",       24000),
+  (2020, "SAVINGS",         110000)
 ;
 
 -- Keeping quarterly summary in case I put it in a table
@@ -89,6 +97,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Dec 2019: Sold all IRT. Holding some vested GOOG due to autosale rules.
 --     Now have one bank account for income and one for expenses (Chase bank which I've had). Money should be moved from the "income" account to the "saved money" account each quarter.
 --     I will count the "income" account balance (if any) as part of the emergency fund.
+-- Mar 2020: Stocks are down. Taxes not filed yet so no refund. No tithe yet this year.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -115,7 +124,8 @@ INSERT INTO `savings` VALUES
   (2019,  3, 14000), #14000 brokerage account
   (2019,  6,  9000), #9000 ally "account of saved money"
   (2019,  9, 36000), #30,000 unsaved. $300 saved. $2,000 to 529. $0 to HSA. $49,200 to 401(k) including employer match. $16,500 for Pinger stock.
-  (2019, 12, 28650)  #$12,000 to IRAs. $6,800 to 401(k). $5,750 to HSA. $2,000 to 529. $2,100 savings/brokerage.
+  (2019, 12, 28650), #$12,000 to IRAs. $6,800 to 401(k). $5,750 to HSA. $2,000 to 529. $2,100 savings/brokerage.
+  (2020,  3, 67430)  #$30,500 401k. $6,250 HSA. $3,000 529. $27,680 savings/brokerage (includes RSU grants from last Nov & Dec that couldn't be sold).
 ;
 
 TRUNCATE `investment_category`;
@@ -605,5 +615,18 @@ INSERT INTO `investments` VALUES
   (2019, 12, "THE_529",     7513,     0,     0),
   (2019, 12, "SMALL_CAP",   5646,  6520, 44689+12750), #6520 is HSA
   (2019, 12, "INTL_STOCK", 11614, 44423, 36183+20500),
-  (2019, 12, "LARGE_CAP",   6253, 66634, 37280+25000)
+  (2019, 12, "LARGE_CAP",   6253, 66634, 37280+25000),
+
+  # 401k: 134463 pretax, 47779 posttax
+  (2020,  3, "EMERGENCY",  13546,     0,      0),
+  (2020,  3, "HOUSING",    85752,     0,      0),
+  (2020,  3, "LC",             0,     0,      0),
+  (2020,  3, "CASH",        29364,   500, 26136), #500 is HSA
+  (2020,  3, "COMMOD",         0,     0,      0),
+  (2020,  3, "HIGH_ERN",       0,     0,      0),
+  (2020,  3, "BONDS",          0, 13446,   4778),
+  (2020,  3, "THE_529",     8922,     0,      0),
+  (2020,  3, "SMALL_CAP",   4156,  9645,  42279), #9645 is HSA
+  (2020,  3, "INTL_STOCK",  9336, 48407,  45296),
+  (2020,  3, "LARGE_CAP",   5387, 72610,  51375)
 ;
