@@ -158,9 +158,9 @@ TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
   ("LARGE_CAP",  30),
   ("HOUSING",    19),
-  ("INTL_STOCK", 25),
-  ("SMALL_CAP",  14),
-  ("HIGH_ERN",    2),
+  ("INTL_STOCK", 26),
+  ("SMALL_CAP",  15),
+  ("HIGH_ERN",    0),
   ("CASH",        6), # NOT including emergency fund (one month of expenses)
   ("BONDS",       4),
   ("COMMOD",      0),
