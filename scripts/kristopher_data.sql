@@ -154,17 +154,15 @@ INSERT INTO `investment_category` VALUES
     "Funds in US-based companies, with heavy weighting for the largest companies")
 ;
 
+# THE_529 not included here as it may not be my money in the future
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
   ("LARGE_CAP",  30),
   ("HOUSING",    19),
   ("INTL_STOCK", 26),
   ("SMALL_CAP",  15),
-  ("HIGH_ERN",    0),
   ("CASH",        6), # NOT including emergency fund (one month of expenses)
-  ("BONDS",       4),
-  ("COMMOD",      0),
-  ("LC",          0)
+  ("BONDS",       4)
  ;
 
 TRUNCATE `investments`;
@@ -621,12 +619,12 @@ INSERT INTO `investments` VALUES
   (2020,  3, "EMERGENCY",  13546,     0,      0),
   (2020,  3, "HOUSING",    85752,     0,      0),
   (2020,  3, "LC",             0,     0,      0),
-  (2020,  3, "CASH",        29364,   500, 26136), #500 is HSA
+  (2020,  3, "CASH",        29364-5000, 500, 26136-5170-11190-8700), #500 is HSA
   (2020,  3, "COMMOD",         0,     0,      0),
   (2020,  3, "HIGH_ERN",       0,     0,      0),
   (2020,  3, "BONDS",          0, 13446,   4778),
   (2020,  3, "THE_529",     8922,     0,      0),
-  (2020,  3, "SMALL_CAP",   4156,  9645,  42279), #9645 is HSA
-  (2020,  3, "INTL_STOCK",  9336, 48407,  45296),
-  (2020,  3, "LARGE_CAP",   5387, 72610,  51375)
+  (2020,  3, "SMALL_CAP",   4156,  9645, 42279+11190), #9645 is HSA
+  (2020,  3, "INTL_STOCK",  9336+5000, 48407, 45296+8700),
+  (2020,  3, "LARGE_CAP",   5387, 72610, 51375+5170)
 ;
