@@ -97,6 +97,7 @@ INSERT INTO `annual_breakdown` VALUES
 --     Now have one bank account for income and one for expenses (Chase bank which I've had). Money should be moved from the "income" account to the "saved money" account each quarter.
 --     I will count the "income" account balance (if any) as part of the emergency fund.
 -- Mar 2020: Stocks are down. Taxes not filed yet so no refund. No tithe yet this year.
+-- Jun 2020: Up due to savings, tax refund, and stock recovery. Ramping up housing fund with a goal to reach $200k.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -125,7 +126,7 @@ INSERT INTO `savings` VALUES
   (2019,  9, 36000), #30,000 unsaved. $300 saved. $2,000 to 529. $0 to HSA. $49,200 to 401(k) including employer match. $16,500 for Pinger stock.
   (2019, 12, 28650), #$12,000 to IRAs. $6,800 to 401(k). $5,750 to HSA. $2,000 to 529. $2,100 savings/brokerage.
   (2020,  3, 67430), #$30,500 401k. $6,250 HSA. $3,000 529. $27,680 savings/brokerage (includes RSU grants from last Nov & Dec that couldn't be sold).
-  (2020,  6, 56200) #$20k from RSUs, $18k from tax refund, -$3k from paycheck minus expenses (being cautious here leaving about $9k for future expenses), $14,600 my 401k (Mar 20 - May 29), $600 HSA, $6k Rachel's 401k
+  (2020,  6, 56200)  #$20k from RSUs, $18k from tax refund, -$3k from paycheck minus expenses (being cautious here leaving about $9k for future expenses), $14,600 my 401k (Mar 20 - May 29), $600 HSA, $6k Rachel's 401k
 ;
 
 TRUNCATE `investment_category`;
@@ -158,10 +159,10 @@ INSERT INTO `investment_category` VALUES
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
   ("LARGE_CAP",  29),
-  ("INTL_STOCK", 26),
-  ("HOUSING",    19),
+  ("INTL_STOCK", 25),
+  ("HOUSING",    22),
   ("SMALL_CAP",  15),
-  ("CASH",        7), # NOT including emergency fund (one month of expenses)
+  ("CASH",        5), # NOT including emergency fund (one month of expenses)
   ("BONDS",       4)
  ;
 
@@ -629,15 +630,17 @@ INSERT INTO `investments` VALUES
   (2020,  3, "LARGE_CAP",   5387, 72610, 51375+5170),
 
   # my 401k: 164326 pretax, 68288 posttax
+  # $46k from "account of saved money" is for the housing fund.
+  # TODO: buy $6300 in small cap that is recorded here.
   (2020,  6, "EMERGENCY",  16000,     0,      0), #Emergency is approx because of a YNAB issue
-  (2020,  6, "HOUSING",    86158,     0,      0),
+  (2020,  6, "HOUSING",    86158+46000,     0,      0),
   (2020,  6, "LC",             0,     0,      0),
-  (2020,  6, "CASH",        57170+1325, 500, 6980+6032), #500 is HSA
+  (2020,  6, "CASH",        57170+1325-46000, 500, 6980+6032-6300), #500 is HSA
   (2020,  6, "COMMOD",         0,     0,      0),
   (2020,  6, "HIGH_ERN",       0,     0,      0),
   (2020,  6, "BONDS",          0, 16433,   6829),
   (2020,  6, "THE_529",    10671,     0,      0),
-  (2020,  6, "SMALL_CAP",   5192,  7050,  68130), #12806 is HSA
+  (2020,  6, "SMALL_CAP",   5192,  7050,  68130+6300), #12806 is HSA
   (2020,  6, "INTL_STOCK", 17753, 164326*.36, 68288*.36+5308+39695),
   (2020,  6, "LARGE_CAP",   6446, 164326*.54, 68288*.54+37700)
 ;
