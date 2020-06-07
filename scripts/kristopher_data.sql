@@ -55,13 +55,12 @@ INSERT INTO `annual_breakdown` VALUES
   (2018, "DONATIONS",       20700), #Includes 16700 donated January 2019
   (2018, "SAVINGS",         64100),
 
-  #Forecast-savings is tallied up but not taxes
-  (2019, "GROSS_INCOME",    250000),
-  (2019, "FEDERAL_TAXES",   25000),
-  (2019, "STATE_TAXES",     12000),
-  (2019, "SOCIAL_SEC",      12000), #Including Medicare
-  (2019, "DONATIONS",       17000),
-  (2019, "SAVINGS",         87650),
+  (2019, "GROSS_INCOME",    265000), #W2 income + paid family leave (so not the same as AGI)
+  (2019, "FEDERAL_TAXES",   39445),
+  (2019, "STATE_TAXES",     15155),
+  (2019, "SOCIAL_SEC",      12250), #8500 SS, 3750 Medicare
+  (2019, "DONATIONS",       18000),
+  (2019, "SAVINGS",         87650), #Does not include 2019 tax refund of ~$18k
 
   #Forecast
   (2020, "GROSS_INCOME",    300000),
@@ -125,7 +124,8 @@ INSERT INTO `savings` VALUES
   (2019,  6,  9000), #9000 ally "account of saved money"
   (2019,  9, 36000), #30,000 unsaved. $300 saved. $2,000 to 529. $0 to HSA. $49,200 to 401(k) including employer match. $16,500 for Pinger stock.
   (2019, 12, 28650), #$12,000 to IRAs. $6,800 to 401(k). $5,750 to HSA. $2,000 to 529. $2,100 savings/brokerage.
-  (2020,  3, 67430)  #$30,500 401k. $6,250 HSA. $3,000 529. $27,680 savings/brokerage (includes RSU grants from last Nov & Dec that couldn't be sold).
+  (2020,  3, 67430), #$30,500 401k. $6,250 HSA. $3,000 529. $27,680 savings/brokerage (includes RSU grants from last Nov & Dec that couldn't be sold).
+  (2020,  6, 56200) #$20k from RSUs, $18k from tax refund, -$3k from paycheck minus expenses (being cautious here leaving about $9k for future expenses), $14,600 my 401k (Mar 20 - May 29), $600 HSA, $6k Rachel's 401k
 ;
 
 TRUNCATE `investment_category`;
@@ -157,11 +157,11 @@ INSERT INTO `investment_category` VALUES
 # THE_529 not included here as it may not be my money in the future
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
-  ("LARGE_CAP",  30),
-  ("HOUSING",    19),
+  ("LARGE_CAP",  29),
   ("INTL_STOCK", 26),
+  ("HOUSING",    19),
   ("SMALL_CAP",  15),
-  ("CASH",        6), # NOT including emergency fund (one month of expenses)
+  ("CASH",        7), # NOT including emergency fund (one month of expenses)
   ("BONDS",       4)
  ;
 
@@ -601,7 +601,7 @@ INSERT INTO `investments` VALUES
   (2019, 09, "INTL_STOCK", 11050, 42818, 38581-6500),
   (2019, 09, "LARGE_CAP",   5951, 64108, 27425+4500),
 
-  # Note: retirement fund is 54% large cap, 36% international, 10% bonds
+  # Note: my 401k target retirement fund is 54% large cap, 36% international, 10% bonds
 
   (2019, 12, "EMERGENCY",  10012,     0,     0),
   (2019, 12, "HOUSING",    85120,     0,     0),
@@ -626,5 +626,18 @@ INSERT INTO `investments` VALUES
   (2020,  3, "THE_529",     8922,     0,      0),
   (2020,  3, "SMALL_CAP",   4156,  9645, 42279+11190), #9645 is HSA
   (2020,  3, "INTL_STOCK",  9336+5000, 48407, 45296+8700),
-  (2020,  3, "LARGE_CAP",   5387, 72610, 51375+5170)
+  (2020,  3, "LARGE_CAP",   5387, 72610, 51375+5170),
+
+  # my 401k: 164326 pretax, 68288 posttax
+  (2020,  6, "EMERGENCY",  16000,     0,      0), #Emergency is approx because of a YNAB issue
+  (2020,  6, "HOUSING",    86158,     0,      0),
+  (2020,  6, "LC",             0,     0,      0),
+  (2020,  6, "CASH",        57170+1325, 500, 6980+6032), #500 is HSA
+  (2020,  6, "COMMOD",         0,     0,      0),
+  (2020,  6, "HIGH_ERN",       0,     0,      0),
+  (2020,  6, "BONDS",          0, 16433,   6829),
+  (2020,  6, "THE_529",    10671,     0,      0),
+  (2020,  6, "SMALL_CAP",   5192,  7050,  68130), #12806 is HSA
+  (2020,  6, "INTL_STOCK", 17753, 164326*.36, 68288*.36+5308+39695),
+  (2020,  6, "LARGE_CAP",   6446, 164326*.54, 68288*.54+37700)
 ;
