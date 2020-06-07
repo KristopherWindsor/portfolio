@@ -630,12 +630,12 @@ INSERT INTO `investments` VALUES
   (2020,  3, "LARGE_CAP",   5387, 72610, 51375+5170),
 
   # my 401k: 164326 pretax, 68288 posttax
-  # $46k from "account of saved money" is for the housing fund.
+  # $41k from "account of saved money" is for the housing fund.
   # TODO: buy $6300 in small cap that is recorded here.
   (2020,  6, "EMERGENCY",  16000,     0,      0), #Emergency is approx because of a YNAB issue
-  (2020,  6, "HOUSING",    86158+46000,     0,      0),
+  (2020,  6, "HOUSING",    86158+41000,     0,      0),
   (2020,  6, "LC",             0,     0,      0),
-  (2020,  6, "CASH",        57170+1325-46000, 500, 6980+6032-6300), #500 is HSA
+  (2020,  6, "CASH",        57170+1325-41000, 500, 6980+6032-6300), #500 is HSA
   (2020,  6, "COMMOD",         0,     0,      0),
   (2020,  6, "HIGH_ERN",       0,     0,      0),
   (2020,  6, "BONDS",          0, 16433,   6829),
