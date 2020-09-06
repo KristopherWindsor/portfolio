@@ -643,7 +643,7 @@ INSERT INTO `investments` VALUES
   (2020,  6, "THE_529",    10671,     0,      0),
   (2020,  6, "SMALL_CAP",   5192,  7050+12806,  68130+6300), #12806 is HSA
   (2020,  6, "INTL_STOCK", 17753, 164326*.36, 68288*.36+5308+39695),
-  (2020,  6, "LARGE_CAP",   6446, 164326*.54, 68288*.54+37700)
+  (2020,  6, "LARGE_CAP",   6446, 164326*.54, 68288*.54+37700),
 
   # my 401k: 174216 pretax, 84412 posttax
   # $?k from "account of saved money" is for the housing fund.
