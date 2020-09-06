@@ -126,7 +126,8 @@ INSERT INTO `savings` VALUES
   (2019,  9, 36000), #30,000 unsaved. $300 saved. $2,000 to 529. $0 to HSA. $49,200 to 401(k) including employer match. $16,500 for Pinger stock.
   (2019, 12, 28650), #$12,000 to IRAs. $6,800 to 401(k). $5,750 to HSA. $2,000 to 529. $2,100 savings/brokerage.
   (2020,  3, 67430), #$30,500 401k. $6,250 HSA. $3,000 529. $27,680 savings/brokerage (includes RSU grants from last Nov & Dec that couldn't be sold).
-  (2020,  6, 56200)  #$20k from RSUs, $18k from tax refund, -$3k from paycheck minus expenses (being cautious here leaving about $9k for future expenses), $14,600 my 401k (Mar 20 - May 29), $600 HSA, $6k Rachel's 401k
+  (2020,  6, 56200), #$20k from RSUs, $18k from tax refund, -$3k from paycheck minus expenses (being cautious here leaving about $9k for future expenses), $14,600 my 401k (Mar 20 - May 29), $600 HSA, $6k Rachel's 401k
+  (2020,  9, 41100)  #$18k from RSU + paycheck minus expenses, $11350 401k (maxed now), $600 HSA, $11150 Rachel's 401k
 ;
 
 TRUNCATE `investment_category`;
@@ -640,7 +641,24 @@ INSERT INTO `investments` VALUES
   (2020,  6, "HIGH_ERN",       0,     0,      0),
   (2020,  6, "BONDS",          0, 16433,   6829),
   (2020,  6, "THE_529",    10671,     0,      0),
-  (2020,  6, "SMALL_CAP",   5192,  7050,  68130+6300), #12806 is HSA
+  (2020,  6, "SMALL_CAP",   5192,  7050+12806,  68130+6300), #12806 is HSA
   (2020,  6, "INTL_STOCK", 17753, 164326*.36, 68288*.36+5308+39695),
   (2020,  6, "LARGE_CAP",   6446, 164326*.54, 68288*.54+37700)
+
+  # my 401k: 174216 pretax, 84412 posttax
+  # $?k from "account of saved money" is for the housing fund.
+  # TODO: buy ?????
+  (2020,  9, "EMERGENCY",  12300,     0,      0),
+  (2020,  9, "HOUSING",    85120,     0,      0),
+  (2020,  9, "LC",             0,     0,      0),
+  (2020,  9, "CASH",       92108+1326, 500, 6034+578), #500 is HSA
+  (2020,  9, "COMMOD",         0,     0,      0),
+  (2020,  9, "HIGH_ERN",       0,     0,      0),
+  (2020,  9, "BONDS",          0, 17422,   8441),
+  (2020,  9, "THE_529",    11354,     0,      0),
+  (2020,  9, "SMALL_CAP",   5170,  13638+18506,  74095), #13638 is HSA
+  (2020,  9, "INTL_STOCK", 18599, 174216*.36, 41588+5561+84412*.36),
+  (2020,  9, "LARGE_CAP",   6937, 174216*.54, 40546+84412*.54)
 ;
+
+# Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's 401k, r's vanguard, my vanguard
