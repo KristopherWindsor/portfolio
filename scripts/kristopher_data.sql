@@ -127,7 +127,8 @@ INSERT INTO `savings` VALUES
   (2019, 12, 28650), #$12,000 to IRAs. $6,800 to 401(k). $5,750 to HSA. $2,000 to 529. $2,100 savings/brokerage.
   (2020,  3, 67430), #$30,500 401k. $6,250 HSA. $3,000 529. $27,680 savings/brokerage (includes RSU grants from last Nov & Dec that couldn't be sold).
   (2020,  6, 56200), #$20k from RSUs, $18k from tax refund, -$3k from paycheck minus expenses (being cautious here leaving about $9k for future expenses), $14,600 my 401k (Mar 20 - May 29), $600 HSA, $6k Rachel's 401k
-  (2020,  9, 41100)  #$18k from RSU + paycheck minus expenses, $11350 401k (maxed now), $600 HSA, $11150 Rachel's 401k
+  (2020,  9, 41100), #$18k from RSU + paycheck minus expenses, $11350 401k (maxed now), $600 HSA, $11150 Rachel's 401k
+  (2020, 12,     0)  #$??????????????k from RSU + paycheck minus expenses, $600 HSA, $2350 Rachel's 401k (year max minus contributions from previous two quarters)
 ;
 
 TRUNCATE `investment_category`;
@@ -632,7 +633,6 @@ INSERT INTO `investments` VALUES
 
   # my 401k: 164326 pretax, 68288 posttax
   # $41k from "account of saved money" is for the housing fund.
-  # TODO: buy $6300 in small cap that is recorded here.
   (2020,  6, "EMERGENCY",  16000,     0,      0), #Emergency is approx because of a YNAB issue
   (2020,  6, "HOUSING",    86158+41000,     0,      0),
   (2020,  6, "LC",             0,     0,      0),
@@ -647,7 +647,6 @@ INSERT INTO `investments` VALUES
 
   # my 401k: 174216 pretax, 84412 posttax
   # $62k from "account of saved money" is for the housing fund.
-  # TODO: buy $2k intl and $7k large cap (recorded here).
   (2020,  9, "EMERGENCY",  12300,     0,      0),
   (2020,  9, "HOUSING",    85120+62000,     0,      0),
   (2020,  9, "LC",             0,     0,      0),
@@ -658,7 +657,21 @@ INSERT INTO `investments` VALUES
   (2020,  9, "THE_529",    11354,     0,      0),
   (2020,  9, "SMALL_CAP",   5170,  13638+18506,  74095-10800), #13638 is HSA
   (2020,  9, "INTL_STOCK", 18599, 174216*.36, 41588+5561+84412*.36+6030+2000),
-  (2020,  9, "LARGE_CAP",   6937, 174216*.54, 40546+84412*.54+7000)
+  (2020,  9, "LARGE_CAP",   6937, 174216*.54, 40546+84412*.54+7000),
+
+  # my 401k: 190854 pretax, 92474 posttax
+  # $150k from "account of saved money" is for the housing fund.
+  (2020, 12, "EMERGENCY",  17300,     0,      0),
+  (2020, 12, "HOUSING",   150000,     0,      0),
+  (2020, 12, "LC",             0,     0,      0),
+  (2020, 12, "CASH",       232296-150000+1326, 500, 2376), #500 is HSA
+  (2020, 12, "COMMOD",         0,     0,      0),
+  (2020, 12, "HIGH_ERN",       0,     0,      0),
+  (2020, 12, "BONDS",          0, 19085,   9247),
+  (2020, 12, "THE_529",    12673,     0,      0),
+  (2020, 12, "SMALL_CAP",   6308,  17049+24927,  77066), #17049 is HSA
+  (2020, 12, "INTL_STOCK", 21014, 190854*.36, 92474*.36+53891+8571),
+  (2020, 12, "LARGE_CAP",   7689, 190854*.54, 92474*.54+52925)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's 401k, r's vanguard, my vanguard
