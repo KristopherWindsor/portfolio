@@ -98,6 +98,7 @@ INSERT INTO `annual_breakdown` VALUES
 --     I will count the "income" account balance (if any) as part of the emergency fund.
 -- Mar 2020: Stocks are down. Taxes not filed yet so no refund. No tithe yet this year.
 -- Jun 2020: Up due to savings, tax refund, and stock recovery. Ramping up housing fund with a goal to reach $200k.
+-- Dec 2020: Removing housing fund from target allocations and will set a target dollar amount instead. This is because the amount depends on the target house price, not net worth.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -128,7 +129,7 @@ INSERT INTO `savings` VALUES
   (2020,  3, 67430), #$30,500 401k. $6,250 HSA. $3,000 529. $27,680 savings/brokerage (includes RSU grants from last Nov & Dec that couldn't be sold).
   (2020,  6, 56200), #$20k from RSUs, $18k from tax refund, -$3k from paycheck minus expenses (being cautious here leaving about $9k for future expenses), $14,600 my 401k (Mar 20 - May 29), $600 HSA, $6k Rachel's 401k
   (2020,  9, 41100), #$18k from RSU + paycheck minus expenses, $11350 401k (maxed now), $600 HSA, $11150 Rachel's 401k
-  (2020, 12,     0)  #$??????????????k from RSU + paycheck minus expenses, $600 HSA, $2350 Rachel's 401k (year max minus contributions from previous two quarters)
+  (2020, 12, 42950)  #$40k from RSU + paycheck minus expenses, $700 HSA ($6900 contributed so far this year), $2350 Rachel's 401k (year max minus contributions from previous two quarters)
 ;
 
 TRUNCATE `investment_category`;
@@ -157,15 +158,15 @@ INSERT INTO `investment_category` VALUES
     "Funds in US-based companies, with heavy weighting for the largest companies")
 ;
 
-# THE_529 not included here as it may not be my money in the future
+# THE_529 not included here as it may not be my money in the future.
+# Housing fund not included here as it has a dollar target amount instead (which fluctuates significantly).
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
-  ("LARGE_CAP",  29),
-  ("INTL_STOCK", 25),
-  ("HOUSING",    22),
-  ("SMALL_CAP",  15),
+  ("LARGE_CAP",  38),
+  ("INTL_STOCK", 32),
+  ("SMALL_CAP",  20),
   ("CASH",        5), # NOT including emergency fund (one month of expenses)
-  ("BONDS",       4)
+  ("BONDS",       5)
  ;
 
 TRUNCATE `investments`;
