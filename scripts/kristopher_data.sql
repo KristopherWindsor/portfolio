@@ -662,17 +662,20 @@ INSERT INTO `investments` VALUES
 
   # my 401k: 190854 pretax, 92474 posttax
   # $150k from "account of saved money" is for the housing fund.
+  # TODO buy small cap 2500
+  # TODO buy large cap 27000
+  # TODO buy intl 19000
   (2020, 12, "EMERGENCY",  17300,     0,      0),
   (2020, 12, "HOUSING",   150000,     0,      0),
   (2020, 12, "LC",             0,     0,      0),
-  (2020, 12, "CASH",       232296-150000+1326, 500, 2376), #500 is HSA
+  (2020, 12, "CASH",       232296-150000+1326-2500-27000-19000, 500, 2376-2370), #500 is HSA
   (2020, 12, "COMMOD",         0,     0,      0),
   (2020, 12, "HIGH_ERN",       0,     0,      0),
   (2020, 12, "BONDS",          0, 19085,   9247),
   (2020, 12, "THE_529",    12673,     0,      0),
-  (2020, 12, "SMALL_CAP",   6308,  17049+24927,  77066), #17049 is HSA
-  (2020, 12, "INTL_STOCK", 21014, 190854*.36, 92474*.36+53891+8571),
-  (2020, 12, "LARGE_CAP",   7689, 190854*.54, 92474*.54+52925)
+  (2020, 12, "SMALL_CAP",   6308+2500,  17049+24927,  77066), #17049 is HSA
+  (2020, 12, "INTL_STOCK", 21014+19000, 190854*.36, 92474*.36+53891+8571),
+  (2020, 12, "LARGE_CAP",   7689+27000, 190854*.54, 92474*.54+52925+2370)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's 401k, r's vanguard, my vanguard
