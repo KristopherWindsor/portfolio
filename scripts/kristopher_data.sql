@@ -63,15 +63,15 @@ INSERT INTO `annual_breakdown` VALUES
   (2019, "SAVINGS",         87650), #Does not include 2019 tax refund of ~$18k
 
   #Forecast
-  (2020, "GROSS_INCOME",    300000),
+  (2020, "GROSS_INCOME",    400000),
   (2020, "FEDERAL_TAXES",   50000),
   (2020, "STATE_TAXES",     15000),
   (2020, "SOCIAL_SEC",      12000), #Including Medicare
   (2020, "DONATIONS",       24000),
-  (2020, "SAVINGS",         110000),
+  (2020, "SAVINGS",         238480),
 
   #Forecast
-  (2021, "GROSS_INCOME",    400000),
+  (2021, "GROSS_INCOME",    450000),
   (2021, "FEDERAL_TAXES",   100000),
   (2021, "STATE_TAXES",     25000),
   (2021, "SOCIAL_SEC",      20000), #Including Medicare
@@ -141,7 +141,8 @@ INSERT INTO `savings` VALUES
   (2020,  3, 67430), #$30,500 401k. $6,250 HSA. $3,000 529. $27,680 savings/brokerage (includes RSU grants from last Nov & Dec that couldn't be sold).
   (2020,  6, 56200), #$20k from RSUs, $18k from tax refund, -$3k from paycheck minus expenses (being cautious here leaving about $9k for future expenses), $14,600 my 401k (Mar 20 - May 29), $600 HSA, $6k Rachel's 401k
   (2020,  9, 66900), #$43.8k from RSU + paycheck minus expenses, $11350 401k (maxed now), $600 HSA, $11150 Rachel's 401k
-  (2020, 12, 47950)  #$45k from RSU + paycheck minus expenses, $700 HSA ($6900 contributed so far this year), $2350 Rachel's 401k (year max minus contributions from previous two quarters)
+  (2020, 12, 47950), #$45k from RSU + paycheck minus expenses, $700 HSA ($6900 contributed so far this year), $2350 Rachel's 401k (year max minus contributions from previous two quarters)
+  (2021,  3, 84810) #$35k moved to "account of saved money," $37250 my 401k, $9560 Rachel's 401k, $3k HSA. Note: $25k in newly-vested $GOOG cannot be sold or counted as saved.
 ;
 
 TRUNCATE `investment_category`;
@@ -151,7 +152,7 @@ INSERT INTO `investment_category` VALUES
   ("CASH", "Cash", 10, "/images/icons/cash.svg",
     "Cash or money market balance."),
   ("HOUSING", "Housing fund", 9, "/images/icons/house.svg",
-    "Funds set aside for a house downpayment in cash/bonds. The target is $80,000"),
+    "Funds set aside for a house downpayment in cash/bonds."),
   ("HIGH_ERN", "High earnings fund", 8, "/images/icons/stock.svg",
     "Stock picked based on value and fundamentals. Past or present stocks: GM, IRT, and GOOG (vested but in cool-off / blackout)."),
   ("LC", "Lending Club", 7, "/images/icons/peer-lending.svg",
@@ -685,21 +686,22 @@ INSERT INTO `investments` VALUES
   (2020, 12, "SMALL_CAP",   6308+2500,  17049+24927,  77066), #17049 is HSA
   (2020, 12, "INTL_STOCK", 21014+19000, 190854*.36, 92474*.36+53891+8571),
   (2020, 12, "LARGE_CAP",   7689+27000, 190854*.54, 92474*.54+52925+2370),
-	
 
   # my 401k: 227979 pretax, 104143 posttax
   # $140k from "account of saved money" is for the housing fund.
+  # TODO buy INTL_STOCK $9k in my roth ira
+  # TODO buy LARGE_CAP $22k in my brokerage
   (2021,  3, "EMERGENCY",  19946,     0,      0),
   (2021,  3, "HOUSING",   140000,     0,      0),
   (2021,  3, "LC",             0,     0,      0),
-  (2021,  3, "CASH",       198455-140000+7741, 500, 12000), #500 is HSA
+  (2021,  3, "CASH",       198455-140000+7741-22000, 500, 12000-12000), #500 is HSA
   (2021,  3, "COMMOD",         0,     0,      0),
   (2021,  3, "HIGH_ERN",       24978+138,     0,      0), # Includes vested $GOOG
   (2021,  3, "BONDS",          0, 22798,   10414),
   (2021,  3, "THE_529",    14400,     0,      0),
-  (2021,  3, "SMALL_CAP",   10488,  22099+39585,  92726), #22099 is HSA
-  (2021,  3, "INTL_STOCK", 42256, 227979*.36, 104143*.36+56850+9041),
-  (2021,  3, "LARGE_CAP",   36311, 227979*.54, 104143*.54+58213)
+  (2021,  3, "SMALL_CAP",   10488,  22099+39585,  92726-9000), #22099 is HSA
+  (2021,  3, "INTL_STOCK", 42256, 227979*.36, 104143*.36+56850+9041+12000+9000),
+  (2021,  3, "LARGE_CAP",   36311+22000, 227979*.54, 104143*.54+58213)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's 401k, r's vanguard, my vanguard
