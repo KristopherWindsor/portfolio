@@ -2,7 +2,7 @@ TRUNCATE `settings`;
 INSERT INTO `settings` VALUES
   ("REPORT_START_YEAR_LOOSE", "2011"),
   ("REPORT_START_YEAR_STRICT", "2014"),
-  ("REPORT_END_YEAR", "2020"),
+  ("REPORT_END_YEAR", "2021"),
   ("REPORT_TITLE", "Kristopher &amp; Rachel Windsor&apos;s Financial Report")
 ;
 
@@ -68,7 +68,15 @@ INSERT INTO `annual_breakdown` VALUES
   (2020, "STATE_TAXES",     15000),
   (2020, "SOCIAL_SEC",      12000), #Including Medicare
   (2020, "DONATIONS",       24000),
-  (2020, "SAVINGS",         110000)
+  (2020, "SAVINGS",         110000),
+
+  #Forecast
+  (2021, "GROSS_INCOME",    400000),
+  (2021, "FEDERAL_TAXES",   100000),
+  (2021, "STATE_TAXES",     25000),
+  (2021, "SOCIAL_SEC",      20000), #Including Medicare
+  (2021, "DONATIONS",       10000),
+  (2021, "SAVINGS",         200000)
 ;
 
 -- Keeping quarterly summary in case I put it in a table
@@ -99,6 +107,10 @@ INSERT INTO `annual_breakdown` VALUES
 -- Mar 2020: Stocks are down. Taxes not filed yet so no refund. No tithe yet this year.
 -- Jun 2020: Up due to savings, tax refund, and stock recovery. Ramping up housing fund with a goal to reach $200k.
 -- Dec 2020: Removing housing fund from target allocations and will set a target dollar amount instead. This is because the amount depends on the target house price, not net worth.
+--     Corrected an issue where RSU money was moved right from Schwab to "account of saved money" and not counted in savings. Also changed 529 contributions to come from "account of saved money"
+--     (instead of from "income goes here") so that all savings must go from "income goes here" account to "account of saved money" (excluding 401/hsa contributions).
+-- Mar 2021: Reduce housing fund by $10k given how much stock is available in brokerage in case more is needed and given that it is unlikely to buy a house in the next quarter.
+--     This is the first March I am doing the portfolio update before taxes. $GOOG cannot be sold for the last 2 months due to technical issues.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -128,8 +140,8 @@ INSERT INTO `savings` VALUES
   (2019, 12, 28650), #$12,000 to IRAs. $6,800 to 401(k). $5,750 to HSA. $2,000 to 529. $2,100 savings/brokerage.
   (2020,  3, 67430), #$30,500 401k. $6,250 HSA. $3,000 529. $27,680 savings/brokerage (includes RSU grants from last Nov & Dec that couldn't be sold).
   (2020,  6, 56200), #$20k from RSUs, $18k from tax refund, -$3k from paycheck minus expenses (being cautious here leaving about $9k for future expenses), $14,600 my 401k (Mar 20 - May 29), $600 HSA, $6k Rachel's 401k
-  (2020,  9, 41100), #$18k from RSU + paycheck minus expenses, $11350 401k (maxed now), $600 HSA, $11150 Rachel's 401k
-  (2020, 12, 42950)  #$40k from RSU + paycheck minus expenses, $700 HSA ($6900 contributed so far this year), $2350 Rachel's 401k (year max minus contributions from previous two quarters)
+  (2020,  9, 66900), #$43.8k from RSU + paycheck minus expenses, $11350 401k (maxed now), $600 HSA, $11150 Rachel's 401k
+  (2020, 12, 47950)  #$45k from RSU + paycheck minus expenses, $700 HSA ($6900 contributed so far this year), $2350 Rachel's 401k (year max minus contributions from previous two quarters)
 ;
 
 TRUNCATE `investment_category`;
@@ -662,9 +674,6 @@ INSERT INTO `investments` VALUES
 
   # my 401k: 190854 pretax, 92474 posttax
   # $150k from "account of saved money" is for the housing fund.
-  # TODO buy small cap 2500
-  # TODO buy large cap 27000
-  # TODO buy intl 19000
   (2020, 12, "EMERGENCY",  17300,     0,      0),
   (2020, 12, "HOUSING",   150000,     0,      0),
   (2020, 12, "LC",             0,     0,      0),
@@ -675,7 +684,22 @@ INSERT INTO `investments` VALUES
   (2020, 12, "THE_529",    12673,     0,      0),
   (2020, 12, "SMALL_CAP",   6308+2500,  17049+24927,  77066), #17049 is HSA
   (2020, 12, "INTL_STOCK", 21014+19000, 190854*.36, 92474*.36+53891+8571),
-  (2020, 12, "LARGE_CAP",   7689+27000, 190854*.54, 92474*.54+52925+2370)
+  (2020, 12, "LARGE_CAP",   7689+27000, 190854*.54, 92474*.54+52925+2370),
+	
+
+  # my 401k: 227979 pretax, 104143 posttax
+  # $140k from "account of saved money" is for the housing fund.
+  (2021,  3, "EMERGENCY",  19946,     0,      0),
+  (2021,  3, "HOUSING",   140000,     0,      0),
+  (2021,  3, "LC",             0,     0,      0),
+  (2021,  3, "CASH",       198455-140000+7741, 500, 12000), #500 is HSA
+  (2021,  3, "COMMOD",         0,     0,      0),
+  (2021,  3, "HIGH_ERN",       24978+138,     0,      0), # Includes vested $GOOG
+  (2021,  3, "BONDS",          0, 22798,   10414),
+  (2021,  3, "THE_529",    14400,     0,      0),
+  (2021,  3, "SMALL_CAP",   10488,  22099+39585,  92726), #22099 is HSA
+  (2021,  3, "INTL_STOCK", 42256, 227979*.36, 104143*.36+56850+9041),
+  (2021,  3, "LARGE_CAP",   36311, 227979*.54, 104143*.54+58213)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's 401k, r's vanguard, my vanguard
