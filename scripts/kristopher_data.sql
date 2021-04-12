@@ -62,18 +62,19 @@ INSERT INTO `annual_breakdown` VALUES
   (2019, "DONATIONS",       18000),
   (2019, "SAVINGS",         87650), #Does not include 2019 tax refund of ~$18k
 
-  #Forecast
-  (2020, "GROSS_INCOME",    400000),
-  (2020, "FEDERAL_TAXES",   50000),
-  (2020, "STATE_TAXES",     15000),
-  (2020, "SOCIAL_SEC",      12000), #Including Medicare
-  (2020, "DONATIONS",       24000),
-  (2020, "SAVINGS",         238480),
+  # New accounting starting this year: instead of counting savings and then assuming remainder=expenses, get expenses from YNAB, and solve for savings.
+  # This will fix some accounting issues: 1) accumulating money one year and then counting it as savings for another year 2) tax dues and refunds crossing years.
+  (2020, "GROSS_INCOME",    420000),
+  (2020, "FEDERAL_TAXES",   76800),
+  (2020, "STATE_TAXES",     28700),
+  (2020, "SOCIAL_SEC",      19500), #8500 SS, 6700 Medicare, 3500 SS, 800 Medicare
+  (2020, "DONATIONS",       15900),
+  (2020, "SAVINGS",         210800), # Vs. 238500 from `savings` table. Based on YNAB expenses of 68,300.
 
   #Forecast
   (2021, "GROSS_INCOME",    450000),
   (2021, "FEDERAL_TAXES",   100000),
-  (2021, "STATE_TAXES",     25000),
+  (2021, "STATE_TAXES",     35000),
   (2021, "SOCIAL_SEC",      20000), #Including Medicare
   (2021, "DONATIONS",       10000),
   (2021, "SAVINGS",         200000)
@@ -689,8 +690,6 @@ INSERT INTO `investments` VALUES
 
   # my 401k: 227979 pretax, 104143 posttax
   # $140k from "account of saved money" is for the housing fund.
-  # TODO buy INTL_STOCK $9k in my roth ira
-  # TODO buy LARGE_CAP $22k in my brokerage
   (2021,  3, "EMERGENCY",  19946,     0,      0),
   (2021,  3, "HOUSING",   140000,     0,      0),
   (2021,  3, "LC",             0,     0,      0),
