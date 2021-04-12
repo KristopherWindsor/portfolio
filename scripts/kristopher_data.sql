@@ -55,21 +55,22 @@ INSERT INTO `annual_breakdown` VALUES
   (2018, "DONATIONS",       20700), #Includes 16700 donated January 2019
   (2018, "SAVINGS",         64100),
 
+  # New accounting starting this year: instead of counting savings and then assuming remainder=expenses, get expenses from YNAB, and solve for savings.
+  # This will fix some accounting issues: 1) accumulating money one year and then counting it as savings for another year 2) tax dues and refunds crossing years.
+	# The only downside is that unreported expenses are counted as savings. The `savings` table approach should be kept for catching discrepancies.
   (2019, "GROSS_INCOME",    265000), #W2 income + paid family leave (so not the same as AGI)
   (2019, "FEDERAL_TAXES",   39445),
   (2019, "STATE_TAXES",     15155),
   (2019, "SOCIAL_SEC",      12250), #8500 SS, 3750 Medicare
   (2019, "DONATIONS",       18000),
-  (2019, "SAVINGS",         87650), #Does not include 2019 tax refund of ~$18k
+  (2019, "SAVINGS",         107450), # Vs. 87650 from old calculation, which was missing a ~$18k 2019 tax refund. Based on YNAB expenses of 72700.
 
-  # New accounting starting this year: instead of counting savings and then assuming remainder=expenses, get expenses from YNAB, and solve for savings.
-  # This will fix some accounting issues: 1) accumulating money one year and then counting it as savings for another year 2) tax dues and refunds crossing years.
   (2020, "GROSS_INCOME",    420000),
   (2020, "FEDERAL_TAXES",   76800),
   (2020, "STATE_TAXES",     28700),
   (2020, "SOCIAL_SEC",      19500), #8500 SS, 6700 Medicare, 3500 SS, 800 Medicare
   (2020, "DONATIONS",       15900),
-  (2020, "SAVINGS",         210800), # Vs. 238500 from `savings` table. Based on YNAB expenses of 68,300.
+  (2020, "SAVINGS",         210800), # Vs. 238500 from `savings` table; difference is due to ~$18k 2019 tax refund. Based on YNAB expenses of 68300.
 
   #Forecast
   (2021, "GROSS_INCOME",    450000),
