@@ -58,6 +58,7 @@ INSERT INTO `annual_breakdown` VALUES
   # New accounting starting this year: instead of counting savings and then assuming remainder=expenses, get expenses from YNAB, and solve for savings.
   # This will fix some accounting issues: 1) accumulating money one year and then counting it as savings for another year 2) tax dues and refunds crossing years.
 	# The only downside is that unreported expenses are counted as savings. The `savings` table approach should be kept for catching discrepancies.
+	# `savings` table includes 401k and HSA employer contributions whereas `SAVINGS` column does not.
   (2019, "GROSS_INCOME",    265000), #W2 income + paid family leave (so not the same as AGI)
   (2019, "FEDERAL_TAXES",   39445),
   (2019, "STATE_TAXES",     15155),
@@ -70,10 +71,10 @@ INSERT INTO `annual_breakdown` VALUES
   (2020, "STATE_TAXES",     28700),
   (2020, "SOCIAL_SEC",      19500), #8500 SS, 6700 Medicare, 3500 SS, 800 Medicare
   (2020, "DONATIONS",       15900),
-  (2020, "SAVINGS",         210800), # Vs. 238500 from `savings` table; difference is due to ~$18k 2019 tax refund. Based on YNAB expenses of 68300.
+  (2020, "SAVINGS",         210800), # Vs. 238500 from `savings` table; difference is due to ~$18k 2019 tax refund and employer contributions. Based on YNAB expenses of 68300.
 
   #Forecast
-  (2021, "GROSS_INCOME",    450000),
+  (2021, "GROSS_INCOME",    480000),
   (2021, "FEDERAL_TAXES",   100000),
   (2021, "STATE_TAXES",     35000),
   (2021, "SOCIAL_SEC",      20000), #Including Medicare
@@ -113,6 +114,7 @@ INSERT INTO `annual_breakdown` VALUES
 --     (instead of from "income goes here") so that all savings must go from "income goes here" account to "account of saved money" (excluding 401/hsa contributions).
 -- Mar 2021: Reduce housing fund by $10k given how much stock is available in brokerage in case more is needed and given that it is unlikely to buy a house in the next quarter.
 --     This is the first March I am doing the portfolio update before taxes. $GOOG cannot be sold for the last 2 months due to technical issues.
+-- Jun 2021: no allocation or contribution changes. Paid ~$8k in income taxes. Resolved $GOOG issue from last quarter.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -144,7 +146,8 @@ INSERT INTO `savings` VALUES
   (2020,  6, 56200), #$20k from RSUs, $18k from tax refund, -$3k from paycheck minus expenses (being cautious here leaving about $9k for future expenses), $14,600 my 401k (Mar 20 - May 29), $600 HSA, $6k Rachel's 401k
   (2020,  9, 66900), #$43.8k from RSU + paycheck minus expenses, $11350 401k (maxed now), $600 HSA, $11150 Rachel's 401k
   (2020, 12, 47950), #$45k from RSU + paycheck minus expenses, $700 HSA ($6900 contributed so far this year), $2350 Rachel's 401k (year max minus contributions from previous two quarters)
-  (2021,  3, 84810) #$35k moved to "account of saved money," $37250 my 401k, $9560 Rachel's 401k, $3k HSA. Note: $25k in newly-vested $GOOG cannot be sold or counted as saved.
+  (2021,  3, 84810), #$35k moved to "account of saved money," $37250 my 401k, $9560 Rachel's 401k, $3k HSA. Note: $25k in newly-vested $GOOG cannot be sold or counted as saved.
+	(2021,  6, 73800)  #$56k moved to "saved money", $14k my 401k ($51250 ytd), $2600 Rachel's 401k ($12160 ytd), $1200 HSA ($4200 ytd).
 ;
 
 TRUNCATE `investment_category`;
@@ -701,7 +704,21 @@ INSERT INTO `investments` VALUES
   (2021,  3, "THE_529",    14400,     0,      0),
   (2021,  3, "SMALL_CAP",   10488,  22099+39585,  92726-9000), #22099 is HSA
   (2021,  3, "INTL_STOCK", 42256, 227979*.36, 104143*.36+56850+9041+12000+9000),
-  (2021,  3, "LARGE_CAP",   36311+22000, 227979*.54, 104143*.54+58213)
+  (2021,  3, "LARGE_CAP",   36311+22000, 227979*.54, 104143*.54+58213),
+
+  # my 401k: 248071 pretax, 127740 posttax
+  # $140k from "account of saved money" is for the housing fund.
+  (2021,  6, "EMERGENCY",  17817,     0,      0),
+  (2021,  6, "HOUSING",   140000,     0,      0),
+  (2021,  6, "LC",             0,     0,      0),
+  (2021,  6, "CASH",       55604+175192+10790+738-140000, 500, 93), #500 is HSA
+  (2021,  6, "COMMOD",         0,     0,      0),
+  (2021,  6, "HIGH_ERN", 14284+222,   0,      0), # Includes vested $GOOG
+  (2021,  6, "BONDS",          0, 24807,   12774),
+  (2021,  6, "THE_529",    16625,     0,      0),
+  (2021,  6, "SMALL_CAP",  11084,  25373+45317,  88486), #25373 is HSA
+  (2021,  6, "INTL_STOCK", 45220, 248071*.36, 127740*.36+67339+25927),
+  (2021,  6, "LARGE_CAP",  63426, 248071*.54, 127740*.54+63433)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's 401k, r's vanguard, my vanguard
