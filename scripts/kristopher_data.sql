@@ -708,17 +708,18 @@ INSERT INTO `investments` VALUES
 
   # my 401k: 248071 pretax, 127740 posttax
   # $140k from "account of saved money" is for the housing fund.
+  # TODO: buy 17650 large cap, 18810 international, 12610 small cap. TODO: move $56k into "account of saved money" from income account.
   (2021,  6, "EMERGENCY",  17817,     0,      0),
   (2021,  6, "HOUSING",   140000,     0,      0),
   (2021,  6, "LC",             0,     0,      0),
-  (2021,  6, "CASH",       55604+175192+10790+738-140000, 500, 93), #500 is HSA
+  (2021,  6, "CASH",       55604+175192+10790+738-140000-17650-18810-12610, 500, 93), #500 is HSA
   (2021,  6, "COMMOD",         0,     0,      0),
   (2021,  6, "HIGH_ERN", 14284+222,   0,      0), # Includes vested $GOOG
   (2021,  6, "BONDS",          0, 24807,   12774),
   (2021,  6, "THE_529",    16625,     0,      0),
-  (2021,  6, "SMALL_CAP",  11084,  25373+45317,  88486), #25373 is HSA
-  (2021,  6, "INTL_STOCK", 45220, 248071*.36, 127740*.36+67339+25927),
-  (2021,  6, "LARGE_CAP",  63426, 248071*.54, 127740*.54+63433)
+  (2021,  6, "SMALL_CAP",  11084+12610,  25373+45317,  88486), #25373 is HSA
+  (2021,  6, "INTL_STOCK", 45220+18810, 248071*.36, 127740*.36+67339+25927),
+  (2021,  6, "LARGE_CAP",  63426+17650, 248071*.54, 127740*.54+63433)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's 401k, r's vanguard, my vanguard
