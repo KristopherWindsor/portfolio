@@ -708,7 +708,6 @@ INSERT INTO `investments` VALUES
 
   # my 401k: 248071 pretax, 127740 posttax
   # $140k from "account of saved money" is for the housing fund.
-  # TODO: buy 17650 large cap, 18810 international, 12610 small cap. TODO: move $56k into "account of saved money" from income account.
   (2021,  6, "EMERGENCY",  17817,     0,      0),
   (2021,  6, "HOUSING",   140000,     0,      0),
   (2021,  6, "LC",             0,     0,      0),
