@@ -115,6 +115,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Mar 2021: Reduce housing fund by $10k given how much stock is available in brokerage in case more is needed and given that it is unlikely to buy a house in the next quarter.
 --     This is the first March I am doing the portfolio update before taxes. $GOOG cannot be sold for the last 2 months due to technical issues.
 -- Jun 2021: no allocation or contribution changes. Paid ~$8k in income taxes. Resolved $GOOG issue from last quarter.
+-- Sep 2021: increase housing fund based on new plans. No other changes.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -147,7 +148,8 @@ INSERT INTO `savings` VALUES
   (2020,  9, 66900), #$43.8k from RSU + paycheck minus expenses, $11350 401k (maxed now), $600 HSA, $11150 Rachel's 401k
   (2020, 12, 47950), #$45k from RSU + paycheck minus expenses, $700 HSA ($6900 contributed so far this year), $2350 Rachel's 401k (year max minus contributions from previous two quarters)
   (2021,  3, 84810), #$35k moved to "account of saved money," $37250 my 401k, $9560 Rachel's 401k, $3k HSA. Note: $25k in newly-vested $GOOG cannot be sold or counted as saved.
-	(2021,  6, 73800)  #$56k moved to "saved money", $14k my 401k ($51250 ytd), $2600 Rachel's 401k ($12160 ytd), $1200 HSA ($4200 ytd).
+	(2021,  6, 73800), #$56k moved to "saved money", $14k my 401k ($51250 ytd), $2600 Rachel's 401k ($12160 ytd), $1200 HSA ($4200 ytd).
+	(2021,  9, 69850)  #$60k moved to "saved money", $6750 my 401k ($58000 ytd), $1700 Rachel's new 401k, $1400 HSA ($5600 ytd).
 ;
 
 TRUNCATE `investment_category`;
@@ -718,7 +720,23 @@ INSERT INTO `investments` VALUES
   (2021,  6, "THE_529",    16625,     0,      0),
   (2021,  6, "SMALL_CAP",  11084+12610,  25373+45317,  88486), #25373 is HSA
   (2021,  6, "INTL_STOCK", 45220+18810, 248071*.36, 127740*.36+67339+25927),
-  (2021,  6, "LARGE_CAP",  63426+17650, 248071*.54, 127740*.54+63433)
+  (2021,  6, "LARGE_CAP",  63426+17650, 248071*.54, 127740*.54+63433),
+
+  # my 401k: 258013 pretax, 139763 posttax
+  # r's fidelity 401k: 849 pretax, 849 posttax (approx)
+  # both 401k combined: 258862 pretax, 140612 posttax
+  # $170k from "account of saved money" is for the housing fund.
+  (2021,  9, "EMERGENCY",  14137,     0,      0),
+  (2021,  9, "HOUSING",   170000,     0,      0),
+  (2021,  9, "LC",             0,     0,      0),
+  (2021,  9, "CASH",     252536-170000+1030, 500, 93), #500 is HSA
+  (2021,  9, "COMMOD",         0,     0,      0),
+  (2021,  9, "HIGH_ERN", 17166+190,   0,      0), # Includes vested $GOOG
+  (2021,  9, "BONDS",          0, 25886,  13976),
+  (2021,  9, "THE_529",    18248,     0,      0),
+  (2021,  9, "SMALL_CAP",  22809,  27104+44397, 85893), #27104 is HSA
+  (2021,  9, "INTL_STOCK", 64166, 258862*.36, 139763*.36+67582+26021),
+  (2021,  9, "LARGE_CAP",  85578, 258862*.54, 139763*.54+67121)
 ;
 
-# Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's 401k, r's vanguard, my vanguard
+# Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard
