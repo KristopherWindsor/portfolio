@@ -154,12 +154,14 @@ INSERT INTO `savings` VALUES
 
 TRUNCATE `investment_category`;
 INSERT INTO `investment_category` VALUES
-  ("EMERGENCY", "Emergency fund (est)", 11, "/images/icons/emergency.svg",
+  ("EMERGENCY", "Emergency fund (est)", 12, "/images/icons/emergency.svg",
     "Money in the bank plus household cash, less credit card balances. Includes cash for emergencies such as a broken car."),
-  ("CASH", "Cash", 10, "/images/icons/cash.svg",
+  ("CASH", "Cash", 11, "/images/icons/cash.svg",
     "Cash or money market balance."),
-  ("HOUSING", "Housing fund", 9, "/images/icons/house.svg",
+  ("HOUSING", "Housing fund", 10, "/images/icons/house.svg",
     "Funds set aside for a house downpayment in cash/bonds."),
+  ("HOME_EQ", "Home Equity", 9, "/images/icons/house.svg",
+    "Home value (per Zillow estimate, etc) minus loan amount(s)."),
   ("HIGH_ERN", "High earnings fund", 8, "/images/icons/stock.svg",
     "Stock picked based on value and fundamentals. Past or present stocks: GM, IRT, and GOOG (vested but in cool-off / blackout)."),
   ("LC", "Lending Club", 7, "/images/icons/peer-lending.svg",
@@ -722,13 +724,57 @@ INSERT INTO `investments` VALUES
   (2021,  6, "INTL_STOCK", 45220+18810, 248071*.36, 127740*.36+67339+25927),
   (2021,  6, "LARGE_CAP",  63426+17650, 248071*.54, 127740*.54+63433),
 
-  # TODO: buy $15k small cap, $10k intl										       
+  (2014, 12, "HOME_EQ", 0, 0, 0),
+  (2015,  1, "HOME_EQ", 0, 0, 0),
+  (2015,  2, "HOME_EQ", 0, 0, 0),
+  (2015,  3, "HOME_EQ", 0, 0, 0),
+  (2015,  4, "HOME_EQ", 0, 0, 0),
+  (2015,  5, "HOME_EQ", 0, 0, 0),
+  (2015,  6, "HOME_EQ", 0, 0, 0),
+  (2015,  7, "HOME_EQ", 0, 0, 0),
+  (2015,  8, "HOME_EQ", 0, 0, 0),
+  (2015,  9, "HOME_EQ", 0, 0, 0),
+  (2015, 10, "HOME_EQ", 0, 0, 0),
+  (2015, 11, "HOME_EQ", 0, 0, 0),
+  (2015, 12, "HOME_EQ", 0, 0, 0),
+  (2016,  1, "HOME_EQ", 0, 0, 0),
+  (2016,  2, "HOME_EQ", 0, 0, 0),
+  (2016,  3, "HOME_EQ", 0, 0, 0),
+  (2016,  4, "HOME_EQ", 0, 0, 0),
+  (2016,  5, "HOME_EQ", 0, 0, 0),
+  (2016,  6, "HOME_EQ", 0, 0, 0),
+  (2016,  7, "HOME_EQ", 0, 0, 0),
+  (2016,  8, "HOME_EQ", 0, 0, 0),
+  (2016,  9, "HOME_EQ", 0, 0, 0),
+  (2016, 10, "HOME_EQ", 0, 0, 0),
+  (2016, 11, "HOME_EQ", 0, 0, 0),
+  (2016, 12, "HOME_EQ", 0, 0, 0),
+  (2017,  3, "HOME_EQ", 0, 0, 0),
+  (2017,  6, "HOME_EQ", 0, 0, 0),
+  (2017,  9, "HOME_EQ", 0, 0, 0),
+  (2017, 12, "HOME_EQ", 0, 0, 0),
+  (2018,  3, "HOME_EQ", 0, 0, 0),
+  (2018,  6, "HOME_EQ", 0, 0, 0),
+  (2018,  9, "HOME_EQ", 0, 0, 0),
+  (2018, 12, "HOME_EQ", 0, 0, 0),
+  (2019,  3, "HOME_EQ", 0, 0, 0),
+  (2019,  6, "HOME_EQ", 0, 0, 0),
+  (2019,  9, "HOME_EQ", 0, 0, 0),
+  (2019, 12, "HOME_EQ", 0, 0, 0),
+  (2020,  3, "HOME_EQ", 0, 0, 0),
+  (2020,  6, "HOME_EQ", 0, 0, 0),
+  (2020,  9, "HOME_EQ", 0, 0, 0),
+  (2020, 12, "HOME_EQ", 0, 0, 0),
+  (2021,  3, "HOME_EQ", 0, 0, 0),
+  (2021,  6, "HOME_EQ", 0, 0, 0),
+
   # my 401k: 258013 pretax, 139763 posttax
   # r's fidelity 401k: 849 pretax, 849 posttax (approx)
   # both 401k combined: 258862 pretax, 140612 posttax
   # $170k from "account of saved money" is for the housing fund.
   (2021,  9, "EMERGENCY",  14137,     0,      0),
   (2021,  9, "HOUSING",   170000,     0,      0),
+  (2021,  9, "HOME_EQ",        0,     0,      0),
   (2021,  9, "LC",             0,     0,      0),
   (2021,  9, "CASH",     252536-170000+1030-15000-10000, 500, 93), #500 is HSA
   (2021,  9, "COMMOD",         0,     0,      0),
@@ -740,4 +786,4 @@ INSERT INTO `investments` VALUES
   (2021,  9, "LARGE_CAP",  85578, 258862*.54, 139763*.54+67121)
 ;
 
-# Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard
+# Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc
