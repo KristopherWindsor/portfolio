@@ -116,6 +116,7 @@ INSERT INTO `annual_breakdown` VALUES
 --     This is the first March I am doing the portfolio update before taxes. $GOOG cannot be sold for the last 2 months due to technical issues.
 -- Jun 2021: no allocation or contribution changes. Paid ~$8k in income taxes. Resolved $GOOG issue from last quarter.
 -- Sep 2021: increase housing fund based on new plans. No other changes.
+-- Dec 2021: bought house, so now any remainder of the money saved for a downpayment goes back into the regular asset allocation.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -149,7 +150,8 @@ INSERT INTO `savings` VALUES
   (2020, 12, 47950), #$45k from RSU + paycheck minus expenses, $700 HSA ($6900 contributed so far this year), $2350 Rachel's 401k (year max minus contributions from previous two quarters)
   (2021,  3, 84810), #$35k moved to "account of saved money," $37250 my 401k, $9560 Rachel's 401k, $3k HSA. Note: $25k in newly-vested $GOOG cannot be sold or counted as saved.
   (2021,  6, 73800), #$56k moved to "saved money", $14k my 401k ($51250 ytd), $2600 Rachel's 401k ($12160 ytd), $1200 HSA ($4200 ytd).
-  (2021,  9, 69850)  #$60k moved to "saved money", $6750 my 401k ($58000 ytd), $1700 Rachel's new 401k, $1400 HSA ($5600 ytd).
+  (2021,  9, 69850), #$60k moved to "saved money", $6750 my 401k ($58000 ytd), $1700 Rachel's new 401k, $1400 HSA ($5600 ytd).
+  (2021, 12, 71450), #$60k, 10250 Rachel's 401k (11950 ytd), $1200 HSA ($6800 ytd).
 ;
 
 TRUNCATE `investment_category`;
@@ -783,7 +785,23 @@ INSERT INTO `investments` VALUES
   (2021,  9, "THE_529",    18248,     0,      0),
   (2021,  9, "SMALL_CAP",  22809+15000,  27104+44397, 85893), #27104 is HSA
   (2021,  9, "INTL_STOCK", 64166+10000, 258862*.36, 139763*.36+67582+26021),
-  (2021,  9, "LARGE_CAP",  85578, 258862*.54, 139763*.54+67121)
+  (2021,  9, "LARGE_CAP",  85578, 258862*.54, 139763*.54+67121),
+
+  # my 401k: 252950 pretax, 137020 posttax
+  # r's fidelity 401k: 7510 pretax, 5890 posttax (approx)
+  # both 401k combined: 260460 pretax, 142910 posttax
+  (2021, 12, "EMERGENCY",   9757,     0,      0),
+  (2021, 12, "HOUSING",        0,     0,      0),
+  (2021, 12, "HOME_EQ",   152000,     0,      0), # $703k zestimate - $551k loan
+  (2021, 12, "LC",             0,     0,      0),
+  (2021, 12, "CASH",     120585+957, 500, 93), #500 is HSA
+  (2021, 12, "COMMOD",         0,     0,      0),
+  (2021, 12, "HIGH_ERN", 16883+172,   0,      0), # Includes vested $GOOG
+  (2021, 12, "BONDS",          0, 26046,  14291),
+  (2021, 12, "THE_529",    18929,     0,      0),
+  (2021, 12, "SMALL_CAP",  38331,  27357+44504, 87139), #27357 is HSA
+  (2021, 12, "INTL_STOCK", 70212, 260460*.36, 142910*.36+24651+64025),
+  (2021, 12, "LARGE_CAP",  86268, 260460*.54, 142910*.54+67687)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc
