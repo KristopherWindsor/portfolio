@@ -125,7 +125,8 @@ INSERT INTO `annual_breakdown` VALUES
 -- Jun 2021: no allocation or contribution changes. Paid ~$8k in income taxes. Resolved $GOOG issue from last quarter.
 -- Sep 2021: increase housing fund based on new plans. No other changes.
 -- Dec 2021: bought house, so now any remainder of the money saved for a downpayment goes back into the regular asset allocation.
--- Mar 2022: reduce small cap AA by 1pp. Counting Feb GOOG vest which will should happen next week. Counting 401k rollover money ($40k) which is currently in flight.
+-- Mar 2022: Reduce small cap AA by 1pp. Adjust cash/bond AA to match reality.
+--     Counting Feb GOOG vest which will should happen next week. Counting 401k rollover money ($40k) which is currently in flight.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -199,8 +200,8 @@ INSERT INTO `investment_target` VALUES
   ("LARGE_CAP",  39),
   ("INTL_STOCK", 32),
   ("SMALL_CAP",  19),
-  ("CASH",        5), # NOT including emergency fund (one month of expenses)
-  ("BONDS",       5)
+  ("CASH",        2), # NOT including emergency fund (one month of expenses)
+  ("BONDS",       8)
  ;
 
 TRUNCATE `investments`;
@@ -820,13 +821,13 @@ INSERT INTO `investments` VALUES
   (2022,  3, "HOUSING",        0,     0,      0),
   (2022,  3, "HOME_EQ",   210000,     0,      0), # $758k zestimate - $548k loan
   (2022,  3, "LC",             0,     0,      0),
-  (2022,  3, "CASH",     53686+11000+735, 500, 6000+6093), #500 is HSA
+  (2022,  3, "CASH",     53686+11000+735-47400, 500, 6000+6093-12092), #500 is HSA
   (2022,  3, "COMMOD",         0,     0,      0),
   (2022,  3, "HIGH_ERN", 17122+119,   0,      0), # Includes vested $GOOG
   (2022,  3, "BONDS",      40000, 28463,  15010),
   (2022,  3, "THE_529",    19344,     0,      0),
-  (2022,  3, "SMALL_CAP",  50654,  29604, 85214), #29604 is HSA
-  (2022,  3, "INTL_STOCK", 102411, 284632*.36, 150097*.36+63264+24358),
+  (2022,  3, "SMALL_CAP",  50654+47400,  29604, 85214), #29604 is HSA
+  (2022,  3, "INTL_STOCK", 102411, 284632*.36, 150097*.36+63264+24358+12092),
   (2022,  3, "LARGE_CAP",  111128, 284632*.54+42424, 150097*.54+65048)
 ;
 
