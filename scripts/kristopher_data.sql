@@ -2,7 +2,7 @@ TRUNCATE `settings`;
 INSERT INTO `settings` VALUES
   ("REPORT_START_YEAR_LOOSE", "2011"),
   ("REPORT_START_YEAR_STRICT", "2014"),
-  ("REPORT_END_YEAR", "2021"),
+  ("REPORT_END_YEAR", "2022"),
   ("REPORT_TITLE", "Kristopher &amp; Rachel Windsor&apos;s Financial Report")
 ;
 
@@ -79,7 +79,15 @@ INSERT INTO `annual_breakdown` VALUES
   (2021, "STATE_TAXES",     35000),
   (2021, "SOCIAL_SEC",      20000), #Including Medicare
   (2021, "DONATIONS",       10000),
-  (2021, "SAVINGS",         200000)
+  (2021, "SAVINGS",         200000),
+
+  #Forecast
+  (2022, "GROSS_INCOME",    480000),
+  (2022, "FEDERAL_TAXES",   100000),
+  (2022, "STATE_TAXES",     35000),
+  (2022, "SOCIAL_SEC",      20000), #Including Medicare
+  (2022, "DONATIONS",       10000),
+  (2022, "SAVINGS",         200000)
 ;
 
 -- Keeping quarterly summary in case I put it in a table
@@ -117,6 +125,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Jun 2021: no allocation or contribution changes. Paid ~$8k in income taxes. Resolved $GOOG issue from last quarter.
 -- Sep 2021: increase housing fund based on new plans. No other changes.
 -- Dec 2021: bought house, so now any remainder of the money saved for a downpayment goes back into the regular asset allocation.
+-- Mar 2022: reduce small cap AA by 1pp. Counting Feb GOOG vest which will should happen next week. Counting 401k rollover money ($40k) which is currently in flight.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -151,7 +160,8 @@ INSERT INTO `savings` VALUES
   (2021,  3, 84810), #$35k moved to "account of saved money," $37250 my 401k, $9560 Rachel's 401k, $3k HSA. Note: $25k in newly-vested $GOOG cannot be sold or counted as saved.
   (2021,  6, 73800), #$56k moved to "saved money", $14k my 401k ($51250 ytd), $2600 Rachel's 401k ($12160 ytd), $1200 HSA ($4200 ytd).
   (2021,  9, 69850), #$60k moved to "saved money", $6750 my 401k ($58000 ytd), $1700 Rachel's new 401k, $1400 HSA ($5600 ytd).
-  (2021, 12, 71450)  #$60k, 10250 Rachel's 401k (11950 ytd), $1200 HSA ($6800 ytd).
+  (2021, 12, 71450), #$60k, 10250 Rachel's 401k (11950 ytd), $1200 HSA ($6800 ytd).
+  (2022,  3, 98615)  #$50k, $37250 my 401k ($8k after tax ytd), $3500 Rachel's old 401k in 2021, $4650 Rachel's old 401k in 2022 (new 401k shows no contributions yet), $2815 2022 HSA + $400 2021 HSA
 ;
 
 TRUNCATE `investment_category`;
@@ -186,9 +196,9 @@ INSERT INTO `investment_category` VALUES
 # Housing fund not included here as it has a dollar target amount instead (which fluctuates significantly).
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
-  ("LARGE_CAP",  38),
+  ("LARGE_CAP",  39),
   ("INTL_STOCK", 32),
-  ("SMALL_CAP",  20),
+  ("SMALL_CAP",  19),
   ("CASH",        5), # NOT including emergency fund (one month of expenses)
   ("BONDS",       5)
  ;
@@ -801,7 +811,23 @@ INSERT INTO `investments` VALUES
   (2021, 12, "THE_529",    18929,     0,      0),
   (2021, 12, "SMALL_CAP",  38331+13858,  27357+44504, 87139), #27357 is HSA
   (2021, 12, "INTL_STOCK", 70212+33720, 260460*.36, 142910*.36+24651+64025),
-  (2021, 12, "LARGE_CAP",  86268+29430, 260460*.54, 142910*.54+67687)
+  (2021, 12, "LARGE_CAP",  86268+29430, 260460*.54, 142910*.54+67687),
+										       
+  # my 401k: 273131 pretax, 140785 posttax
+  # r's varian 401k: 11501 pretax, 9312 posttax (approx)
+  # both 401k combined: 284632 pretax, 150097 posttax
+  (2022,  3, "EMERGENCY",   7749,     0,      0),
+  (2022,  3, "HOUSING",        0,     0,      0),
+  (2022,  3, "HOME_EQ",   210000,     0,      0), # $758k zestimate - $548k loan
+  (2022,  3, "LC",             0,     0,      0),
+  (2022,  3, "CASH",     53686+11000+735, 500, 6000+6093), #500 is HSA
+  (2022,  3, "COMMOD",         0,     0,      0),
+  (2022,  3, "HIGH_ERN", 17122+119,   0,      0), # Includes vested $GOOG
+  (2022,  3, "BONDS",      40000, 28463,  15010),
+  (2022,  3, "THE_529",    19344,     0,      0),
+  (2022,  3, "SMALL_CAP",  50654,  29604, 85214), #29604 is HSA
+  (2022,  3, "INTL_STOCK", 102411, 284632*.36, 150097*.36+63264+24358),
+  (2022,  3, "LARGE_CAP",  111128, 284632*.54+42424, 150097*.54+65048)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc, ibonds
