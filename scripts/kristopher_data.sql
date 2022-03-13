@@ -73,18 +73,17 @@ INSERT INTO `annual_breakdown` VALUES
   (2020, "DONATIONS",       15900),
   (2020, "SAVINGS",         210800), # Vs. 238500 from `savings` table; difference is due to ~$18k 2019 tax refund and employer contributions. Based on YNAB expenses of 68300.
 
-  #Forecast
-  (2021, "GROSS_INCOME",    480000),
-  (2021, "FEDERAL_TAXES",   100000),
-  (2021, "STATE_TAXES",     35000),
-  (2021, "SOCIAL_SEC",      20000), #Including Medicare
-  (2021, "DONATIONS",       10000),
-  (2021, "SAVINGS",         200000),
+  (2021, "GROSS_INCOME",    648000),
+  (2021, "FEDERAL_TAXES",   158000),
+  (2021, "STATE_TAXES",     51000),
+  (2021, "SOCIAL_SEC",      28000), #Including Medicare
+  (2021, "DONATIONS",       15000),
+  (2021, "SAVINGS",         300000),
 
   #Forecast
-  (2022, "GROSS_INCOME",    480000),
-  (2022, "FEDERAL_TAXES",   100000),
-  (2022, "STATE_TAXES",     35000),
+  (2022, "GROSS_INCOME",    650000),
+  (2022, "FEDERAL_TAXES",   150000),
+  (2022, "STATE_TAXES",     50000),
   (2022, "SOCIAL_SEC",      20000), #Including Medicare
   (2022, "DONATIONS",       10000),
   (2022, "SAVINGS",         200000)
