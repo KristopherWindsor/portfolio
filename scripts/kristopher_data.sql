@@ -126,6 +126,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Dec 2021: bought house, so now any remainder of the money saved for a downpayment goes back into the regular asset allocation.
 -- Mar 2022: Reduce small cap AA by 1pp. Adjust cash/bond AA to match reality.
 --     Counting Feb GOOG vest which will should happen next week. Counting 401k rollover money ($40k) which is currently in flight.
+-- Jun 2022: nothing special.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -161,7 +162,8 @@ INSERT INTO `savings` VALUES
   (2021,  6, 73800), #$56k moved to "saved money", $14k my 401k ($51250 ytd), $2600 Rachel's 401k ($12160 ytd), $1200 HSA ($4200 ytd).
   (2021,  9, 69850), #$60k moved to "saved money", $6750 my 401k ($58000 ytd), $1700 Rachel's new 401k, $1400 HSA ($5600 ytd).
   (2021, 12, 71450), #$60k, 10250 Rachel's 401k (11950 ytd), $1200 HSA ($6800 ytd).
-  (2022,  3, 98615)  #$50k, $37250 my 401k ($8k after tax ytd), $3500 Rachel's old 401k in 2021, $4650 Rachel's old 401k in 2022 (new 401k shows no contributions yet), $2815 2022 HSA + $400 2021 HSA
+  (2022,  3, 98615), #$50k, $37250 my 401k ($8k after tax ytd), $3500 Rachel's old 401k in 2021, $4650 Rachel's old 401k in 2022 (new 401k shows no contributions yet), $2815 2022 HSA + $400 2021 HSA
+  (2022,  6, 89150)  #$65k, $14k my 401k ($22k after tax ytd), 8750 (8750 ytd) rachel's 401k, $1400 HSA ($4242 ytd)
 ;
 
 TRUNCATE `investment_category`;
@@ -827,7 +829,23 @@ INSERT INTO `investments` VALUES
   (2022,  3, "THE_529",    19344,     0,      0),
   (2022,  3, "SMALL_CAP",  50654+47400,  29604, 85214), #29604 is HSA
   (2022,  3, "INTL_STOCK", 102411, 284632*.36, 150097*.36+63264+24358+12092),
-  (2022,  3, "LARGE_CAP",  111128, 284632*.54+42424, 150097*.54+65048)
+  (2022,  3, "LARGE_CAP",  111128, 284632*.54+42424, 150097*.54+65048),
+										       
+  # my 401k (65% pretax): 260164 pretax, 140090 posttax
+  # r's varian 401k: 11189 pretax, 8792 posttax (approx)
+  # both 401k combined: 271353 pretax, 148882 posttax
+  (2022,  6, "EMERGENCY",   9600,     0,      0),
+  (2022,  6, "HOUSING",        0,     0,      0),
+  (2022,  6, "HOME_EQ",   217000,     0,      0), # $762k zestimate - $545k loan
+  (2022,  6, "LC",             0,     0,      0),
+  (2022,  6, "CASH",  73877+2204,   500, 0), #500 is HSA
+  (2022,  6, "COMMOD",         0,     0,      0),
+  (2022,  6, "HIGH_ERN", 17796+134,   0,      0), # Includes vested $GOOG
+  (2022,  6, "BONDS",      40000,  27135,  14888),
+  (2022,  6, "THE_529",    19015,     0,      0),
+  (2022,  6, "SMALL_CAP",  93010, 29473, 81189), #29473 is HSA
+  (2022,  6, "INTL_STOCK", 95367, 271353*.36, 148882*.36+64561+28417),
+  (2022,  6, "LARGE_CAP", 103634, 271353*.54+47889, 148882*.54+60673)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc, ibonds
