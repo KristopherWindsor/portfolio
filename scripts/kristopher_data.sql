@@ -856,14 +856,14 @@ INSERT INTO `investments` VALUES
   (2022,  9, "HOUSING",        0,     0,      0),
   (2022,  9, "HOME_EQ",   147000,     0,      0), # $689k zestimate - $542k loan
   (2022,  9, "LC",             0,     0,      0),
-  (2022,  9, "CASH",  3214+83882+2695,   500, 0), #500 is HSA
+  (2022,  9, "CASH",  3214+83882+2695-29000-13000-14000,   500, 0), #500 is HSA
   (2022,  9, "COMMOD",         0,     0,      0),
   (2022,  9, "HIGH_ERN", 13190+115,   0,      0), # Includes vested $GOOG
   (2022,  9, "BONDS",      40000,  25109,  14950),
   (2022,  9, "THE_529",    19608,     0,      0),
-  (2022,  9, "SMALL_CAP",  97918, 29340, 75024), #29340 is HSA
-  (2022,  9, "INTL_STOCK", 107923, 251090*.36, 149503*.36+57627+25365),
-  (2022,  9, "LARGE_CAP", 104032, 251090*.54+53283, 149503*.54+57595)
+  (2022,  9, "SMALL_CAP",  97918+14000, 29340, 75024), #29340 is HSA
+  (2022,  9, "INTL_STOCK", 107923+29000, 251090*.36, 149503*.36+57627+25365),
+  (2022,  9, "LARGE_CAP", 104032+13000, 251090*.54+53283, 149503*.54+57595)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc, ibonds
