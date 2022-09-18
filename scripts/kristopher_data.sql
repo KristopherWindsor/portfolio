@@ -127,6 +127,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Mar 2022: Reduce small cap AA by 1pp. Adjust cash/bond AA to match reality.
 --     Counting Feb GOOG vest which will should happen next week. Counting 401k rollover money ($40k) which is currently in flight.
 -- Jun 2022: nothing special.
+-- Sep 2022: nothing special. Did update one week late. Moved home eq to the top of the graph because it's the most volatile.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -163,18 +164,19 @@ INSERT INTO `savings` VALUES
   (2021,  9, 69850), #$60k moved to "saved money", $6750 my 401k ($58000 ytd), $1700 Rachel's new 401k, $1400 HSA ($5600 ytd).
   (2021, 12, 71450), #$60k, 10250 Rachel's 401k (11950 ytd), $1200 HSA ($6800 ytd).
   (2022,  3, 98615), #$50k, $37250 my 401k ($8k after tax ytd), $3500 Rachel's old 401k in 2021, $4650 Rachel's old 401k in 2022 (new 401k shows no contributions yet), $2815 2022 HSA + $400 2021 HSA
-  (2022,  6, 89150)  #$65k, $14k my 401k ($22k after tax ytd), 8750 (8750 ytd) rachel's 401k, $1400 HSA ($4242 ytd)
+  (2022,  6, 89150), #$65k, $14k my 401k ($22k after tax ytd), 8750 (8750 ytd) rachel's 401k, $1400 HSA ($4242 ytd)
+  (2022,  9, 69631)  #$50k, $9250 my 401k ($30250 after tax ytd, plus $1000 pre), $8750 (17500 ytd) rachel's 401k, $1631 HSA (5873 ytd)
 ;
 
 TRUNCATE `investment_category`;
 INSERT INTO `investment_category` VALUES
-  ("EMERGENCY", "Emergency fund (est)", 12, "/images/icons/emergency.svg",
+  ("EMERGENCY", "Emergency fund (est)", 10, "/images/icons/emergency.svg",
     "Money in the bank plus household cash, less credit card balances. Includes cash for emergencies such as a broken car."),
-  ("CASH", "Cash", 11, "/images/icons/cash.svg",
+  ("CASH", "Cash", 9, "/images/icons/cash.svg",
     "Cash or money market balance."),
-  ("HOUSING", "Housing fund", 10, "/images/icons/house.svg",
+  ("HOUSING", "Housing fund", 11, "/images/icons/house.svg",
     "Funds set aside for a house downpayment in cash/bonds."),
-  ("HOME_EQ", "Home Equity", 9, "/images/icons/house.svg",
+  ("HOME_EQ", "Home Equity", 12, "/images/icons/house.svg",
     "Home value (per Zillow estimate, etc) minus loan amount(s)."),
   ("HIGH_ERN", "High earnings fund", 8, "/images/icons/stock.svg",
     "Stock picked based on value and fundamentals. Past or present stocks: GM, IRT, and GOOG (vested but in cool-off / blackout)."),
@@ -845,7 +847,23 @@ INSERT INTO `investments` VALUES
   (2022,  6, "THE_529",    19015,     0,      0),
   (2022,  6, "SMALL_CAP",  93010+13000, 29473, 81189), #29473 is HSA
   (2022,  6, "INTL_STOCK", 95367+25500, 271353*.36, 148882*.36+64561+28417),
-  (2022,  6, "LARGE_CAP", 103634+6000, 271353*.54+47889, 148882*.54+60673)
+  (2022,  6, "LARGE_CAP", 103634+6000, 271353*.54+47889, 148882*.54+60673),
+                           
+  # my 401k (63% pretax): 240822 pretax, 141435 posttax
+  # r's varian 401k: 10268 pretax, 8068 posttax (approx)
+  # both 401k combined: 251090 pretax, 149503 posttax
+  (2022,  9, "EMERGENCY",   11043,     0,      0),
+  (2022,  9, "HOUSING",        0,     0,      0),
+  (2022,  9, "HOME_EQ",   147000,     0,      0), # $689k zestimate - $542k loan
+  (2022,  9, "LC",             0,     0,      0),
+  (2022,  9, "CASH",  3214+83882+2695,   500, 0), #500 is HSA
+  (2022,  9, "COMMOD",         0,     0,      0),
+  (2022,  9, "HIGH_ERN", 13190+115,   0,      0), # Includes vested $GOOG
+  (2022,  9, "BONDS",      40000,  25109,  14950),
+  (2022,  9, "THE_529",    19608,     0,      0),
+  (2022,  9, "SMALL_CAP",  97918, 29340, 75024), #29340 is HSA
+  (2022,  9, "INTL_STOCK", 107923, 251090*.36, 149503*.36+57627+25365),
+  (2022,  9, "LARGE_CAP", 104032, 251090*.54+53283, 149503*.54+57595)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc, ibonds
