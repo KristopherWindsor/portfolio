@@ -128,6 +128,7 @@ INSERT INTO `annual_breakdown` VALUES
 --     Counting Feb GOOG vest which will should happen next week. Counting 401k rollover money ($40k) which is currently in flight.
 -- Jun 2022: nothing special.
 -- Sep 2022: nothing special. Did update one week late. Moved home eq to the top of the graph because it's the most volatile.
+-- Dec 2022: nothing special.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -165,7 +166,8 @@ INSERT INTO `savings` VALUES
   (2021, 12, 71450), #$60k, 10250 Rachel's 401k (11950 ytd), $1200 HSA ($6800 ytd).
   (2022,  3, 98615), #$50k, $37250 my 401k ($8k after tax ytd), $3500 Rachel's old 401k in 2021, $4650 Rachel's old 401k in 2022 (new 401k shows no contributions yet), $2815 2022 HSA + $400 2021 HSA
   (2022,  6, 89150), #$65k, $14k my 401k ($22k after tax ytd), 8750 (8750 ytd) rachel's 401k, $1400 HSA ($4242 ytd)
-  (2022,  9, 69631)  #$50k, $9250 my 401k ($30250 after tax ytd, plus $1000 pre), $8750 (17500 ytd) rachel's 401k, $1631 HSA (5873 ytd)
+  (2022,  9, 69631), #$50k, $9250 my 401k ($30250 after tax ytd, plus $1000 pre), $8750 (17500 ytd) rachel's 401k, $1631 HSA (5873 ytd)
+  (2022, 12, 58269)	 #$51k, $6250 (23750 ytd) rachel's 401k, $1019 HSA (6892 ytd)
 ;
 
 TRUNCATE `investment_category`;
@@ -863,7 +865,23 @@ INSERT INTO `investments` VALUES
   (2022,  9, "THE_529",    19608,     0,      0),
   (2022,  9, "SMALL_CAP",  97918+14000, 29340, 75024), #29340 is HSA
   (2022,  9, "INTL_STOCK", 107923+29000, 251090*.36, 149503*.36+57627+25365),
-  (2022,  9, "LARGE_CAP", 104032+13000, 251090*.54+53283, 149503*.54+57595)
+  (2022,  9, "LARGE_CAP", 104032+13000, 251090*.54+53283, 149503*.54+57595),
+
+  # my 401k (63% pretax): 255782 pretax, 150222 posttax
+  # r's varian 401k (56% pretax): 10890 pretax, 8556 posttax
+  # both 401k combined: 266672 pretax, 158778 posttax
+  (2022, 12, "EMERGENCY",   10144,     0,      0),
+  (2022, 12, "HOUSING",        0,     0,      0),
+  (2022, 12, "HOME_EQ",   139000,     0,      0), # $678k zestimate - $539k loan
+  (2022, 12, "LC",             0,     0,      0),
+  (2022, 12, "CASH",  74539+903,   500, 0), #500 is HSA
+  (2022, 12, "COMMOD",         0,     0,      0),
+  (2022, 12, "HIGH_ERN", 12833+110,   0,      0), # Includes vested $GOOG
+  (2022, 12, "BONDS",      40000,  26667,  15878),
+  (2022, 12, "THE_529",    20910,     0,      0),
+  (2022, 12, "SMALL_CAP", 122281, 32219, 81971), #32219 is HSA
+  (2022, 12, "INTL_STOCK", 148925, 266672*.36, 158778*.36+62718+27606),
+  (2022, 12, "LARGE_CAP", 123238, 266672*.54+62916, 158778*.54+60603)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc, ibonds
