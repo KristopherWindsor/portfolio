@@ -870,7 +870,7 @@ INSERT INTO `investments` VALUES
   # my 401k (63% pretax): 255782 pretax, 150222 posttax
   # r's varian 401k (56% pretax): 10890 pretax, 8556 posttax
   # both 401k combined: 266672 pretax, 158778 posttax
-  (2022, 12, "EMERGENCY",   10144,     0,      0),
+  (2022, 12, "EMERGENCY",   5860,     0,      0),
   (2022, 12, "HOUSING",        0,     0,      0),
   (2022, 12, "HOME_EQ",   139000,     0,      0), # $678k zestimate - $539k loan
   (2022, 12, "LC",             0,     0,      0),
