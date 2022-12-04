@@ -167,7 +167,7 @@ INSERT INTO `savings` VALUES
   (2022,  3, 98615), #$50k, $37250 my 401k ($8k after tax ytd), $3500 Rachel's old 401k in 2021, $4650 Rachel's old 401k in 2022 (new 401k shows no contributions yet), $2815 2022 HSA + $400 2021 HSA
   (2022,  6, 89150), #$65k, $14k my 401k ($22k after tax ytd), 8750 (8750 ytd) rachel's 401k, $1400 HSA ($4242 ytd)
   (2022,  9, 69631), #$50k, $9250 my 401k ($30250 after tax ytd, plus $1000 pre), $8750 (17500 ytd) rachel's 401k, $1631 HSA (5873 ytd)
-  (2022, 12, 58269)	 #$51k, $6250 (23750 ytd) rachel's 401k, $1019 HSA (6892 ytd)
+  (2022, 12, 58269)  #$51k, $6250 (23750 ytd) rachel's 401k, $1019 HSA (6892 ytd)
 ;
 
 TRUNCATE `investment_category`;
@@ -818,7 +818,7 @@ INSERT INTO `investments` VALUES
   (2021, 12, "SMALL_CAP",  38331+13858,  27357+44504, 87139), #27357 is HSA
   (2021, 12, "INTL_STOCK", 70212+33720, 260460*.36, 142910*.36+24651+64025),
   (2021, 12, "LARGE_CAP",  86268+29430, 260460*.54, 142910*.54+67687),
-										       
+
   # my 401k: 273131 pretax, 140785 posttax
   # r's varian 401k: 11501 pretax, 9312 posttax (approx)
   # both 401k combined: 284632 pretax, 150097 posttax
@@ -834,7 +834,7 @@ INSERT INTO `investments` VALUES
   (2022,  3, "SMALL_CAP",  50654+47400,  29604, 85214), #29604 is HSA
   (2022,  3, "INTL_STOCK", 102411, 284632*.36, 150097*.36+63264+24358+12092),
   (2022,  3, "LARGE_CAP",  111128, 284632*.54+42424, 150097*.54+65048),
-										       
+
   # my 401k (65% pretax): 260164 pretax, 140090 posttax
   # r's varian 401k: 11189 pretax, 8792 posttax (approx)
   # both 401k combined: 271353 pretax, 148882 posttax
@@ -850,7 +850,7 @@ INSERT INTO `investments` VALUES
   (2022,  6, "SMALL_CAP",  93010+13000, 29473, 81189), #29473 is HSA
   (2022,  6, "INTL_STOCK", 95367+25500, 271353*.36, 148882*.36+64561+28417),
   (2022,  6, "LARGE_CAP", 103634+6000, 271353*.54+47889, 148882*.54+60673),
-                           
+
   # my 401k (63% pretax): 240822 pretax, 141435 posttax
   # r's varian 401k: 10268 pretax, 8068 posttax (approx)
   # both 401k combined: 251090 pretax, 149503 posttax
