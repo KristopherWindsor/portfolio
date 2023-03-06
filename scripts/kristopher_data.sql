@@ -2,7 +2,7 @@ TRUNCATE `settings`;
 INSERT INTO `settings` VALUES
   ("REPORT_START_YEAR_LOOSE", "2011"),
   ("REPORT_START_YEAR_STRICT", "2014"),
-  ("REPORT_END_YEAR", "2022"),
+  ("REPORT_END_YEAR", "2023"),
   ("REPORT_TITLE", "Kristopher &amp; Rachel Windsor&apos;s Financial Report")
 ;
 
@@ -86,7 +86,15 @@ INSERT INTO `annual_breakdown` VALUES
   (2022, "STATE_TAXES",     50000),
   (2022, "SOCIAL_SEC",      20000), #Including Medicare
   (2022, "DONATIONS",       10000),
-  (2022, "SAVINGS",         200000)
+  (2022, "SAVINGS",         200000),
+
+  #Forecast
+  (2023, "GROSS_INCOME",    550000),
+  (2023, "FEDERAL_TAXES",   150000),
+  (2023, "STATE_TAXES",     50000),
+  (2023, "SOCIAL_SEC",      20000), #Including Medicare
+  (2023, "DONATIONS",       10000),
+  (2023, "SAVINGS",         200000)
 ;
 
 -- Keeping quarterly summary in case I put it in a table
@@ -129,6 +137,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Jun 2022: nothing special.
 -- Sep 2022: nothing special. Did update one week late. Moved home eq to the top of the graph because it's the most volatile.
 -- Dec 2022: nothing special.
+-- Mar 2023: Reduce small cap AA by 1pp.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -167,7 +176,8 @@ INSERT INTO `savings` VALUES
   (2022,  3, 98615), #$50k, $37250 my 401k ($8k after tax ytd), $3500 Rachel's old 401k in 2021, $4650 Rachel's old 401k in 2022 (new 401k shows no contributions yet), $2815 2022 HSA + $400 2021 HSA
   (2022,  6, 89150), #$65k, $14k my 401k ($22k after tax ytd), 8750 (8750 ytd) rachel's 401k, $1400 HSA ($4242 ytd)
   (2022,  9, 69631), #$50k, $9250 my 401k ($30250 after tax ytd, plus $1000 pre), $8750 (17500 ytd) rachel's 401k, $1631 HSA (5873 ytd)
-  (2022, 12, 58269)  #$51k, $6250 (23750 ytd) rachel's 401k, $1019 HSA (6892 ytd)
+  (2022, 12, 58269), #$51k, $6250 (23750 ytd) rachel's 401k, $1019 HSA (6892 ytd)
+	(2023,  3, 94177)  #$42k, $43750 my 401k, $3427 HSA ($408 for last year, $3019 ytd), $5k rachel's 401k
 ;
 
 TRUNCATE `investment_category`;
@@ -202,9 +212,9 @@ INSERT INTO `investment_category` VALUES
 # Housing fund not included here as it has a dollar target amount instead (which fluctuates significantly).
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
-  ("LARGE_CAP",  39),
+  ("LARGE_CAP",  40),
   ("INTL_STOCK", 32),
-  ("SMALL_CAP",  19),
+  ("SMALL_CAP",  18),
   ("CASH",        2), # NOT including emergency fund (one month of expenses)
   ("BONDS",       8)
  ;
@@ -881,7 +891,23 @@ INSERT INTO `investments` VALUES
   (2022, 12, "THE_529",    20910,     0,      0),
   (2022, 12, "SMALL_CAP", 122281, 32219, 81971), #32219 is HSA
   (2022, 12, "INTL_STOCK", 148925, 266672*.36, 158778*.36+62718+27606),
-  (2022, 12, "LARGE_CAP", 123238, 266672*.54+62916, 158778*.54+60603)
+  (2022, 12, "LARGE_CAP", 123238, 266672*.54+62916, 158778*.54+60603),
+
+  # my 401k (63% pretax): 286724 pretax, 168394 posttax
+  # r's varian 401k (56% pretax): 11023 pretax, 8662 posttax
+  # both 401k combined: 297747 pretax, 177056 posttax
+  (2023,  3, "EMERGENCY",   6000,     0,      0),
+  (2023,  3, "HOUSING",        0,     0,      0),
+  (2023,  3, "HOME_EQ",   125000,     0,      0), # $661k zestimate (rolling average) - $536k loan
+  (2023,  3, "LC",             0,     0,      0),
+  (2023,  3, "CASH",  8959+49744+385,   500, 6500*2), #500 is HSA
+  (2023,  3, "COMMOD",         0,     0,      0),
+  (2023,  3, "HIGH_ERN", 11967,   0,      0), # Includes vested $GOOG
+  (2023,  3, "BONDS",      40000,  29774,  17705),
+  (2023,  3, "THE_529",    22305,     0,      0),
+  (2023,  3, "SMALL_CAP", 125233, 36837, 83949), #36837 is HSA
+  (2023,  3, "INTL_STOCK", 166903, 297747*.36, 177056*.36+64969+28597),
+  (2023,  3, "LARGE_CAP", 140360, 297747*.54+67820, 177056*.54+60771)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc, ibonds
