@@ -80,12 +80,11 @@ INSERT INTO `annual_breakdown` VALUES
   (2021, "DONATIONS",       15000),
   (2021, "SAVINGS",         300000),
 
-  #Forecast
-  (2022, "GROSS_INCOME",    650000),
-  (2022, "FEDERAL_TAXES",   150000),
-  (2022, "STATE_TAXES",     50000),
-  (2022, "SOCIAL_SEC",      20000), #Including Medicare
-  (2022, "DONATIONS",       10000),
+  (2022, "GROSS_INCOME",    654000), #Adjusted gross income
+  (2022, "FEDERAL_TAXES",   168500),
+  (2022, "STATE_TAXES",     53600),
+  (2022, "SOCIAL_SEC",      29000), #9100 SS, 11200 M, ~8k for rachel
+  (2022, "DONATIONS",       5000), #iirc
   (2022, "SAVINGS",         315665),
 
   #Forecast
@@ -138,6 +137,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Sep 2022: nothing special. Did update one week late. Moved home eq to the top of the graph because it's the most volatile.
 -- Dec 2022: nothing special.
 -- Mar 2023: Reduce small cap AA by 1pp.
+-- Jun 2023: Start saving for rental property.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -177,7 +177,8 @@ INSERT INTO `savings` VALUES
   (2022,  6, 89150), #$65k, $14k my 401k ($22k after tax ytd), 8750 (8750 ytd) rachel's 401k, $1400 HSA ($4242 ytd)
   (2022,  9, 69631), #$50k, $9250 my 401k ($30250 after tax ytd, plus $1000 pre), $8750 (17500 ytd) rachel's 401k, $1631 HSA (5873 ytd)
   (2022, 12, 58269), #$51k, $6250 (23750 ytd) rachel's 401k, $1019 HSA (6892 ytd)
-	(2023,  3, 94177)  #$42k, $43750 my 401k, $3427 HSA ($408 for last year, $3019 ytd), $5k rachel's 401k
+	(2023,  3, 94177), #$42k, $43750 my 401k, $3427 HSA ($408 for last year, $3019 ytd), $5k rachel's 401k
+  (2023,  6, 110723) #$90k, $12k my 401k ($55750 ytd), $1223 HSA ($4242 ytd), $7.5k rachel's 401k ($10k + $2.5k employer mach ytd)
 ;
 
 TRUNCATE `investment_category`;
@@ -907,7 +908,23 @@ INSERT INTO `investments` VALUES
   (2023,  3, "THE_529",    22305,     0,      0),
   (2023,  3, "SMALL_CAP", 125233+3000, 36837, 83949), #36837 is HSA
   (2023,  3, "INTL_STOCK", 166903+5000, 297747*.36, 177056*.36+64969+28597+6500),
-  (2023,  3, "LARGE_CAP", 140360+22000, 297747*.54+67820, 177056*.54+60771+6500)
+  (2023,  3, "LARGE_CAP", 140360+22000, 297747*.54+67820, 177056*.54+60771+6500),
+
+  # my 401k (63% pretax): 299680 pretax, 176003 posttax
+  # r's varian 401k (56% pretax): 11218 pretax, 8814 posttax
+  # both 401k combined: 300808 pretax, 184817 posttax
+  (2023,  6, "EMERGENCY",   8000,     0,      0),
+  (2023,  6, "HOUSING",    60000,     0,      0),
+  (2023,  6, "HOME_EQ",   147000,     0,      0), # $680 zestimate (rolling average) - $533k loan
+  (2023,  6, "LC",             0,     0,      0),
+  (2023,  6, "CASH",  15202+39196+42539-60000,   500, 11), #500 is HSA
+  (2023,  6, "COMMOD",         0,     0,      0),
+  (2023,  6, "HIGH_ERN", 23113,   0,      0), # Includes vested $GOOG
+  (2023,  6, "BONDS",      63360,  30081,  18482),
+  (2023,  6, "THE_529",    23775,     0,      0),
+  (2023,  6, "SMALL_CAP", 116182, 35303+20000, 76110), #35303 is HSA
+  (2023,  6, "INTL_STOCK", 202023, 300808*.36-20000, 184817*.36+71762+28708),
+  (2023,  6, "LARGE_CAP", 166828, 300808*.54+78575, 184817*.54+69138)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc, ibonds
