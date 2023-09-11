@@ -138,6 +138,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Dec 2022: nothing special.
 -- Mar 2023: Reduce small cap AA by 1pp.
 -- Jun 2023: Start saving for rental property.
+-- Sep 2023: Pause saving for rental property -- lack of inventory. Drop small cap AA (ahead of schedule) due to the amount of cash saved this quarter.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -177,8 +178,9 @@ INSERT INTO `savings` VALUES
   (2022,  6, 89150), #$65k, $14k my 401k ($22k after tax ytd), 8750 (8750 ytd) rachel's 401k, $1400 HSA ($4242 ytd)
   (2022,  9, 69631), #$50k, $9250 my 401k ($30250 after tax ytd, plus $1000 pre), $8750 (17500 ytd) rachel's 401k, $1631 HSA (5873 ytd)
   (2022, 12, 58269), #$51k, $6250 (23750 ytd) rachel's 401k, $1019 HSA (6892 ytd)
-	(2023,  3, 94177), #$42k, $43750 my 401k, $3427 HSA ($408 for last year, $3019 ytd), $5k rachel's 401k
-  (2023,  6, 110723) #$90k, $12k my 401k ($55750 ytd), $1223 HSA ($4242 ytd), $7.5k rachel's 401k ($10k + $2.5k employer mach ytd)
+  (2023,  3, 94177), #$42k, $43750 my 401k, $3427 HSA ($408 for last year, $3019 ytd), $5k rachel's 401k
+  (2023,  6, 110723), #$90k, $12k my 401k ($55750 ytd), $1223 HSA ($4242 ytd), $7.5k rachel's 401k ($10k + $2.5k employer match ytd)
+  (2023,  9, 136753)  #$115k, $10250 my 401k ($66000 ytd), $1253 HSA ($5495 contributions less dist ytd), $10250 rachel's 401k ($18.2k + $4550 employer match ytd)
 ;
 
 TRUNCATE `investment_category`;
@@ -213,9 +215,9 @@ INSERT INTO `investment_category` VALUES
 # Housing fund not included here as it has a dollar target amount instead (which fluctuates significantly).
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
-  ("LARGE_CAP",  40),
+  ("LARGE_CAP",  41),
   ("INTL_STOCK", 32),
-  ("SMALL_CAP",  18),
+  ("SMALL_CAP",  17),
   ("CASH",        2), # NOT including emergency fund (one month of expenses)
   ("BONDS",       8)
  ;
