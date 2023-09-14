@@ -926,7 +926,23 @@ INSERT INTO `investments` VALUES
   (2023,  6, "THE_529",    23775,     0,      0),
   (2023,  6, "SMALL_CAP", 116182, 35303+20000, 76110), #35303 is HSA
   (2023,  6, "INTL_STOCK", 202023, 300808*.36-20000, 184817*.36+71762+28708),
-  (2023,  6, "LARGE_CAP", 166828, 300808*.54+78575, 184817*.54+69138)
+  (2023,  6, "LARGE_CAP", 166828, 300808*.54+78575, 184817*.54+69138),
+
+  # my 401k (63% pretax): 317927 pretax, 186719 posttax
+  # r's varian 401k (56% pretax): 11659 pretax, 9161 posttax
+  # both 401k combined: 329586 pretax, 195880 posttax
+  (2023,  9, "EMERGENCY",   8000,     0,      0),
+  (2023,  9, "HOUSING",    60000,     0,      0),
+  (2023,  9, "HOME_EQ",   176000,     0,      0), # $706k zestimate (rolling average) - $530k loan
+  (2023,  9, "LC",             0,     0,      0),
+  (2023,  9, "CASH",  204890-60000+211-45640-35800-17700,   500, 116), #500 is HSA
+  (2023,  9, "COMMOD",         0,     0,      0),
+  (2023,  9, "HIGH_ERN", 24124,   0,      0), # Includes vested $GOOG
+  (2023,  9, "BONDS",      63360,  32959,  19588),
+  (2023,  9, "THE_529",    25816,     0,      0),
+  (2023,  9, "SMALL_CAP", 120039+17700, 38728, 99537), #38728 is HSA
+  (2023,  9, "INTL_STOCK", 203854+45640, 329586*.36, 195880*.36+72406+8609),
+  (2023,  9, "LARGE_CAP", 178236+35800, 329586*.54+94198, 195880*.54+73841)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc, ibonds
