@@ -48,6 +48,7 @@ class Home {
     echo '<div class="section">';
     echo '<h2>Income and expenses per year vs. savings</h2>';
     $this->renderAnnualSummary($rough_start_year, $end_year);
+    $this->renderIncomeVsSavings($end_year - 2, $end_year); // Last 3 years
     $this->renderIncomeVsSavings($rough_start_year, $end_year);
     echo '</div>';
 
