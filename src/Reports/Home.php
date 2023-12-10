@@ -48,14 +48,13 @@ class Home {
     echo '<div class="section">';
     echo '<h2>Income and expenses per year vs. savings</h2>';
     $this->renderAnnualSummary($rough_start_year, $end_year);
-    $this->renderIncomeVsSavings($end_year - 2, $end_year); // Last 3 years
     $this->renderIncomeVsSavings($rough_start_year, $end_year);
     echo '</div>';
 
     echo '<div class="section">';
     echo '<h2>Allocation of income per year</h2>';
     echo '<div class="pie-grid three">';
-    for ($i = $start_year; $i <= $end_year; $i++)
+    for ($i = max($start_year, $end_year - 2); $i <= $end_year; $i++)
       $this->renderAnnualPie($i);
     echo '</div>';
     echo '<div class="pie-grid-legend"></div>';
@@ -69,6 +68,9 @@ class Home {
     echo '<div class="section">';
     echo '<h2>Savings &amp; investments growth</h2>';
     $this->renderGrowthSummary();
+    if ($end_year > $start_year + 5) {
+      $this->renderInvestmentsMultiyear($end_year - 2, $end_year);
+    }
     $this->renderInvestmentsMultiyear($start_year, $end_year);
     echo '</div>';
 
