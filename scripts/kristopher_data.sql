@@ -57,8 +57,8 @@ INSERT INTO `annual_breakdown` VALUES
 
   # New accounting starting this year: instead of counting savings and then assuming remainder=expenses, get expenses from YNAB, and solve for savings.
   # This will fix some accounting issues: 1) accumulating money one year and then counting it as savings for another year 2) tax dues and refunds crossing years.
-	# The only downside is that unreported expenses are counted as savings. The `savings` table approach should be kept for catching discrepancies.
-	# `savings` table includes 401k and HSA employer contributions whereas `SAVINGS` column does not.
+  # The only downside is that unreported expenses are counted as savings. The `savings` table approach should be kept for catching discrepancies.
+  # `savings` table includes 401k and HSA employer contributions whereas `SAVINGS` column does not.
   (2019, "GROSS_INCOME",    265000), #W2 income + paid family leave (so not the same as AGI)
   (2019, "FEDERAL_TAXES",   39445),
   (2019, "STATE_TAXES",     15155),
@@ -139,6 +139,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Mar 2023: Reduce small cap AA by 1pp.
 -- Jun 2023: Start saving for rental property.
 -- Sep 2023: Pause saving for rental property -- lack of inventory. Drop small cap AA (ahead of schedule) due to the amount of cash saved this quarter.
+-- Dec 2023: Scaling back cash saved for rental property. Increased 529 contributions with target @ $180k.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -180,7 +181,8 @@ INSERT INTO `savings` VALUES
   (2022, 12, 58269), #$51k, $6250 (23750 ytd) rachel's 401k, $1019 HSA (6892 ytd)
   (2023,  3, 94177), #$42k, $43750 my 401k, $3427 HSA ($408 for last year, $3019 ytd), $5k rachel's 401k
   (2023,  6, 110723), #$90k, $12k my 401k ($55750 ytd), $1223 HSA ($4242 ytd), $7.5k rachel's 401k ($10k + $2.5k employer match ytd)
-  (2023,  9, 136753)  #$115k, $10250 my 401k ($66000 ytd), $1253 HSA ($5495 contributions less dist ytd), $10250 rachel's 401k ($18.2k + $4550 employer match ytd)
+  (2023,  9, 136753), #$115k, $10250 my 401k ($66000 ytd), $1253 HSA ($5495 contributions less dist ytd), $10250 rachel's 401k ($18.2k + $4550 employer match ytd)
+  (2023, 12, 51575)  #$45k, $1200 HSA (approx), $5375 rachel's 401k ($28125ytd)
 ;
 
 TRUNCATE `investment_category`;
@@ -942,7 +944,23 @@ INSERT INTO `investments` VALUES
   (2023,  9, "THE_529",    25816,     0,      0),
   (2023,  9, "SMALL_CAP", 120039+17700, 38728, 99537), #38728 is HSA
   (2023,  9, "INTL_STOCK", 203854+45640, 329586*.36, 195880*.36+72406+8609),
-  (2023,  9, "LARGE_CAP", 178236+35800, 329586*.54+94198, 195880*.54+73841)
+  (2023,  9, "LARGE_CAP", 178236+35800, 329586*.54+94198, 195880*.54+73841),
+
+  # my 401k (63% pretax): 327664 pretax, 192437 posttax
+  # r's varian 401k (56% pretax): 12008 pretax, 9434 posttax
+  # both 401k combined: 339672 pretax, 201871 posttax
+  (2023, 12, "EMERGENCY",   6800,     0,      0),
+  (2023, 12, "HOUSING",    50000,     0,      0),
+  (2023, 12, "HOME_EQ",   179000,     0,      0), # $706k zestimate (rolling average) - $527k loan
+  (2023, 12, "LC",             0,     0,      0),
+  (2023, 12, "CASH",  146601+1639-50000-20540-15830,   500, 117), #500 is HSA
+  (2023, 12, "COMMOD",         0,     0,      0),
+  (2023, 12, "HIGH_ERN", 23973,   0,      0), # Includes vested $GOOG
+  (2023, 12, "BONDS",      63360,  33967,  20187),
+  (2023, 12, "THE_529",    27646,     0,      0),
+  (2023, 12, "SMALL_CAP", 142806, 40397, 103616), #40397 is HSA -- copied from Sep; their website is down
+  (2023, 12, "INTL_STOCK", 254856+20540, 339672*.36, 201871*.36+8812+74118),
+  (2023, 12, "LARGE_CAP", 220918+15830, 339672*.54+103204, 201871*.54+76507)
 ;
 
 # Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc, ibonds
