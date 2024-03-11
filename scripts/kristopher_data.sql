@@ -2,7 +2,7 @@ TRUNCATE `settings`;
 INSERT INTO `settings` VALUES
   ("REPORT_START_YEAR_LOOSE", "2011"),
   ("REPORT_START_YEAR_STRICT", "2014"),
-  ("REPORT_END_YEAR", "2023"),
+  ("REPORT_END_YEAR", "2024"),
   ("REPORT_TITLE", "Kristopher &amp; Rachel Windsor&apos;s Financial Report")
 ;
 
@@ -87,13 +87,20 @@ INSERT INTO `annual_breakdown` VALUES
   (2022, "DONATIONS",       5000), #iirc
   (2022, "SAVINGS",         315665),
 
+  (2023, "GROSS_INCOME",    702000), #Adjusted gross income
+  (2023, "FEDERAL_TAXES",   183000),
+  (2023, "STATE_TAXES",     58000),
+  (2023, "SOCIAL_SEC",      33700), #9900 SS, 11500 M, 9900 R S, 2400 R M
+  (2023, "DONATIONS",       0),
+  (2023, "SAVINGS",         393228),
+
   #Forecast
-  (2023, "GROSS_INCOME",    550000),
-  (2023, "FEDERAL_TAXES",   150000),
-  (2023, "STATE_TAXES",     50000),
-  (2023, "SOCIAL_SEC",      20000), #Including Medicare
-  (2023, "DONATIONS",       10000),
-  (2023, "SAVINGS",         200000)
+  (2024, "GROSS_INCOME",    550000),
+  (2024, "FEDERAL_TAXES",   150000),
+  (2024, "STATE_TAXES",     50000),
+  (2024, "SOCIAL_SEC",      20000), #Including Medicare
+  (2024, "DONATIONS",       10000),
+  (2024, "SAVINGS",         250000)
 ;
 
 -- Keeping quarterly summary in case I put it in a table
@@ -140,6 +147,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Jun 2023: Start saving for rental property.
 -- Sep 2023: Pause saving for rental property -- lack of inventory. Drop small cap AA (ahead of schedule) due to the amount of cash saved this quarter.
 -- Dec 2023: Scaling back cash saved for rental property. Increased 529 contributions with target @ $180k.
+-- Mar 2024: Reduce small cap AA by 1pp, reduce rental property cash.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -182,7 +190,13 @@ INSERT INTO `savings` VALUES
   (2023,  3, 94177), #$42k, $43750 my 401k, $3427 HSA ($408 for last year, $3019 ytd), $5k rachel's 401k
   (2023,  6, 110723), #$90k, $12k my 401k ($55750 ytd), $1223 HSA ($4242 ytd), $7.5k rachel's 401k ($10k + $2.5k employer match ytd)
   (2023,  9, 136753), #$115k, $10250 my 401k ($66000 ytd), $1253 HSA ($5495 contributions less dist ytd), $10250 rachel's 401k ($18.2k + $4550 employer match ytd)
-  (2023, 12, 51575)  #$45k, $1200 HSA (approx), $5375 rachel's 401k ($28125ytd)
+  (2023, 12, 51575), #$45k, $1200 HSA (approx), $5375 rachel's 401k ($28125ytd -- maxxed)
+
+   # $70k regular savings
+   # HSA: $3211 contributions ytd minus $91 distributions ytd plus $203 from December
+   # R's 401k: $6k contributions + $1500 match
+   # My 401k: $15k contributions + $2500 match
+  (2024,  3, 98323)
 ;
 
 TRUNCATE `investment_category`;
@@ -217,9 +231,9 @@ INSERT INTO `investment_category` VALUES
 # Housing fund not included here as it has a dollar target amount instead (which fluctuates significantly).
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
-  ("LARGE_CAP",  41),
+  ("LARGE_CAP",  42),
   ("INTL_STOCK", 32),
-  ("SMALL_CAP",  17),
+  ("SMALL_CAP",  16),
   ("CASH",        2), # NOT including emergency fund (one month of expenses)
   ("BONDS",       8)
  ;
@@ -960,7 +974,23 @@ INSERT INTO `investments` VALUES
   (2023, 12, "THE_529",    27646,     0,      0),
   (2023, 12, "SMALL_CAP", 142806, 40397, 103616), #40397 is HSA -- copied from Sep; their website is down
   (2023, 12, "INTL_STOCK", 254856+20540, 339672*.36, 201871*.36+8812+74118),
-  (2023, 12, "LARGE_CAP", 220918+15830, 339672*.54+103204, 201871*.54+76507)
+  (2023, 12, "LARGE_CAP", 220918+15830, 339672*.54+103204, 201871*.54+76507),
+
+  # my 401k (63% pretax): 370305 pretax, 217481 posttax
+  # r's varian 401k (56% pretax): 13146 pretax, 10329 posttax
+  # both 401k combined: 383451 pretax, 227810 posttax
+  (2024,  3, "EMERGENCY",   6500,     0,      0), # Chase checking minus Chase cc balances
+  (2024,  3, "HOUSING",    40000,     0,      0),
+  (2024,  3, "HOME_EQ",   203000,     0,      0), # $727k zestimate (rolling average) - $524k loan
+  (2024,  3, "LC",             0,     0,      0),
+  (2024,  3, "CASH",  150327-40000+1774-23740-28000,   500, 0), #500 is HSA
+  (2024,  3, "COMMOD",         0,     0,      0),
+  (2024,  3, "HIGH_ERN", 23911,   0,      0), # Includes vested $GOOG
+  (2024,  3, "BONDS",      83360,  38345,  22781), #83360 is iBonds (approx)
+  (2024,  3, "THE_529",    32656,     0,      0),
+  (2024,  3, "SMALL_CAP", 154102, 49020, 111812), #49020 is HSA
+  (2024,  3, "INTL_STOCK", 298447+23740, 383451*.36, 227810*.36+87374+9551),
+  (2024,  3, "LARGE_CAP", 264274+28000, 383451*.54+123006, 227810*.54+85415+7157)
 ;
 
-# Account checklist for each quarter: charles schwab, ynab, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc, ibonds
+# Account checklist for each quarter: charles schwab, chase, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc, ibonds
