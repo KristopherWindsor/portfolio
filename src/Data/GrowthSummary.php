@@ -20,7 +20,7 @@ class GrowthSummary {
     
     $allocations = Db\TargetApi::getTargets($mysqli);
     $investment_categories_in_aa = array();
-    for (allocations as $i)
+    foreach (allocations as $i)
       $investment_categories_in_aa[$i->category_key] = true;
 
     $tmp = array_keys($data);
