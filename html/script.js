@@ -92,7 +92,7 @@ function renderDatasectionLine(datasection, data, options, extra){
     for (var i in data.datasets)
       if (data.datasets[i].label == x.datasetLabel){
         return x.datasetLabel + ": $" + (Math.round(data.datasets[i].itemData[monthIndex] / 100) * 100).toLocaleString('en') +
-          (i == 0 ? " [Σ $" + (Math.round(data.datasets[i].data[monthIndex] / 100) * 100).toLocaleString('en') + "]" : "");
+          " [Σ $" + (Math.round(data.datasets[i].data[monthIndex] / 100) * 100).toLocaleString('en') + "]";
       }
   };
 
