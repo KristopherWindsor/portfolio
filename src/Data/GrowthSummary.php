@@ -17,6 +17,11 @@ class GrowthSummary {
       echo json_encode("Table", null);
       return;
     }
+    
+    $allocations = Db\TargetApi::getTargets($mysqli);
+    $investment_categories_in_aa = array();
+    for (allocations as $i)
+      $investment_categories_in_aa[$i->category_key] = true;
 
     $tmp = array_keys($data);
     $newest_year = $tmp[count($tmp) - 1];
@@ -36,21 +41,21 @@ class GrowthSummary {
     $pt_cur = $pt_bt = $pt_ly = 0;
     foreach ($newest_data as $i) {
       $nw_cur += $i->value;
-      if ($i->category_key == 'CASH') { // TODO: use right categories
+      if (isset($investment_categories_in_aa[$i->category_key])) {
         $inv_cur += $i->value;
         $pt_cur += $i->value_no_ret;
       }
     }
     foreach ($back_three_data as $i) {
       $nw_bt += $i->value;
-      if ($i->category_key == 'CASH') { // TODO: use right categories
+      if (isset($investment_categories_in_aa[$i->category_key])) {
         $inv_bt += $i->value;
         $pt_bt += $i->value_no_ret;
       }
     }
-    foreach ($back_three_data as $i) {
+    foreach ($last_year_data as $i) {
       $nw_ly += $i->value;
-      if ($i->category_key == 'CASH') { // TODO: use right categories
+      if (isset($investment_categories_in_aa[$i->category_key])) {
         $inv_ly += $i->value;
         $pt_ly += $i->value_no_ret;
       }
