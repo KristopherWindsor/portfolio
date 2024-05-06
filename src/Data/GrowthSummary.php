@@ -12,7 +12,7 @@ class GrowthSummary {
   }
 
   private function threecell($mysqli){
-    $data = Db\InvestmentsApi::getInvestments($mysqli, 0, 3000);
+    $data = Db\InvestmentsApi::getInvestmentsSegmented($mysqli, 0, 3000);
     if (!$data){
       echo json_encode("Table", null);
       return;
@@ -23,23 +23,57 @@ class GrowthSummary {
     $tmp = array_keys($data[$newest_year]);
     $newest_month = $tmp[count($tmp) - 1];
 
-    $newest = $newest_year * 12 + $newest_month - 1;
-    $back_three = $newest - 3;
-
-    $newest_net = array_sum($data[$newest_year][$newest_month]);
+    // TODO: handle if there's less than a year of data
+    $newest_data = $data[$newest_year][$newest_month];
     if ($newest_month > 3)
-      $back_three = @array_sum($data[$newest_year][$newest_month - 3]);
+      $back_three_data = $data[$newest_year][$newest_month - 3];
     else
-      $back_three = @array_sum($data[$newest_year - 1][$newest_month + 9]);
-    $last_year = @array_sum($data[$newest_year - 1][$newest_month]);
+      $back_three_data = $data[$newest_year - 1][$newest_month + 9];
+    $last_year_data = $data[$newest_year - 1][$newest_month];
+
+    $nw_cur = $nw_bt = $nw_ly = 0;
+    $inv_cur = $inv_bt = $inv_ly = 0;
+    $pt_cur = $pt_bt = $pt_ly = 0;
+    foreach ($newest_data as $i) {
+      $nw_cur += $i->value;
+      if ($i->category_key == 'CASH') { // TODO: use right categories
+        $inv_cur += $i->value;
+        $pt_cur += $i->value_no_ret;
+      }
+    }
+    foreach ($back_three_data as $i) {
+      $nw_bt += $i->value;
+      if ($i->category_key == 'CASH') { // TODO: use right categories
+        $inv_bt += $i->value;
+        $pt_bt += $i->value_no_ret;
+      }
+    }
+    foreach ($back_three_data as $i) {
+      $nw_ly += $i->value;
+      if ($i->category_key == 'CASH') { // TODO: use right categories
+        $inv_ly += $i->value;
+        $pt_ly += $i->value_no_ret;
+      }
+    }
 
     $tdata = array(
-      'headers' => array('3-month Growth', '1-year growth', 'Total savings & investments'),
+      'headers' => array('', '3-month Growth', '1-year growth', 'Total'),
       'rows' => array(
         array(
-          $back_three ? '$' . number_format($newest_net - $back_three, 2) : '--',
-          $last_year  ? '$' . number_format($newest_net - $last_year, 2) : '--',
-          '$' . number_format($newest_net, 2)),
+          'Net worth',
+          '$' . number_format($nw_cur - $nw_bt, 2),
+          '$' . number_format($nw_cur - $nw_ly, 2),
+          '$' . number_format($nw_cur, 2)),
+        array(
+          'Investments (per AA)',
+          '$' . number_format($inv_cur - $inv_bt, 2),
+          '$' . number_format($inv_cur - $inv_ly, 2),
+          '$' . number_format($inv_cur, 2)),
+        array(
+          'Investments (per AA) excluding retirement accounts',
+          '$' . number_format($pt_cur - $pt_bt, 2),
+          '$' . number_format($pt_cur - $pt_ly, 2),
+          '$' . number_format($pt_cur, 2)),
       ),
     );
 
