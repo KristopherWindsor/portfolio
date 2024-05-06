@@ -16,6 +16,9 @@ class Colors {
       $this->list = array('#BCA', '#ABC');
     else if ($upperbound <= 6)
       $this->list = array('#ABC', '#BCA', '#CAB', '#ACB', '#BAC', '#DBB');
+    // This is a special case for Kristopher data -- it makes some assumptions about the calling use case
+    else if ($upperbound == 10)
+      $this->list = array('#AAA', '#BBB', '#CCC', '#DDD', '#EEE', '#ABC', '#BCA', '#CAB', '#ACB', '#BAC', '#DBB');
     else
       $this->list = self::getColors12();
     $this->index = -1;
