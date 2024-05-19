@@ -230,8 +230,8 @@ INSERT INTO `investment_target` VALUES
   ("LARGE_CAP",  42),
   ("INTL_STOCK", 32),
   ("SMALL_CAP",  16),
-  ("CASH",        2), # NOT including emergency fund (one month of expenses)
-  ("BONDS",       8)
+  ("CASH",        0), # NOT including emergency fund (1-3 months of expenses)
+  ("BONDS",      10)
  ;
 
 TRUNCATE `investments`;
