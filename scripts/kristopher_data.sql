@@ -874,7 +874,7 @@ INSERT INTO `investments` VALUES
   (2024,  3, "HOME_EQ",   203000,     0,      0), # $727k zestimate (rolling average) - $524k loan
   (2024,  3, "CASH",  150327-40000+1774-23740-28000,   500, 0), #500 is HSA
   (2024,  3, "OTHER", 23911,   0,      0), # Includes vested $GOOG
-  (2024,  3, "BONDS",      83360,  38345,  22781), #83360 is iBonds (approx)
+  (2024,  3, "BONDS",      87120,  38345,  22781), #87120 is iBonds (approx)
   (2024,  3, "THE_529",    32656,     0,      0),
   (2024,  3, "SMALL_CAP", 154102, 49020, 111812), #49020 is HSA
   (2024,  3, "INTL_STOCK", 298447+23740, 383451*.36, 227810*.36+87374+9551),
