@@ -148,6 +148,11 @@ INSERT INTO `annual_breakdown` VALUES
 -- Sep 2023: Pause saving for rental property -- lack of inventory. Drop small cap AA (ahead of schedule) due to the amount of cash saved this quarter.
 -- Dec 2023: Scaling back cash saved for rental property. Increased 529 contributions with target @ $180k.
 -- Mar 2024: Reduce small cap AA by 1pp, reduce rental property cash.
+-- Jun 2024: Made changes to the portfolio presentation and plan. Now, in addition to total net worth,
+--           there is a focus on total $$ that is allocated (stocks/bonds/cash). Also, for cash/bonds:
+--           1) will now actually hold the target amont of bonds instead of using cash instead
+--           2) am splitting emergency fund vs cash a little different ("account of saved money" now considered em. fund)
+--           3) will be moving bonds to tax-deferred accounts
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -196,7 +201,13 @@ INSERT INTO `savings` VALUES
    # HSA: $3211 contributions ytd minus $91 distributions ytd plus $203 from December
    # R's 401k: $6k contributions + $1500 match
    # My 401k: $15k contributions + $2500 match
-  (2024,  3, 98323)
+  (2024,  3, 98323),
+
+   # $60k regular savings
+   # HSA: approx $1200 contributions, unknown distributions (will count them next quarter)
+   # R's 401k: $16.5k contributions + match ytd = $9k
+   # My 401k: $56.5k contributions + match ytd = $39k
+  (2024,  6, 109200)
 ;
 
 TRUNCATE `investment_category`;
@@ -878,7 +889,21 @@ INSERT INTO `investments` VALUES
   (2024,  3, "THE_529",    32656,     0,      0),
   (2024,  3, "SMALL_CAP", 154102, 49020, 111812), #49020 is HSA
   (2024,  3, "INTL_STOCK", 298447+23740, 383451*.36, 227810*.36+87374+9551),
-  (2024,  3, "LARGE_CAP", 264274+28000, 383451*.54+123006, 227810*.54+85415+7157)
+  (2024,  3, "LARGE_CAP", 264274+28000, 383451*.54+123006, 227810*.54+85415+7157),
+
+  # my 401k (63% pretax): 407238 pretax, 239171 posttax
+  # r's varian 401k (56% pretax): 13516 pretax, 10619 posttax
+  # both 401k combined: 420754 pretax, 249790 posttax
+  (2024,  6, "EMERGENCY",  18000,     0,      0), # Chase checking minus Chase cc balances, plus "income goes here" acct
+  (2024,  6, "HOUSING",    30000,     0,      0),
+  (2024,  6, "HOME_EQ",   222000,     0,      0), # $743k zestimate (rolling average) - $521k loan
+  (2024,  6, "CASH",  84530-30000+12080-18450-5261-30000,   500, 900+9785-10000), #500 is HSA
+  (2024,  6, "OTHER", 38436,   0,      0), # Includes vested $GOOG
+  (2024,  6, "BONDS",      87120,  42075,  24979+915+47718+10000), #87120 is iBonds (approx)
+  (2024,  6, "THE_529",    35772,     0,      0),
+  (2024,  6, "SMALL_CAP", 201140+30000, 49020, 62909), #49020 is HSA (copied from last time -- site is down)
+  (2024,  6, "INTL_STOCK", 330158+18450, 420754*.36, 249790*.36+89549),
+  (2024,  6, "LARGE_CAP", 303194+5261, 420754*.54+138094, 249790*.54+96030)
 ;
 
 # Account checklist for each quarter: charles schwab, chase, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc, ibonds
