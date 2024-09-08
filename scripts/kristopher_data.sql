@@ -153,7 +153,7 @@ INSERT INTO `annual_breakdown` VALUES
 --           1) will now actually hold the target amont of bonds instead of using cash instead
 --           2) am splitting emergency fund vs cash a little different ("account of saved money" now considered em. fund)
 --           3) will be moving bonds to tax-deferred accounts
--- Sep 2024: no news.
+-- Sep 2024: Did rollover for R's old 401k.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
