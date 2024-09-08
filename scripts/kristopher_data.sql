@@ -153,6 +153,7 @@ INSERT INTO `annual_breakdown` VALUES
 --           1) will now actually hold the target amont of bonds instead of using cash instead
 --           2) am splitting emergency fund vs cash a little different ("account of saved money" now considered em. fund)
 --           3) will be moving bonds to tax-deferred accounts
+-- Sep 2024: no news.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -207,7 +208,13 @@ INSERT INTO `savings` VALUES
    # HSA: approx $1200 contributions, unknown distributions (will count them next quarter)
    # R's 401k: $16.5k contributions + match ytd = $9k
    # My 401k: $56.5k contributions + match ytd = $39k
-  (2024,  6, 109200)
+  (2024,  6, 109200),
+
+   # $42k regular savings
+   # HSA: $1680 ($6k contributions minus distributions ytd)
+   # R's 401k: $25.5k contributions + match ytd -> $9k
+   # My 401k: $69k contributions + match ytd -> $12.5k
+  (2024,  9, 65180)
 ;
 
 TRUNCATE `investment_category`;
@@ -903,7 +910,19 @@ INSERT INTO `investments` VALUES
   (2024,  6, "THE_529",    35772,     0,      0),
   (2024,  6, "SMALL_CAP", 201140+30000, 49020, 62909), #49020 is HSA (copied from last time -- site is down)
   (2024,  6, "INTL_STOCK", 330158+18450, 420754*.36, 249790*.36+89549),
-  (2024,  6, "LARGE_CAP", 303194+5261, 420754*.54+138094, 249790*.54+96030)
+  (2024,  6, "LARGE_CAP", 303194+5261, 420754*.54+138094, 249790*.54+96030),
+
+  # my 401k (61% pretax): 396753 pretax, 257388 posttax
+  (2024,  9, "EMERGENCY",  18000,     0,      0), # Chase checking minus estimated cc balances, plus "income goes here" acct
+  (2024,  9, "HOUSING",    20000,     0,      0),
+  (2024,  9, "HOME_EQ",   232000,     0,      0), # $750k zestimate (rolling average) - $518k loan
+  (2024,  9, "CASH",  81482-20000+2250-34000-30000,   500, 759), #500 is HSA
+  (2024,  9, "OTHER", 26691,   0,      0), # Includes vested $GOOG
+  (2024,  9, "BONDS",      87120,  39675,  25739+11964+50102+10000), #87120 is iBonds (approx)
+  (2024,  9, "THE_529",    38239,     0,      0),
+  (2024,  9, "SMALL_CAP", 239635+13000, 52053, 65238-10000), #52053 is HSA
+  (2024,  9, "INTL_STOCK", 350796+34000, 396753*.36, 257388*.36+99876),
+  (2024,  9, "LARGE_CAP", 313657+17000, 396753*.54+163588, 257388*.54+97619)
 ;
 
-# Account checklist for each quarter: charles schwab, chase, ally, hsa, r's old 401k, r's new 401k, r's vanguard, my vanguard, home equity calc, ibonds
+# Account checklist for each quarter: charles schwab, chase, ally, hsa, r's 401k, r's vanguard, my vanguard, home equity calc, ibonds
