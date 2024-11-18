@@ -154,6 +154,9 @@ INSERT INTO `annual_breakdown` VALUES
 --           2) am splitting emergency fund vs cash a little different ("account of saved money" now considered em. fund)
 --           3) will be moving bonds to tax-deferred accounts
 -- Sep 2024: Did rollover for R's old 401k.
+-- Dec 2024: Given that 1) US stocks are expensive 2) Net worth progression toward F.I. prompts a change in A.A. 3) A house purchase in tentatively on the horizon
+--           4) Our car is near E.O.L., I made these changes: 1) Reduce US large and small A.A. by one P.P. each 2) Increase international and bond A.A. by one P.P. each
+--           3) Increase housing fund by $10k 4) Increase emergency fund by $10k.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -245,11 +248,11 @@ INSERT INTO `investment_category` VALUES
 # Housing fund not included here as it has a dollar target amount instead (which fluctuates significantly).
 TRUNCATE `investment_target`;
 INSERT INTO `investment_target` VALUES
-  ("LARGE_CAP",  42),
-  ("INTL_STOCK", 32),
-  ("SMALL_CAP",  16),
+  ("LARGE_CAP",  41),
+  ("INTL_STOCK", 33),
+  ("SMALL_CAP",  15),
   ("CASH",        0), # NOT including emergency fund (1-3 months of expenses)
-  ("BONDS",      10)
+  ("BONDS",      11)
  ;
 
 TRUNCATE `investments`;
