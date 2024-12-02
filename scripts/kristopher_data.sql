@@ -217,7 +217,12 @@ INSERT INTO `savings` VALUES
    # HSA: $1680 ($6k contributions minus distributions ytd)
    # R's 401k: $25.5k contributions + match ytd -> $9k
    # My 401k: $69k contributions + match ytd -> $12.5k
-  (2024,  9, 65180)
+  (2024,  9, 65180),
+
+   # $40k regular savings
+   # HSA: $1100 ($7.1k contributions minus distributions ytd)
+   # R's 401k: $28750 contributions + match ytd -> $3250
+  (2024, 12, 44350)
 ;
 
 TRUNCATE `investment_category`;
@@ -925,7 +930,19 @@ INSERT INTO `investments` VALUES
   (2024,  9, "THE_529",    38239,     0,      0),
   (2024,  9, "SMALL_CAP", 239635+13000, 52053, 65238-10000), #52053 is HSA
   (2024,  9, "INTL_STOCK", 350796+34000, 396753*.36, 257388*.36+99876),
-  (2024,  9, "LARGE_CAP", 313657+17000, 396753*.54+163588, 257388*.54+97619)
+  (2024,  9, "LARGE_CAP", 313657+17000, 396753*.54+163588, 257388*.54+97619),
+
+  # my 401k (61% pretax): 436546 pretax, 279104 posttax
+  (2024, 12, "EMERGENCY",  28000,     0,      0), # Chase checking minus estimated cc balances, plus "income goes here" acct
+  (2024, 12, "HOUSING",    30000,     0,      0),
+  (2024, 12, "HOME_EQ",   225000,     0,      0), # $740k zestimate (rolling average) - $515k loan
+  (2024, 12, "CASH",  23547+40000+310-30000-30000,   500, 717), #500 is HSA
+  (2024, 12, "OTHER", 29947,   0,      0), # Includes vested $GOOG
+  (2024, 12, "BONDS",      87120,  43654,  27910+20829+51205+30000), #87120 is iBonds (approx)
+  (2024, 12, "THE_529",    43419,     0,      0),
+  (2024, 12, "SMALL_CAP", 290533, 62328, 63608-30000), #62328 is HSA
+  (2024, 12, "INTL_STOCK", 388943+30000, 436546*.36, 279104*.36+100940+30000),
+  (2024, 12, "LARGE_CAP", 373122, 436546*.54+186443, 279104*.54+110183-30000)
 ;
 
 # Account checklist for each quarter: charles schwab, chase, ally, hsa, r's 401k, r's vanguard, my vanguard, home equity calc, ibonds
