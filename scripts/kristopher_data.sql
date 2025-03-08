@@ -2,7 +2,7 @@ TRUNCATE `settings`;
 INSERT INTO `settings` VALUES
   ("REPORT_START_YEAR_LOOSE", "2011"),
   ("REPORT_START_YEAR_STRICT", "2014"),
-  ("REPORT_END_YEAR", "2024"),
+  ("REPORT_END_YEAR", "2025"),
   ("REPORT_TITLE", "Kristopher &amp; Rachel Windsor&apos;s Financial Report")
 ;
 
@@ -94,13 +94,20 @@ INSERT INTO `annual_breakdown` VALUES
   (2023, "DONATIONS",       0),
   (2023, "SAVINGS",         393228),
 
+  (2024, "GROSS_INCOME",    681000), #Adjusted gross income
+  (2024, "FEDERAL_TAXES",   171000),
+  (2024, "STATE_TAXES",     56000),
+  (2024, "SOCIAL_SEC",      33700), #10400 K SS, 10200 K M, 10400 R S, 2700 R M
+  (2024, "DONATIONS",       0),
+  (2024, "SAVINGS",         317000),
+
   #Forecast
-  (2024, "GROSS_INCOME",    550000),
-  (2024, "FEDERAL_TAXES",   150000),
-  (2024, "STATE_TAXES",     50000),
-  (2024, "SOCIAL_SEC",      20000), #Including Medicare
-  (2024, "DONATIONS",       10000),
-  (2024, "SAVINGS",         250000)
+  (2025, "GROSS_INCOME",    100),
+  (2025, "FEDERAL_TAXES",   1),
+  (2025, "STATE_TAXES",     1),
+  (2025, "SOCIAL_SEC",      1), #Including Medicare
+  (2025, "DONATIONS",       1),
+  (2025, "SAVINGS",         1)
 ;
 
 -- Keeping quarterly summary in case I put it in a table
@@ -157,6 +164,7 @@ INSERT INTO `annual_breakdown` VALUES
 -- Dec 2024: Given that 1) US stocks are expensive 2) Net worth progression toward F.I. prompts a change in A.A. 3) A house purchase in tentatively on the horizon
 --           4) Our car is near E.O.L., I made these changes: 1) Reduce US large and small A.A. by one P.P. each 2) Increase international and bond A.A. by one P.P. each
 --           3) Increase housing fund by $10k 4) Increase emergency fund by $10k.
+-- Jan 2025: Hold AA. New policy / clarification: if one category is off the target AA by 1pp, it doesn't need to be immediately addressed (especially if it would require selling stock).
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -222,7 +230,13 @@ INSERT INTO `savings` VALUES
    # $40k regular savings
    # HSA: $1100 ($7.1k contributions minus distributions ytd)
    # R's 401k: $28750 contributions + match ytd -> $3250
-  (2024, 12, 44350)
+  (2024, 12, 44350),
+
+  # $24k regular savings
+  # HSA: $3250 ($3250k contributions ytd, $0 distributions ytd; 1 contribution last year)
+  # R's 401k: $6k contributions + match ytd -> $6k
+  # My 401k: $21250 ytd (including match) -> 21250
+  (2025, 3, 54500)
 ;
 
 TRUNCATE `investment_category`;
@@ -942,7 +956,19 @@ INSERT INTO `investments` VALUES
   (2024, 12, "THE_529",    43419,     0,      0),
   (2024, 12, "SMALL_CAP", 290533, 62328, 63608-30000), #62328 is HSA
   (2024, 12, "INTL_STOCK", 388943+25000, 436546*.36, 279104*.36+100940+30000),
-  (2024, 12, "LARGE_CAP", 373122, 436546*.54+186443, 279104*.54+110183-30000)
+  (2024, 12, "LARGE_CAP", 373122, 436546*.54+186443, 279104*.54+110183-30000),
+
+  # my 401k (61% pretax): 445338 pretax, 284724 posttax
+  (2025,  3, "EMERGENCY",  25000,     0,      0), # Chase checking minus estimated cc balances, plus "income goes here" acct. Keep stable.
+  (2025,  3, "HOUSING",    30000,     0,      0),
+  (2025,  3, "HOME_EQ",   241000,     0,      0), # $753k zestimate (rolling average) - $512k loan
+  (2025,  3, "CASH",  50278-30000-14000,   500, 642+7000), #500 is HSA
+  (2025,  3, "OTHER", 30000,   0,      0), # Includes vested $GOOG - approx
+  (2025,  3, "BONDS",      89152,  44533,  101016+28472+7000), #89152 is iBonds
+  (2025,  3, "THE_529",    44962,     0,      0),
+  (2025,  3, "SMALL_CAP", 250003, 58375, 28930), #58375 is HSA
+  (2025,  3, "INTL_STOCK", 441227, 445338*.36, 284724*.36+106414+31210),
+  (2025,  3, "LARGE_CAP", 353685, 445338*.54+184742, 284724*.54+76133)
 ;
 
 # Account checklist for each quarter: charles schwab, chase, ally, hsa, r's 401k, r's vanguard, my vanguard, home equity calc, ibonds
