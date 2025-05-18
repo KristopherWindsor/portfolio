@@ -164,7 +164,8 @@ INSERT INTO `annual_breakdown` VALUES
 -- Dec 2024: Given that 1) US stocks are expensive 2) Net worth progression toward F.I. prompts a change in A.A. 3) A house purchase in tentatively on the horizon
 --           4) Our car is near E.O.L., I made these changes: 1) Reduce US large and small A.A. by one P.P. each 2) Increase international and bond A.A. by one P.P. each
 --           3) Increase housing fund by $10k 4) Increase emergency fund by $10k.
--- Jan 2025: Hold AA. New policy / clarification: if one category is off the target AA by 1pp, it doesn't need to be immediately addressed (especially if it would require selling stock).
+-- Mar 2025: Hold AA. New policy / clarification: if one category is off the target AA by 1pp, it doesn't need to be immediately addressed (especially if it would require selling stock).
+-- Jun 2025: Increase emergency fund by $10k, the purpose being to buffer any cash flow issues. No other changes.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
