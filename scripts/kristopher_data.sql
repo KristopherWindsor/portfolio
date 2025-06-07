@@ -165,7 +165,8 @@ INSERT INTO `annual_breakdown` VALUES
 --           4) Our car is near E.O.L., I made these changes: 1) Reduce US large and small A.A. by one P.P. each 2) Increase international and bond A.A. by one P.P. each
 --           3) Increase housing fund by $10k 4) Increase emergency fund by $10k.
 -- Mar 2025: Hold AA. New policy / clarification: if one category is off the target AA by 1pp, it doesn't need to be immediately addressed (especially if it would require selling stock).
--- Jun 2025: Increase emergency fund by $10k, the purpose being to buffer any cash flow issues. No other changes.
+-- Jun 2025: Move money from housing fund to emergency fund, this is just an accounting change to buffer any cash flow issues. The housing fund is zero'd out and will stay that way
+--           until there are concrete plans to buy a house. No other changes. Bond purchases are for TLT this quarter since it is looking cheap.
 
 TRUNCATE `savings`;
 INSERT INTO `savings` VALUES
@@ -237,7 +238,13 @@ INSERT INTO `savings` VALUES
   # HSA: $3250 ($3250k contributions ytd, $0 distributions ytd; 1 contribution last year)
   # R's 401k: $6k contributions + match ytd -> $6k
   # My 401k: $21250 ytd (including match) -> 21250
-  (2025, 3, 54500)
+  (2025, 3, 54500),
+
+  # $68k regular savings
+  # HSA: $1580 ($5020 contributions ytd, $190 distributions ytd)
+  # R's 401k: $15500k contributions + match ytd -> $9.5k
+  # My 401k: $57250 ytd (including match) -> $36k
+  (2025, 6, 115080)
 ;
 
 TRUNCATE `investment_category`;
@@ -969,7 +976,19 @@ INSERT INTO `investments` VALUES
   (2025,  3, "THE_529",    44962,     0,      0),
   (2025,  3, "SMALL_CAP", 250003, 58375, 28930), #58375 is HSA
   (2025,  3, "INTL_STOCK", 441227, 445338*.36, 284724*.36+106414+31210),
-  (2025,  3, "LARGE_CAP", 353685, 445338*.54+184742, 284724*.54+76133)
+  (2025,  3, "LARGE_CAP", 353685, 445338*.54+184742, 284724*.54+76133),
+
+  # my 401k (61% pretax): 488311 pretax, 312198 posttax
+  (2025,  6, "EMERGENCY",  40000,     0,      0), # Chase checking minus estimated cc balances ($5k), plus "income goes here" acct. Use this to determine how much to put in "saved money" account.
+  (2025,  6, "HOUSING",    0,     0,      0),
+  (2025,  6, "HOME_EQ",   231000,     0,      0), # $740k zestimate (rolling average) - $509k loan
+  (2025,  6, "CASH",  102567-87000,   500, 0), #500 is HSA
+  (2025,  6, "OTHER", 30676,   0,      0), # Includes vested $GOOG
+  (2025,  6, "BONDS",      89152,  44533,  47131+52402+31219+7716+28982), #89152 is iBonds
+  (2025,  6, "THE_529",    49559,     0,      0),
+  (2025,  6, "SMALL_CAP", 250448+57000, 60468, 0), #60468 is HSA
+  (2025,  6, "INTL_STOCK", 471291, 445338*.36, 312198*.36+120744+33336),
+  (2025,  6, "LARGE_CAP", 369739+30000, 445338*.54+201848, 312198*.54+79556)
 ;
 
 # Account checklist for each quarter: charles schwab, chase, ally, hsa, r's 401k, r's vanguard, my vanguard, home equity calc, ibonds
